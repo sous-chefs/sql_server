@@ -20,7 +20,10 @@
 
 ::Chef::Recipe.send(:include, Opscode::OpenSSL::Password)
 
-service_name = "MSSQL$#{node['sql_server']['instance_name']}"
+service_name = node['sql_server']['instance_name']
+if node['sql_server']['instance_name'] == 'SQLEXPRESS'
+  service_name = "MSSQL$#{node['sql_server']['instance_name']}"
+end
 
 # generate and set a password for the 'sa' super user
 node.set_unless['sql_server']['server_sa_password'] = secure_password
