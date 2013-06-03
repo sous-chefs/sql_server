@@ -24,8 +24,6 @@ default['sql_server']['port']           = 1433
 default['sql_server']['instance_name']  = 'SQLEXPRESS'
 default['sql_server']['instance_dir']   = 'C:\Program Files\Microsoft SQL Server'
 
-default['sql_server']['feature_list'] = 'SQLENGINE,REPLICATION,SNAC_SDK'
-
 if kernel['machine'] =~ /x86_64/
 
   default['sql_server']['server']['url']          = 'http://care.dlservice.microsoft.com/dl/download/5/1/A/51A153F6-6B08-4F94-A7B2-BA1AD482BC75/SQLEXPR_x64_ENU.exe'

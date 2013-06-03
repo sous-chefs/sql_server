@@ -26,7 +26,7 @@ ACTION="Install"
 
 ; Specifies features to install, uninstall, or upgrade. The list of top-level features include SQL, AS, RS, IS, and Tools. The SQL feature will install the database engine, replication, and full-text. The Tools feature will install Management Tools, Books online, Business Intelligence Development Studio, and other shared components.
 
-FEATURES=<%= node['sql_server']['feature_list'] %>
+FEATURES=SQLENGINE,REPLICATION,SNAC_SDK
 
 ; Displays the command line parameters usage
 
