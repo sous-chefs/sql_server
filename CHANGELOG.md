@@ -1,3 +1,10 @@
+## v1.2.0:
+
+### Bug
+
+- [COOK-3085]: Sql server configuration is incorrect when trying to
+  install non-express version
+
 ## 1.1.0:
 
 * [COOK-1049] - remove unneeded external restart script from sql_server::server recipe
