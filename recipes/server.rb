@@ -39,6 +39,7 @@ end
 windows_package node['sql_server']['server']['package_name'] do
   source node['sql_server']['server']['url']
   checksum node['sql_server']['server']['checksum']
+  timeout node['sql_server']['server']['installer_timeout']
   installer_type :custom
   options "/q /ConfigurationFile=#{config_file_path}"
   action :install
