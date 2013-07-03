@@ -68,9 +68,11 @@ ERRORREPORTING="False"
 
 INSTALLSHAREDDIR="<%= node['sql_server']['install_dir'] %>"
 
+<% if node['kernel']['machine'] =~ /x86_64/ %>
 ; Specify the root installation directory for the WOW64 shared components.
 
 INSTALLSHAREDWOWDIR="C:\Program Files (x86)\Microsoft SQL Server"
+<% end %>
 
 ; Specify the installation directory.
 
