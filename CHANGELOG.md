@@ -3,6 +3,10 @@ sql_server Cookbook CHANGELOG
 This file is used to list changes made in each version of the sql_server cookbook.
 
 
+v1.2.2
+------
+- See (v1.2.1), made a mistake with DevOdd releases
+
 v1.2.1
 ------
 ### Improvement
