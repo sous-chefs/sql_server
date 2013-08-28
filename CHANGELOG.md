@@ -3,6 +3,11 @@ sql_server Cookbook CHANGELOG
 This file is used to list changes made in each version of the sql_server cookbook.
 
 
+v1.2.1
+------
+### Improvement
+- **[COOK-3088](https://tickets.opscode.com/browse/COOK-3088)** - Allow setting feature_list
+
 v1.2.0
 ------
 ### Bug
