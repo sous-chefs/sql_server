@@ -24,6 +24,9 @@ service_name = node['sql_server']['instance_name']
 if node['sql_server']['instance_name'] == 'SQLEXPRESS'
   service_name = "MSSQL$#{node['sql_server']['instance_name']}"
 end
+  
+static_tcp_reg_key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\MSSQL10_50.' +
+  service_name + '\MSSQLServer\SuperSocketNetLib\Tcp\IPAll'
 
 # generate and set a password for the 'sa' super user
 node.set_unless['sql_server']['server_sa_password'] = secure_password
@@ -50,10 +53,9 @@ service service_name do
 end
 
 # set the static tcp port
-windows_registry "set-static-tcp-port"  do
-  key_name 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\MSSQL10_50.' << node['sql_server']['instance_name'] << '\MSSQLServer\SuperSocketNetLib\Tcp\IPAll'
-  values 'TcpPort' => node['sql_server']['port'].to_s, 'TcpDynamicPorts' => ""
-  action :force_modify
+registry_key static_tcp_reg_key do
+  values [{ :name => 'TcpPort', :type => :string, :data => node['sql_server']['port'].to_s },
+    { :name => 'TcpDynamicPorts', :type => :string, :data => '' }]
   notifies :restart, "service[#{service_name}]", :immediately
 end
 
