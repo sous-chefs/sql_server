@@ -3,6 +3,16 @@ sql_server Cookbook CHANGELOG
 This file is used to list changes made in each version of the sql_server cookbook.
 
 
+v1.3.0
+------
+### Improvement
+- **[COOK-3507](https://tickets.opscode.com/browse/COOK-3507)** - Broken SQLExpress download links...
+
+### Bug
+- **[COOK-3506](https://tickets.opscode.com/browse/COOK-3506)** - SQLEXPRESS on 32 bits systems does not support INSTALLSHAREDWOWDIR
+- **[COOK-3388](https://tickets.opscode.com/browse/COOK-3388)** - Mixlib::ShellOut::CommandTimeout: command timed out error
+
+
 v1.2.2
 ------
 - See (v1.2.1), made a mistake with DevOdd releases
