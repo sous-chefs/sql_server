@@ -28,6 +28,7 @@ default['sql_server']['feature_list'] = 'SQLENGINE,REPLICATION,SNAC_SDK'
 default['sql_server']['agent_account'] =  'NT AUTHORITY\NETWORK SERVICE'
 default['sql_server']['rs_mode'] = 'FilesOnlyMode'
 default['sql_server']['rs_account'] = 'NT AUTHORITY\NETWORK SERVICE'
+default['sql_server']['rs_startup'] = 'Automatic'
 
 default['sql_server']['server']['installer_timeout'] = 1500
 

@@ -190,7 +190,7 @@ RSSVCACCOUNT="<%= node['sql_server']['rs_account'] %>"
 ; Automatic - Service startup is automatic mode.
 ; Disabled - Service is disabled
 
-RSSVCSTARTUPTYPE="Automatic"
+RSSVCSTARTUPTYPE="<%= node['sql_server']['rs_startup'] %>"
 
 ; Specifies which mode report server is installed in.
 ; Default value: "FilesOnly"
