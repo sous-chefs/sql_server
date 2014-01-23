@@ -28,6 +28,7 @@ This file also contains download url, checksum and package name for all client i
 * `node['sql_server']['port']` - static TCP port server should listen on for client connections, default is `1433`
 * `node['sql_server']['instance_name']` - name of the default instance, default is `SQLEXPRESS`
 * `node['sql_server']['instance_dir']` - root directory of the default instance, default is `C:\Program Files\Microsoft SQL Server`
+* `node['sql_server']['shared_wow_dir']` - root directory of the shared WOW directory, default is `C:\Program Files (x86)\Microsoft SQL Server`
 
 This file also contains download url, checksum and package name for the server installation package.
 
