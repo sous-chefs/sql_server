@@ -195,4 +195,4 @@ RSSVCSTARTUPTYPE="Automatic"
 ; Specifies which mode report server is installed in.
 ; Default value: "FilesOnly"
 
-RSINSTALLMODE="FilesOnlyMode"
+RSINSTALLMODE="<%= node['sql_server']['rs_mode'] %>"
