@@ -31,6 +31,7 @@ This file also contains download url, checksum and package name for all client i
 * `node['sql_server']['shared_wow_dir']` - root directory of the shared WOW directory, default is `C:\Program Files (x86)\Microsoft SQL Server`
 * `node['sql_server']['agent_account']` - Agent account name, default is `NT AUTHORITY\NETWORK SERVICE`
 * `node['sql_server']['rs_mode']` - Reporting Services install mode, default is `FilesOnlyMode`
+* `node['sql_server']['rs_account']` - Reporting Services account name, default is `NT AUTHORITY\NETWORK SERVICE`
 
 This file also contains download url, checksum and package name for the server installation package.
 

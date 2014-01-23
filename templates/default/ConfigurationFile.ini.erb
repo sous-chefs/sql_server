@@ -183,7 +183,7 @@ BROWSERSVCSTARTUPTYPE="Disabled"
 ; The username part of RSSVCACCOUNT is a maximum of 20 characters long and
 ; The domain part of RSSVCACCOUNT is a maximum of 254 characters long.
 
-RSSVCACCOUNT="NT AUTHORITY\NETWORK SERVICE"
+RSSVCACCOUNT="<%= node['sql_server']['rs_account'] %>"
 
 ; Specifies how the startup mode of the report server NT service.  When
 ; Manual - Service startup is manual mode (default).

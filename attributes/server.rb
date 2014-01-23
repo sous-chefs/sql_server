@@ -27,6 +27,7 @@ default['sql_server']['shared_wow_dir']   = 'C:\Program Files (x86)\Microsoft SQ
 default['sql_server']['feature_list'] = 'SQLENGINE,REPLICATION,SNAC_SDK'
 default['sql_server']['agent_account'] =  'NT AUTHORITY\NETWORK SERVICE'
 default['sql_server']['rs_mode'] = 'FilesOnlyMode'
+default['sql_server']['rs_account'] = 'NT AUTHORITY\NETWORK SERVICE'
 
 default['sql_server']['server']['installer_timeout'] = 1500
 
