@@ -156,7 +156,7 @@ SQLCOLLATION="SQL_Latin1_General_CP1_CI_AS"
 
 ; Account for SQL Server service: Domain\User or system account.
 
-SQLSVCACCOUNT="NT AUTHORITY\NETWORK SERVICE"
+SQLSVCACCOUNT="<%= node['sql_server']['sql_account'] %>"
 
 ; Windows account(s) to provision as SQL Server system administrators.
 
