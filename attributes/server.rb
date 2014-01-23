@@ -30,6 +30,7 @@ default['sql_server']['rs_mode'] = 'FilesOnlyMode'
 default['sql_server']['rs_account'] = 'NT AUTHORITY\NETWORK SERVICE'
 default['sql_server']['rs_startup'] = 'Automatic'
 default['sql_server']['browser_startup'] = 'Disabled'
+default['sql_server']['sysadmins'] = 'Administrator'
 
 default['sql_server']['server']['installer_timeout'] = 1500
 

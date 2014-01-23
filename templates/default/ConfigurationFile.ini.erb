@@ -161,7 +161,7 @@ SQLSVCACCOUNT="NT AUTHORITY\NETWORK SERVICE"
 ; Windows account(s) to provision as SQL Server system administrators.
 
 ;SQLSYSADMINACCOUNTS="IP-0A7A5B97\Administrator"
-SQLSYSADMINACCOUNTS="Administrator"
+SQLSYSADMINACCOUNTS="<%= node['sql_server']['sysadmins'] %>"
 
 ; Provision current user as a Database Engine system administrator for SQL Server 2008 R2 Express.
 
