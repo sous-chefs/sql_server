@@ -88,7 +88,7 @@ INSTANCENAME="<%= node['sql_server']['instance_name'] %>"
 
 ; Agent account name
 
-AGTSVCACCOUNT="NT AUTHORITY\NETWORK SERVICE"
+AGTSVCACCOUNT="<%= node['sql_server']['agent_account'] %>"
 
 ; Auto-start service after installation.
 
