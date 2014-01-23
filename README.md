@@ -33,6 +33,7 @@ This file also contains download url, checksum and package name for all client i
 * `node['sql_server']['rs_mode']` - Reporting Services install mode, default is `FilesOnlyMode`
 * `node['sql_server']['rs_account']` - Reporting Services account name, default is `NT AUTHORITY\NETWORK SERVICE`
 * `node['sql_server']['rs_startup']` - Reporting Services startup mode, default is `Automatic`
+* `node['sql_server']['browser_startup']` - Browser Service startup mode, default is `Disabled`
 
 This file also contains download url, checksum and package name for the server installation package.
 

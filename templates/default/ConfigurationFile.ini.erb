@@ -177,7 +177,7 @@ NPENABLED="0"
 
 ; Startup type for Browser Service.
 
-BROWSERSVCSTARTUPTYPE="Disabled"
+BROWSERSVCSTARTUPTYPE="<%= node['sql_server']['browser_startup'] %>"
 
 ; Specifies which account the report server NT service should execute under.  When omitted or when the value is empty string, the default built-in account for the current operating system.
 ; The username part of RSSVCACCOUNT is a maximum of 20 characters long and
