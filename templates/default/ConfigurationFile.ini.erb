@@ -92,7 +92,7 @@ AGTSVCACCOUNT="<%= node['sql_server']['agent_account'] %>"
 
 ; Auto-start service after installation.
 
-AGTSVCSTARTUPTYPE="Disabled"
+AGTSVCSTARTUPTYPE="<%= node['sql_server']['agent_startup'] %>"
 
 ; Startup type for Integration Services.
 
