@@ -25,7 +25,7 @@ if node['sql_server']['instance_name'] == 'SQLEXPRESS'
   service_name = "MSSQL$#{node['sql_server']['instance_name']}"
 end
   
-static_tcp_reg_key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\MSSQL10_50.' +
+static_tcp_reg_key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\\' + node['sql_server']['reg_version'] +
   service_name + '\MSSQLServer\SuperSocketNetLib\Tcp\IPAll'
 
 # generate and set a password for the 'sa' super user
