@@ -3,6 +3,15 @@ sql_server Cookbook CHANGELOG
 This file is used to list changes made in each version of the sql_server cookbook.
 
 
+v1.4.1 (2014-02-21)
+-------------------
+### Improvement
+- **[COOK-3892](https://tickets.opscode.com/browse/COOK-3892)** - sql_server cookbook uses deprecated windows_registry LWRP
+
+### Bug
+- **[COOK-3725](https://tickets.opscode.com/browse/COOK-3725)** - sql_server randomly-generated SA password sometimes not strong enough
+
+
 v1.3.0
 ------
 ### Improvement
