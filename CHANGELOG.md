@@ -3,6 +3,11 @@ sql_server Cookbook CHANGELOG
 This file is used to list changes made in each version of the sql_server cookbook.
 
 
+v2.0.0 (2014-02-27)
+-------------------
+[COOK-4253] - Make install options configurable
+
+
 v1.4.4 (2014-02-21)
 -------------------
 ### Improvement
