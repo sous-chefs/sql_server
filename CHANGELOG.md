@@ -3,6 +3,11 @@ sql_server Cookbook CHANGELOG
 This file is used to list changes made in each version of the sql_server cookbook.
 
 
+v2.2.0 (2014-03-27)
+-------------------
+- [COOK-4355] - Fix support for SQL server by using the right registry path
+
+
 v2.0.0 (2014-02-27)
 -------------------
 [COOK-4253] - Make install options configurable
