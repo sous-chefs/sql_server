@@ -60,3 +60,10 @@ registry_key static_tcp_reg_key do
 end
 
 include_recipe 'sql_server::client'
+
+windows_batch "MSSQL_Firewall" do
+  code <<-EOH
+  netsh advfirewall firewall add rule name=\"SQL Server Instance #{node['sql_server']['instance_name']} TCP#{node['sql_server']['port'].to_s}-In\" action=allow protocol=TCP dir=in localport=#{node['sql_server']['port'].to_s}"
+  EOH
+  only_if { node['sql_server']['open_firewall'] }
+end
