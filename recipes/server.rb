@@ -46,6 +46,7 @@ windows_package node['sql_server']['server']['package_name'] do
   installer_type :custom
   options "/q /ConfigurationFile=#{config_file_path}"
   action :install
+  timeout 3600
 end
 
 service service_name do

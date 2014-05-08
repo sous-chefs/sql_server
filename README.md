@@ -117,6 +117,8 @@ execute "open-static-port" do
 end
 ```
 
+Note that there is a timeout of 1 hour for the installation (this excludes the download time and other operations). If the SQL Server installer takes longer than this to run, Chef will kill the installer process and the recipe will fail with a timeout error.
+
 License & Authors
 -----------------
 - Author:: Seth Chisamore (<schisamo@opscode.com>)
