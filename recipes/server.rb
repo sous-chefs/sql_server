@@ -24,7 +24,7 @@ service_name = node['sql_server']['instance_name']
 if node['sql_server']['instance_name'] == 'SQLEXPRESS'
   service_name = "MSSQL$#{node['sql_server']['instance_name']}"
 end
-  
+
 static_tcp_reg_key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\\' + node['sql_server']['reg_version'] +
   node['sql_server']['instance_name'] + '\MSSQLServer\SuperSocketNetLib\Tcp\IPAll'
 
@@ -39,6 +39,11 @@ template config_file_path do
   source "ConfigurationFile.ini.erb"
 end
 
+if /PrepareImage/i.match(node['sql_server']['setup_action']) || /CompleteImage/i.match(node['sql_server']['setup_action'])
+  execute "SQL Server SysPrep #{node['sql_server']['setup_action']}" do
+    command "start \"\" /wait \"#{node['sql_server']['server']['url']}\" /q /ConfigurationFile=\"#{config_file_path}\""
+  end
+else
 windows_package node['sql_server']['server']['package_name'] do
   source node['sql_server']['server']['url']
   checksum node['sql_server']['server']['checksum']
@@ -47,16 +52,20 @@ windows_package node['sql_server']['server']['package_name'] do
   options "/q /ConfigurationFile=#{config_file_path}"
   action :install
 end
-
-service service_name do
-  action :nothing
 end
 
-# set the static tcp port
-registry_key static_tcp_reg_key do
-  values [{ :name => 'TcpPort', :type => :string, :data => node['sql_server']['port'].to_s },
-    { :name => 'TcpDynamicPorts', :type => :string, :data => '' }]
-  notifies :restart, "service[#{service_name}]", :immediately
-end
 
+if ( /Install/i.match(node['sql_server']['setup_action']) || /CompleteImage/i.match(node['sql_server']['setup_action']) ) &&
+  ( /SQL/i.match(node['sql_server']['feature_list']) || /ALLFeatures_WithDefaults/i.match(node['sql_server']['install_role']) )
+  service service_name do
+    action :nothing
+  end
+
+  # set the static tcp port
+  registry_key static_tcp_reg_key do
+    values [{ :name => 'TcpPort', :type => :string, :data => node['sql_server']['port'].to_s },
+            { :name => 'TcpDynamicPorts', :type => :string, :data => '' }]
+    notifies :restart, "service[#{service_name}]", :immediately
+  end
+end
 include_recipe 'sql_server::client'
