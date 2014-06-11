@@ -24,7 +24,14 @@ default['sql_server']['port']           = 1433
 default['sql_server']['instance_name']  = 'SQLEXPRESS'
 default['sql_server']['instance_dir']   = 'C:\Program Files\Microsoft SQL Server'
 default['sql_server']['shared_wow_dir']   = 'C:\Program Files (x86)\Microsoft SQL Server'
-default['sql_server']['feature_list'] = 'SQLENGINE,REPLICATION,SNAC_SDK'
+default['sql_server']['setup_action'] = 'Install'
+case node['sql_server']['setup_action']
+when 'PrepareImage'
+  default['sql_server']['feature_list'] = 'SQLENGINE,REPLICATION,RS'
+else
+  default['sql_server']['feature_list'] = 'SQLENGINE,REPLICATION,SNAC_SDK'
+end
+default['sql_server']['install_role'] = nil
 default['sql_server']['agent_account'] =  'NT AUTHORITY\NETWORK SERVICE'
 default['sql_server']['agent_startup'] =  'Disabled'
 default['sql_server']['rs_mode'] = 'FilesOnlyMode'
