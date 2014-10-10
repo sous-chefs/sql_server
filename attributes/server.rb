@@ -25,6 +25,8 @@ default['sql_server']['instance_name']  = 'SQLEXPRESS'
 default['sql_server']['instance_dir']   = 'C:\Program Files\Microsoft SQL Server'
 default['sql_server']['shared_wow_dir']   = 'C:\Program Files (x86)\Microsoft SQL Server'
 default['sql_server']['setup_action'] = 'Install'
+default['sql_server']['setup_task']['user'] = nil
+default['sql_server']['setup_task']['password'] = nil
 case node['sql_server']['setup_action']
 when 'PrepareImage'
   default['sql_server']['feature_list'] = 'SQLENGINE,REPLICATION,RS'

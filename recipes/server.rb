@@ -40,18 +40,45 @@ template config_file_path do
 end
 
 if /PrepareImage/i.match(node['sql_server']['setup_action']) || /CompleteImage/i.match(node['sql_server']['setup_action'])
-  execute "SQL Server SysPrep #{node['sql_server']['setup_action']}" do
-    command "start \"\" /wait \"#{node['sql_server']['server']['url']}\" /q /ConfigurationFile=\"#{config_file_path}\""
+  #execute "SQL Server SysPrep #{node['sql_server']['setup_action']}" do
+  #  command "start \"\" /wait \"#{node['sql_server']['server']['url']}\" /q /ConfigurationFile=\"#{config_file_path}\""
+  #end
+  sql_install_wrapper_path = win_friendly_path(File.join(Chef::Config[:file_cache_path], "SQL#{node['sql_server']['version']}_install_wrapper.bat"))
+  template sql_install_wrapper_path do
+    source "sql_install_wrapper.bat.erb"
+    variables(
+      config_file_path: config_file_path,
+      sql_setup_url: node['sql_server']['server']['url']
+    )
+  end
+
+  windows_task "Create SQL Server SysPrep #{node['sql_server']['setup_action']} Scheduled Task" do
+    user node['sql_server']['setup_task']['user'] if node['sql_server']['setup_task']['user']
+    password node['sql_server']['setup_task']['password'] if node['sql_server']['setup_task']['password']
+    name "SQL Server SysPrep #{node['sql_server']['setup_action']}"
+    command "start '' /wait #{sql_install_wrapper_path}"
+    #command "'#{node['sql_server']['server']['url']}' /q /ConfigurationFile='#{config_file_path}'"
+    #run_level :highest
+    action [ :create, :change, :run ]
+    frequency :monthly
+    frequency_modifier 12
+  end
+
+  windows_task "Delete SQL Server SysPrep #{node['sql_server']['setup_action']} Scheduled Task" do
+    user node['sql_server']['setup_task']['user'] if node['sql_server']['setup_task']['user']
+    password node['sql_server']['setup_task']['password'] if node['sql_server']['setup_task']['password']
+    name "SQL Server SysPrep #{node['sql_server']['setup_action']}"
+    action [ :delete ]
   end
 else
-windows_package node['sql_server']['server']['package_name'] do
-  source node['sql_server']['server']['url']
-  checksum node['sql_server']['server']['checksum']
-  timeout node['sql_server']['server']['installer_timeout']
-  installer_type :custom
-  options "/q /ConfigurationFile=#{config_file_path}"
-  action :install
-end
+  windows_package node['sql_server']['server']['package_name'] do
+    source node['sql_server']['server']['url']
+    checksum node['sql_server']['server']['checksum']
+    timeout node['sql_server']['server']['installer_timeout']
+    installer_type :custom
+    options "/q /ConfigurationFile=#{config_file_path}"
+    action :install
+  end
 end
 
 
