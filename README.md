@@ -37,6 +37,9 @@ This file also contains download url, checksum and package name for all client i
 * `node['sql_server']['browser_startup']` - Browser Service startup mode, default is `Disabled`
 * `node['sql_server']['sysadmins']` - Windows accounts that are SQL administrators, default is `Administrator`
 * `node['sql_server']['sql_account']` - SQL service account name, default is `NT AUTHORITY\NETWORK SERVICE`
+* `node['sql_server']['setup_action']` - Action to perform eg. `Install`, `PrepareImage`, `CompleteImage`
+* `node['sql_server']['feature_list']` - [Features](<http://msdn.microsoft.com/en-us/library/ms144259(v=sql.105).aspx#Feature>) to install eg `SQLEngine,Replication`
+* `node['sql_server']['install_role']` - [Role](<http://msdn.microsoft.com/en-us/library/ms144259(v=sql.105).aspx#Role>) to install eg. `AllFeatures_WithDefaults`
 
 This file also contains download url, checksum and package name for the server installation package.
 
