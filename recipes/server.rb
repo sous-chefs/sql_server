@@ -21,10 +21,10 @@
 ::Chef::Recipe.send(:include, Opscode::OpenSSL::Password)
 
 service_name = node['sql_server']['instance_name']
-if node['sql_server']['instance_name'] == 'SQLEXPRESS'
+if node['sql_server']['instance_name'] != 'MSSQLSERVER'
   service_name = "MSSQL$#{node['sql_server']['instance_name']}"
 end
-  
+
 static_tcp_reg_key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\\' + node['sql_server']['reg_version'] +
   node['sql_server']['instance_name'] + '\MSSQLServer\SuperSocketNetLib\Tcp\IPAll'
 
