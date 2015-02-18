@@ -18,7 +18,7 @@
 # limitations under the License.
 #
 
-::Chef::Recipe.send(:include, Chef::OpenSSL::Password)
+::Chef::Recipe.send(:include, OpenSSLCookbook::Password)
 
 service_name = node['sql_server']['instance_name']
 if node['sql_server']['instance_name'] == 'SQLEXPRESS'
