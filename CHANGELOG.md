@@ -2,6 +2,9 @@ sql_server Cookbook CHANGELOG
 =============================
 This file is used to list changes made in each version of the sql_server cookbook.
 
+v2.2.2 (2014-02-17)
+-------------------
+- updating to use the latest openssl
 
 v2.2.0 (2014-03-27)
 -------------------
