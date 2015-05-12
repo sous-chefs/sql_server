@@ -1,0 +1,15 @@
+DEPENDENCIES
+  sql_server
+    path: .
+    metadata: true
+
+GRAPH
+  chef-sugar (3.1.0)
+  chef_handler (1.1.6)
+  openssl (4.0.0)
+    chef-sugar (>= 0.0.0)
+  sql_server (2.2.3)
+    openssl (>= 0.0.0)
+    windows (>= 1.2.6)
+  windows (1.36.6)
+    chef_handler (>= 0.0.0)
