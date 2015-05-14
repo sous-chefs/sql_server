@@ -33,10 +33,19 @@ node.set_unless['sql_server']['server_sa_password'] = "#{secure_password}-aA12"
 # force a save so we don't lose our generated password on a failed chef run
 node.save unless Chef::Config[:solo]
 
-config_file_path = win_friendly_path(File.join(Chef::Config[:file_cache_path], "ConfigurationFile.ini"))
+config_file_path = win_friendly_path(File.join(Chef::Config[:file_cache_path], 'ConfigurationFile.ini'))
+
+if node['sql_server']['sysadmins'].is_a? Array
+  sql_sys_admin_list = node['sql_server']['sysadmins'].join(' ')
+else  
+  sql_sys_admin_list = node['sql_server']['sysadmins']
+end
 
 template config_file_path do
-  source "ConfigurationFile.ini.erb"
+  source 'ConfigurationFile.ini.erb'
+  variables(
+    sqlSysAdminList: sql_sys_admin_list
+  )
 end
 
 windows_package node['sql_server']['server']['package_name'] do
