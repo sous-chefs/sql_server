@@ -59,7 +59,7 @@ describe 'sql_server::server' do
 
     it 'creates the correct ConfigurationFile.ini template' do
       expect(chef_run).to create_template('C:\chef\cache\ConfigurationFile.ini')
-      expect(chef_run).to render_file('C:\chef\cache\ConfigurationFile.ini').with_content(/^"SQLSYSADMINACCOUNTS=Administrator"$/)
+      expect(chef_run).to render_file('C:\chef\cache\ConfigurationFile.ini').with_content(/^SQLSYSADMINACCOUNTS="Administrator"$/)
     end
 
 

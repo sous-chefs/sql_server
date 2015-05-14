@@ -165,11 +165,11 @@ SQLSVCACCOUNT="<%= node['sql_server']['sql_account'] %>"
 ; Windows account(s) to provision as SQL Server system administrators.
 
 ;SQLSYSADMINACCOUNTS="IP-0A7A5B97\Administrator"
-SQLSYSADMINACCOUNTS=<%= @sqlSysAdminList %>
+SQLSYSADMINACCOUNTS="<%= @sqlSysAdminList %>"
 
 ; Provision current user as a Database Engine system administrator for SQL Server 2008 R2 Express.
 
-ADDCURRENTUSERASSQLADMIN="<%= node['sql_server']['instance_name'] == 'SQLEXPRESS' ? "True" : "False" %>"
+ADDCURRENTUSERASSQLADMIN="<%= node['sql_server']['instance_name'] == 'SQLEXPRESS' ? 'True' : 'False' %>"
 
 ; Specify 0 to disable or 1 to enable the TCP/IP protocol.
 
