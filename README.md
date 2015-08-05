@@ -139,6 +139,6 @@ limitations under the License.
 
 Maintainers
 -----------
-* Sean O'Meara (@someara)
+* Sean O'Meara (<https://github.com/someara>)
 * Steve Murawski (<https://github.com/smurawski>)
 * Jerrel Blankenship (<https://github.com/jerrelblankenship>)
