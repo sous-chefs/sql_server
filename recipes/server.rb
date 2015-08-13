@@ -24,7 +24,7 @@ service_name = node['sql_server']['instance_name']
 if node['sql_server']['instance_name'] == 'SQLEXPRESS'
   service_name = "MSSQL$#{node['sql_server']['instance_name']}"
 end
-  
+
 static_tcp_reg_key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\\' + node['sql_server']['reg_version'] +
   node['sql_server']['instance_name'] + '\MSSQLServer\SuperSocketNetLib\Tcp\IPAll'
 
@@ -37,7 +37,7 @@ config_file_path = win_friendly_path(File.join(Chef::Config[:file_cache_path], '
 
 if node['sql_server']['sysadmins'].is_a? Array
   sql_sys_admin_list = node['sql_server']['sysadmins'].join(' ')
-else  
+else
   sql_sys_admin_list = node['sql_server']['sysadmins']
 end
 
@@ -48,9 +48,24 @@ template config_file_path do
   )
 end
 
-windows_package node['sql_server']['server']['package_name'] do
-  source node['sql_server']['server']['url']
-  checksum node['sql_server']['server']['checksum']
+version = node['sql_server']['version']
+x86_64 = node['kernel']['machine']
+
+package_url = node['sql_server']['server']['url'] ||
+  SqlServer::Helper.sql_server_url(version, x86_64) ||
+  Chef::Application.fatal!("No package URL matches '#{version}'. node['sql_server']['server']['url'] must be set or node['sql_server']['version'] must match a supported version.")
+
+package_name = node['sql_server']['server']['package_name'] ||
+  SqlServer::Helper.sql_server_package_name(version, x86_64) ||
+  Chef::Application.fatal!("No package name matches '#{version}'. node['sql_server']['server']['package_name'] must be set or node['sql_server']['version'] must match a supported version.")
+
+package_checksum = node['sql_server']['server']['checksum'] ||
+  SqlServer::Helper.sql_server_checksum(version, x86_64) ||
+  Chef::Application.fatal!("No package checksum matches '#{version}'. node['sql_server']['server']['checksum'] must be set or node['sql_server']['version'] must match a supported version.")
+
+windows_package package_name do
+  source package_url
+  checksum package_checksum
   timeout node['sql_server']['server']['installer_timeout']
   installer_type :custom
   options "/q /ConfigurationFile=#{config_file_path}"
@@ -65,6 +80,7 @@ end
 registry_key static_tcp_reg_key do
   values [{ :name => 'TcpPort', :type => :string, :data => node['sql_server']['port'].to_s },
     { :name => 'TcpDynamicPorts', :type => :string, :data => '' }]
+  recursive true
   notifies :restart, "service[#{service_name}]", :immediately
 end
 

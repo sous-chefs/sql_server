@@ -1,6 +1,6 @@
 sql_server Cookbook
 ===================
-Installs and configures Microsoft SQL Server 2008 R2 server and client.  By default the Express edition is installed, but the `sql_server::server` recipe supports installation of other editions (see __Usage__ below).
+Installs and configures Microsoft SQL Server 2008 R2 and  Microsoft SQL Server 2012 server and client. By default the Express edition is installed, but the `sql_server::server` recipe supports installation of other editions (see __Usage__ below).
 
 
 Requirements
@@ -8,6 +8,7 @@ Requirements
 ### Platforms
 Tested on:
 - Windows Server 2008 R2
+- Windows Server 2012 R2
 
 May work on other versions of Windows.
 
@@ -60,7 +61,21 @@ The SQL Server Native Client contains the SQL Server ODBC driver and the SQL Ser
 The [TinyTDS](https://github.com/rails-sqlserver/tiny_tds) gem is also installed as this is used in the SQL Server providers for the `database` and `database_user` resources (see the `database` cookbook for more details).
 
 ### server
-Installs SQL Server 2008 R2 Express.  The installation is done using the `windows_package` resource and [ConfigurationFile](http://msdn.microsoft.com/en-us/library/dd239405.aspx) generated from a `template` resource.  The installation is slightly opinionated and does the following:
+Installs SQL Server 2008 R2 Express or SQL Server 2012 Express.
+
+By default, the cookbook installs SQL Server 2008 R2 Express. There are two options to install a different version.
+
+**Option 1:** From a role, environment, or wrapper cookbook, set `node['sql_server']['version']` to '2008R2' to install SQL Server 2008 R2 Express or '2012' to install SQL Server 2012 Express.
+
+**Option 2:** From a role, environment, or wrapper cookbook, set these node attributes to specify the URL, checksum, and name of the package (as it appears in the Windows Registry).
+
+```
+node['sql_server']['server']['url']
+node['sql_server']['server']['checksum']
+node['sql_server']['server']['package_name']
+```
+
+The installation is done using the `windows_package` resource and [ConfigurationFile](http://msdn.microsoft.com/en-us/library/dd239405.aspx) generated from a `template` resource.  The installation is slightly opinionated and does the following:
 
 * Enables [Mixed Mode](http://msdn.microsoft.com/en-us/library/aa905171\(v=sql.80\).aspx) (Windows Authentication and SQL Server Authentication) authentication
 * Auto-generates and sets a strong password for the 'sa' account
@@ -142,3 +157,4 @@ Maintainers
 * Sean O'Meara (<https://github.com/someara>)
 * Steve Murawski (<https://github.com/smurawski>)
 * Jerrel Blankenship (<https://github.com/jerrelblankenship>)
+* Thomas Petchel (<https://github.com/tpetchel>)
