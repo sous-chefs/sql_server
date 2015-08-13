@@ -49,7 +49,7 @@ template config_file_path do
 end
 
 version = node['sql_server']['version']
-x86_64 = node['kernel']['machine']
+x86_64 = node['kernel']['machine'] =~ /x86_64/
 
 package_url = node['sql_server']['server']['url'] ||
   SqlServer::Helper.sql_server_url(version, x86_64) ||
