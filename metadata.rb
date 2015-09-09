@@ -8,3 +8,6 @@ version          "2.4.0"
 supports         "windows"
 depends          "openssl"
 depends          "windows", ">= 1.2.6"
+
+source_url 'https://github.com/chef-cookbooks/sql_server' if respond_to?(:source_url)
+issues_url 'https://github.com/chef-cookbooks/sql_server/issues' if respond_to?(:issues_url)
