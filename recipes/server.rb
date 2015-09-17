@@ -26,7 +26,7 @@ if node['sql_server']['instance_name'] == 'SQLEXPRESS'
 end
 
 static_tcp_reg_key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\\' + node['sql_server']['reg_version'] +
-  node['sql_server']['instance_name'] + '\MSSQLServer\SuperSocketNetLib\Tcp\IPAll'
+                     node['sql_server']['instance_name'] + '\MSSQLServer\SuperSocketNetLib\Tcp\IPAll'
 
 # generate and set a password for the 'sa' super user
 node.set_unless['sql_server']['server_sa_password'] = "#{secure_password}-aA12"
@@ -52,16 +52,16 @@ version = node['sql_server']['version']
 x86_64 = node['kernel']['machine'] =~ /x86_64/
 
 package_url = node['sql_server']['server']['url'] ||
-  SqlServer::Helper.sql_server_url(version, x86_64) ||
-  Chef::Application.fatal!("No package URL matches '#{version}'. node['sql_server']['server']['url'] must be set or node['sql_server']['version'] must match a supported version.")
+              SqlServer::Helper.sql_server_url(version, x86_64) ||
+              Chef::Application.fatal!("No package URL matches '#{version}'. node['sql_server']['server']['url'] must be set or node['sql_server']['version'] must match a supported version.")
 
 package_name = node['sql_server']['server']['package_name'] ||
-  SqlServer::Helper.sql_server_package_name(version, x86_64) ||
-  Chef::Application.fatal!("No package name matches '#{version}'. node['sql_server']['server']['package_name'] must be set or node['sql_server']['version'] must match a supported version.")
+               SqlServer::Helper.sql_server_package_name(version, x86_64) ||
+               Chef::Application.fatal!("No package name matches '#{version}'. node['sql_server']['server']['package_name'] must be set or node['sql_server']['version'] must match a supported version.")
 
 package_checksum = node['sql_server']['server']['checksum'] ||
-  SqlServer::Helper.sql_server_checksum(version, x86_64) ||
-  Chef::Application.fatal!("No package checksum matches '#{version}'. node['sql_server']['server']['checksum'] must be set or node['sql_server']['version'] must match a supported version.")
+                   SqlServer::Helper.sql_server_checksum(version, x86_64) ||
+                   Chef::Application.fatal!("No package checksum matches '#{version}'. node['sql_server']['server']['checksum'] must be set or node['sql_server']['version'] must match a supported version.")
 
 windows_package package_name do
   source package_url
@@ -78,8 +78,8 @@ end
 
 # set the static tcp port
 registry_key static_tcp_reg_key do
-  values [{ :name => 'TcpPort', :type => :string, :data => node['sql_server']['port'].to_s },
-    { :name => 'TcpDynamicPorts', :type => :string, :data => '' }]
+  values [{ name: 'TcpPort', type: :string, data: node['sql_server']['port'].to_s },
+          { name: 'TcpDynamicPorts', type: :string, data: '' }]
   recursive true
   notifies :restart, "service[#{service_name}]", :immediately
 end

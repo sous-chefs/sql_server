@@ -7,7 +7,6 @@
 require 'spec_helper'
 
 describe 'sql_server::server' do
-
   context 'When all attributes are default, on Windows 2008R2, it should converge successfully' do
     let(:chef_run) do
       runner = ChefSpec::SoloRunner.new(platform: 'windows', version: '2008R2')
@@ -33,7 +32,7 @@ describe 'sql_server::server' do
   context 'When specifying an Array of admin users for "sysadmins"' do
     let(:chef_run) do
       runner = ChefSpec::SoloRunner.new(platform: 'windows', version: '2012', file_cache_path: 'C:\chef\cache') do |node|
-        node.set['sql_server']['sysadmins'] = ['Administrator', 'Fred', 'Barney']
+        node.set['sql_server']['sysadmins'] = %w(Administrator Fred Barney)
       end
       runner.converge(described_recipe)
     end
@@ -42,7 +41,6 @@ describe 'sql_server::server' do
       expect(chef_run).to create_template('C:\chef\cache\ConfigurationFile.ini')
       expect(chef_run).to render_file('C:\chef\cache\ConfigurationFile.ini').with_content(/^SQLSYSADMINACCOUNTS="Administrator Fred Barney"$/)
     end
-
 
     it 'converges successfully' do
       chef_run # This should not raise an error
@@ -62,10 +60,8 @@ describe 'sql_server::server' do
       expect(chef_run).to render_file('C:\chef\cache\ConfigurationFile.ini').with_content(/^SQLSYSADMINACCOUNTS="Administrator"$/)
     end
 
-
     it 'converges successfully' do
       chef_run # This should not raise an error
     end
   end
-
 end

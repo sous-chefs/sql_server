@@ -19,10 +19,9 @@
 #
 
 # server installer includes client packages
-unless node.recipe?("sql_server::server")
+unless node.recipe?('sql_server::server')
 
-  %w{ native_client command_line_utils clr_types smo ps_extensions }.each do |pkg|
-
+  %w( native_client command_line_utils clr_types smo ps_extensions ).each do |pkg|
     windows_package node['sql_server'][pkg]['package_name'] do
       source node['sql_server'][pkg]['url']
       checksum node['sql_server'][pkg]['checksum']
@@ -30,18 +29,17 @@ unless node.recipe?("sql_server::server")
       options "IACCEPTSQLNCLILICENSETERMS=#{node['sql_server']['accept_eula'] ? 'YES' : 'NO'}"
       action :install
     end
-
   end
 
   # update path
   windows_path 'C:\Program Files\Microsoft SQL Server\100\Tools\Binn' do
-   action :add
+    action :add
   end
 
 end
 
 # used by SQL Server providers for
 # database and database_user resources
-gem_package "tiny_tds" do
+gem_package 'tiny_tds' do
   action :install
 end
