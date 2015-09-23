@@ -162,7 +162,7 @@ ENABLERANU="<%= node['sql_server']['instance_name'] == 'SQLEXPRESS' ? "True" : "
 
 ; Specifies a Windows collation or an SQL collation to use for the Database Engine.
 
-SQLCOLLATION="SQL_Latin1_General_CP1_CI_AS"
+SQLCOLLATION="<%= node['sql_server']['collation'] %>"
 
 ; Account for SQL Server service: Domain\User or system account.
 
@@ -206,3 +206,11 @@ RSSVCSTARTUPTYPE="<%= node['sql_server']['rs_startup'] %>"
 ; Default value: "FilesOnly"
 
 RSINSTALLMODE="<%= node['sql_server']['rs_mode'] %>"
+
+; Datafile locations for temp and user databases
+
+SQLBACKUPDIR="<%= node['sql_server']['backupdir'] %>"
+SQLTEMPDBDIR="<%= node['sql_server']['tempdbdir'] %>"
+SQLTEMPDBLOGDIR="<%= node['sql_server']['templogdir'] %>"
+SQLUSERDBDIR="<%= node['sql_server']['userdbdir'] %>"
+SQLUSERDBLOGDIR="<%= node['sql_server']['userlogdir'] %>"
