@@ -22,7 +22,7 @@ default['sql_server']['install_dir']    = 'C:\Program Files\Microsoft SQL Server
 default['sql_server']['port']           = 1433
 
 default['sql_server']['instance_name']  = 'SQLEXPRESS'
-default['sql_server']['instance_dir']   = 'C:\Program Files\Microsoft SQL Server'
+default['sql_server']['instance_dir']   = 'C:\Program Files\Microsoft SQL Server' # Move from C:\
 default['sql_server']['shared_wow_dir']   = 'C:\Program Files (x86)\Microsoft SQL Server'
 default['sql_server']['feature_list'] = 'SQLENGINE,REPLICATION,SNAC_SDK'
 default['sql_server']['agent_account'] =  'NT AUTHORITY\NETWORK SERVICE'
@@ -34,6 +34,13 @@ default['sql_server']['browser_startup'] = 'Disabled'
 default['sql_server']['sysadmins'] = ['Administrator']
 default['sql_server']['sql_account'] = 'NT AUTHORITY\NETWORK SERVICE'
 default['sql_server']['update_enabled'] = true # applies to SQL Server 2012 and later
+
+default['sql_server']['backupdir'] = "#{default['sql_server']['instance_dir']}\\#{default['sql_server']['instance_name']}\\MSSQL\\Backup"
+default['sql_server']['collation'] = 'SQL_Latin1_General_CP1_CI_AS'
+default['sql_server']['tempdbdir'] = "#{default['sql_server']['instance_dir']}\\#{default['sql_server']['instance_name']}\\MSSQL\\Data"
+default['sql_server']['templogdir'] = "#{default['sql_server']['instance_dir']}\\#{default['sql_server']['instance_name']}\\MSSQL\\Data"
+default['sql_server']['userdbdir'] = "#{default['sql_server']['instance_dir']}\\#{default['sql_server']['instance_name']}\\MSSQL\\Data"
+default['sql_server']['userlogdir'] = "#{default['sql_server']['instance_dir']}\\#{default['sql_server']['instance_name']}\\MSSQL\\Data"
 
 default['sql_server']['server']['installer_timeout'] = 1500
 
