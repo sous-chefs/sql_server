@@ -27,4 +27,6 @@ when '2008R2'
   default['sql_server']['reg_version'] = 'MSSQL10_50.'
 when '2012'
   default['sql_server']['reg_version'] = 'MSSQL11.'
+when '2014'
+  default['sql_server']['reg_version'] = 'MSSQL12.'
 end
