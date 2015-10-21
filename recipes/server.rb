@@ -63,12 +63,25 @@ package_checksum = node['sql_server']['server']['checksum'] ||
                    SqlServer::Helper.sql_server_checksum(version, x86_64) ||
                    Chef::Application.fatal!("No package checksum matches '#{version}'. node['sql_server']['server']['checksum'] must be set or node['sql_server']['version'] must match a supported version.")
 
+# Build safe password command line options for the installer
+# see http://technet.microsoft.com/library/ms144259
+passwords_options = {
+  AGTSVCPASSWORD: node['sql_server']['agent_account_pwd'],
+  RSSVCPASSWORD:  node['sql_server']['rs_account_pwd'],
+  SQLSVCPASSWORD: node['sql_server']['sql_account_pwd']
+}.map do |option, attribute|
+  next unless attribute
+  # Escape password double quotes and backslashes
+  safe_password = attribute.gsub(/["\\]/, '\\\\\0')
+  "/#{option}=\"#{safe_password}\""
+end.compact.join ' '
+
 windows_package package_name do
   source package_url
   checksum package_checksum
   timeout node['sql_server']['server']['installer_timeout']
   installer_type :custom
-  options "/q /ConfigurationFile=#{config_file_path}"
+  options "/q /ConfigurationFile=#{config_file_path} #{passwords_options}"
   action :install
 end
 
