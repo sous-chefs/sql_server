@@ -112,6 +112,12 @@ SQLUSERDBLOGDIR="<%= node['sql_server']['sql_user_db_log_dir'] %>"
 SQLTEMPDBDIR="<%= node['sql_server']['sql_temp_db_dir'] %>"
 <% end -%>
 
+<% unless node['sql_server']['sql_temp_db_log_dir'].nil? -%>
+; Directory for Database Engine TempDB log files.
+
+SQLTEMPDBLOGDIR="<%= node['sql_server']['sql_temp_db_log_dir'] %>"
+<% end -%>
+
 ; Specify that SQL Server feature usage data can be collected and sent to Microsoft. Specify 1 or True to enable and 0 or False to disable this feature.
 
 SQMREPORTING="False"
