@@ -198,7 +198,7 @@ ENABLERANU="<%= node['sql_server']['instance_name'] == 'SQLEXPRESS' ? "True" : "
 
 ; Specifies a Windows collation or an SQL collation to use for the Database Engine.
 
-SQLCOLLATION="SQL_Latin1_General_CP1_CI_AS"
+SQLCOLLATION="<%= node['sql_server']['sql_collation'] || 'SQL_Latin1_General_CP1_CI_AS' %>"
 
 ; Account for SQL Server service: Domain\User or system account.
 
