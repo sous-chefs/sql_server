@@ -130,15 +130,19 @@ AGTSVCSTARTUPTYPE="<%= node['sql_server']['agent_startup'] %>"
 
 ; Startup type for Integration Services.
 
-ISSVCSTARTUPTYPE="Automatic"
+ISSVCSTARTUPTYPE="<%= node['sql_server']['integration_services_startup'] %>"
 
 ; Account for Integration Services: Domain\User or system account.
 
-ISSVCACCOUNT="NT AUTHORITY\NetworkService"
+ISSVCACCOUNT="<%= node['sql_server']['integration_services_account'] %>"
+
+; The name of the account that the Analysis Services service runs under. 
+
+ASSVCACCOUNT="<%= node['sql_server']['analysis_services_account'] %>"
 
 ; Controls the service startup type setting after the service has been created.
 
-ASSVCSTARTUPTYPE="Automatic"
+ASSVCSTARTUPTYPE="<%= node['sql_server']['analysis_services_startup'] %>"
 
 ; The collation to be used by Analysis Services.
 
@@ -174,7 +178,7 @@ ASPROVIDERMSOLAP="1"
 
 ; Startup type for the SQL Server service.
 
-SQLSVCSTARTUPTYPE="Automatic"
+SQLSVCSTARTUPTYPE="<%= node['sql_server']['sql_startup'] %>"
 
 ; Level to enable FILESTREAM feature at (0, 1, 2 or 3).
 
