@@ -43,3 +43,4 @@ default['sql_server']['server']['installer_timeout'] = 1500
 default['sql_server']['server']['url'] = nil
 default['sql_server']['server']['checksum'] = nil
 default['sql_server']['server']['package_name'] = nil
+default['sql_server']['server']['setup'] = 'setup.exe'
