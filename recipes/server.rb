@@ -103,7 +103,7 @@ if is_diskimage
 
   cd_drive = ""
   if cmd.stderr == ""
-    cd_drive = cmd.stdout
+    cd_drive = cmd.stdout.strip
   else
     raise cmd.stderr
   end
