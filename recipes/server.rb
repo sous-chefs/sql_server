@@ -67,6 +67,10 @@ filename = File.basename(package_url).downcase
 fileextension = File.extname(filename)
 is_iso = ['.iso'].include? fileextension
 
+if is_iso
+  include_recipe '7-zip' 
+end
+
 download_path = "#{Chef::Config['file_cache_path']}/#{filename}"
 remote_file download_path do
   source package_url
@@ -75,9 +79,9 @@ remote_file download_path do
 end
 
 iso_extraction_dir = "#{Chef::Config['file_cache_path']}/#{package_checksum}"
-seven_zip_exe = File.join(node['seven_zip']['home'], '7z.exe')
+
 execute 'extract_iso' do
-  command "#{seven_zip_exe} x -y -o\"#{iso_extraction_dir}\" #{download_path}"
+  command "#{File.join(node['seven_zip']['home'], '7z.exe')} x -y -o\"#{iso_extraction_dir}\" #{download_path}"
   only_if {is_iso && !(::File.directory?(download_path)) }
 end
 
