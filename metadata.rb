@@ -7,6 +7,7 @@ long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '2.4.0'
 supports         'windows'
 depends          'openssl'
+depends 		 '7-zip'
 depends          'windows', '>= 1.2.6'
 
 source_url 'https://github.com/chef-cookbooks/sql_server' if respond_to?(:source_url)

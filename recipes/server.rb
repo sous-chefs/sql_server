@@ -19,8 +19,6 @@
 #
 
 ::Chef::Recipe.send(:include, Opscode::OpenSSL::Password)
-::Chef::Recipe.send(:include, Windows::Helper)
-::Chef::Recipe.send(:include, Chef::Mixin::PowershellOut)
 
 service_name = node['sql_server']['instance_name']
 if node['sql_server']['instance_name'] == 'SQLEXPRESS'
@@ -65,72 +63,31 @@ package_checksum = node['sql_server']['server']['checksum'] ||
                    SqlServer::Helper.sql_server_checksum(version, x86_64) ||
                    Chef::Application.fatal!("No package checksum matches '#{version}'. node['sql_server']['server']['checksum'] must be set or node['sql_server']['version'] must match a supported version.")
 
-is_sqlserver_installed = is_package_installed?(package_name)
-
 filename = File.basename(package_url).downcase
 fileextension = File.extname(filename)
-is_diskimage = ['.iso', '.vhd', '.vhdx'].include? fileextension
+is_iso = ['.iso'].include? fileextension
 
-if is_diskimage
-  download_path = "#{Chef::Config['file_cache_path']}/#{filename}"
-  remote_file download_path do
-    source package_url
-    checksum package_checksum
-  end
+download_path = "#{Chef::Config['file_cache_path']}/#{filename}"
+remote_file download_path do
+  source package_url
+  checksum package_checksum
+  only_if {is_iso}
+end
 
-  mount_log_path = "#{Chef::Config['file_cache_path']}/#{filename}_Mount_Log.txt"
-  powershell_script "Mount #{filename}" do
-    code <<-EOH
-      Mount-DiskImage -ImagePath "#{download_path}"
-      if ($? -eq $True)
-      {
-        echo "Success: #{filename} was mounted successfully." > #{mount_log_path}
-        exit 0;
-      }
-      
-      if ($? -eq $False)
-      {
-        echo "Fail: #{filename} was not mount successfully." > #{mount_log_path}
-        exit 2;
-      }
-      EOH
-  end
+iso_extraction_dir = "#{Chef::Config['file_cache_path']}/#{package_checksum}"
+seven_zip_exe = File.join(node['seven_zip']['home'], '7z.exe')
+execute 'extract_iso' do
+  command "#{seven_zip_exe} x -y -o\"#{iso_extraction_dir}\" #{download_path}"
+  only_if {is_iso && !(::File.directory?(download_path)) }
+end
 
-  cmd = powershell_out!(<<-EOH
-    Write-Host @(gwmi -Class Win32_LogicalDisk | ?{$_.VolumeName -eq 'SqlServer'} | %{$_.DeviceId})[0]
-    EOH
-    );
-
-  cd_drive = ""
-  if cmd.stderr == ""
-    cd_drive = cmd.stdout.strip
-  else
-    raise cmd.stderr
-  end
-  setup_url = "#{cd_drive}/#{node['sql_server']['server']['setup']}"
-
-  windows_package package_name do
-    source setup_url
-    timeout node['sql_server']['server']['installer_timeout']
-    installer_type :custom
-    options "/q /ConfigurationFile=#{config_file_path}"
-    action :install
-  end  
-
-  powershell_script 'Dismount #{filename}' do
-    code <<-EOH
-      Dismount-DiskImage -ImagePath "#{download_path}"
-      EOH
-  end  
-else
-  windows_package package_name do
-    source package_url
-    checksum package_checksum
-    timeout node['sql_server']['server']['installer_timeout']
-    installer_type :custom
-    options "/q /ConfigurationFile=#{config_file_path}"
-    action :install
-  end
+windows_package package_name do
+  source !is_iso ? package_url : "#{iso_extraction_dir}/#{node['sql_server']['server']['setup']}"
+  checksum package_checksum
+  timeout node['sql_server']['server']['installer_timeout']
+  installer_type :custom
+  options "/q /ConfigurationFile=#{config_file_path}"
+  action :install
 end
 
 service service_name do
