@@ -25,7 +25,17 @@ if node['sql_server']['instance_name'] == 'SQLEXPRESS'
   service_name = "MSSQL$#{node['sql_server']['instance_name']}"
 end
 
-static_tcp_reg_key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\\' + node['sql_server']['reg_version'] +
+# Compute registry version based on sql server version
+reg_version = node['sql_server']['reg_version'] ||
+              case node['sql_server']['version']
+              when '2008' then 'MSSQL10.'
+              when '2008R2' then 'MSSQL10_50.'
+              when '2012' then 'MSSQL11.'
+              when '2014' then 'MSSQL12.'
+              else fail "Unsupported sql_server version '#{node['sql_server']['version']}'"
+              end
+
+static_tcp_reg_key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\\' + reg_version +
                      node['sql_server']['instance_name'] + '\MSSQLServer\SuperSocketNetLib\Tcp\IPAll'
 
 # generate and set a password for the 'sa' super user
