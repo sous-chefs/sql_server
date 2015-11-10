@@ -36,9 +36,11 @@ node.save unless Chef::Config[:solo]
 config_file_path = win_friendly_path(File.join(Chef::Config[:file_cache_path], 'ConfigurationFile.ini'))
 
 if node['sql_server']['sysadmins'].is_a? Array
-  sql_sys_admin_list = node['sql_server']['sysadmins'].join(' ')
-else
   sql_sys_admin_list = node['sql_server']['sysadmins']
+  sql_sys_admin_list = sql_sys_admin_list.map!{|e| e = '"' + e + '"'}
+  sql_sys_admin_list = sql_sys_admin_list.join(' ')
+else
+  sql_sys_admin_list = '"' + node['sql_server']['sysadmins'] + '"'
 end
 
 template config_file_path do
