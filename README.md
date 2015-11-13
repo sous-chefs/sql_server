@@ -129,6 +129,11 @@ execute "open-static-port" do
 end
 ```
 
+A Word of Warning for Test Kitchen Users
+----------------------------------------
+You cannot install Microsoft SQL server (any version) over WinRM.  This is has been tested in several scenarios both with and without Chef.  The server.rb recipe will not work with Windows Test Kitchen guests for this reason.  See this link for more info:
+https://learn.chef.io/manage-a-web-app/windows/configure-sql-server/#comment-2344349376
+
 ## License & Authors
 **Author:** Cookbook Engineering Team ([cookbooks@chef.io](mailto:cookbooks@chef.io))
 
