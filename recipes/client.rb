@@ -42,4 +42,5 @@ end
 # database and database_user resources
 chef_gem 'tiny_tds' do
   action :install
+  compile_time false
 end
