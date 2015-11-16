@@ -36,7 +36,7 @@ node.save unless Chef::Config[:solo]
 config_file_path = win_friendly_path(File.join(Chef::Config[:file_cache_path], 'ConfigurationFile.ini'))
 
 if node['sql_server']['sysadmins'].is_a? Array
-  sql_sys_admin_list = node['sql_server']['sysadmins'].map{|e| e = '"' + e + '"'}.join(' ')
+  sql_sys_admin_list = node['sql_server']['sysadmins'].map { |e| '"' + e + '"' }.join(' ')
 else
   sql_sys_admin_list = '"' + node['sql_server']['sysadmins'] + '"'
 end
@@ -67,22 +67,20 @@ filename = File.basename(package_url).downcase
 fileextension = File.extname(filename)
 is_iso = ['.iso'].include? fileextension
 
-if is_iso
-  include_recipe '7-zip' 
-end
+include_recipe '7-zip' if is_iso
 
 download_path = "#{Chef::Config['file_cache_path']}/#{filename}"
 remote_file download_path do
   source package_url
   checksum package_checksum
-  only_if {is_iso}
+  only_if { is_iso }
 end
 
 iso_extraction_dir = "#{Chef::Config['file_cache_path']}/#{package_checksum}"
 
 execute 'extract_iso' do
   command "#{File.join(node['7-zip']['home'], '7z.exe')} x -y -o\"#{iso_extraction_dir}\" #{download_path}"
-  only_if {is_iso && !(::File.directory?(download_path)) }
+  only_if { is_iso && !(::File.directory?(download_path)) }
 end
 
 windows_package package_name do

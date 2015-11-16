@@ -37,3 +37,9 @@ unless node.recipe?('sql_server::server')
   end
 
 end
+
+# used by SQL Server providers for
+# database and database_user resources
+chef_gem 'tiny_tds' do
+  action :install
+end
