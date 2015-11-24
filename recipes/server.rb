@@ -76,11 +76,11 @@ remote_file download_path do
   only_if { is_iso }
 end
 
-iso_extraction_dir = "#{Chef::Config['file_cache_path']}/#{package_checksum}"
+iso_extraction_dir = "#{Chef::Config['file_cache_path']}/#{filename}/#{package_checksum}"
 
 execute 'extract_iso' do
   command "#{File.join(node['7-zip']['home'], '7z.exe')} x -y -o\"#{iso_extraction_dir}\" #{download_path}"
-  only_if { is_iso && !(::File.directory?(download_path)) }
+  only_if { is_iso && !(::File.directory?(iso_extraction_dir)) }
 end
 
 windows_package package_name do
