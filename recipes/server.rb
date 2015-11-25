@@ -76,7 +76,7 @@ remote_file download_path do
   only_if { is_iso }
 end
 
-iso_extraction_dir = "#{Chef::Config['file_cache_path']}/#{filename}/#{package_checksum}"
+iso_extraction_dir = "#{Chef::Config['file_cache_path']}/sql_server/#{package_checksum}"
 
 execute 'extract_iso' do
   command "#{File.join(node['7-zip']['home'], '7z.exe')} x -y -o\"#{iso_extraction_dir}\" #{download_path}"
