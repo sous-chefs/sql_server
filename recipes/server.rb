@@ -36,9 +36,9 @@ node.save unless Chef::Config[:solo]
 config_file_path = win_friendly_path(File.join(Chef::Config[:file_cache_path], 'ConfigurationFile.ini'))
 
 if node['sql_server']['sysadmins'].is_a? Array
-  sql_sys_admin_list = node['sql_server']['sysadmins'].join(' ')
+  sql_sys_admin_list = node['sql_server']['sysadmins'].map { |e| '"' + e + '"' }.join(' ')
 else
-  sql_sys_admin_list = node['sql_server']['sysadmins']
+  sql_sys_admin_list = '"' + node['sql_server']['sysadmins'] + '"'
 end
 
 template config_file_path do
@@ -63,8 +63,32 @@ package_checksum = node['sql_server']['server']['checksum'] ||
                    SqlServer::Helper.sql_server_checksum(version, x86_64) ||
                    Chef::Application.fatal!("No package checksum matches '#{version}'. node['sql_server']['server']['checksum'] must be set or node['sql_server']['version'] must match a supported version.")
 
-windows_package package_name do
+filename = File.basename(package_url).downcase
+fileextension = File.extname(filename)
+is_iso = ['.iso'].include? fileextension
+
+include_recipe '7-zip' if is_iso
+
+download_path = "#{Chef::Config['file_cache_path']}/#{filename}"
+remote_file download_path do
   source package_url
+  checksum package_checksum
+  only_if { is_iso }
+end
+
+directory "#{Chef::Config['file_cache_path']}/sql_server" do
+  recursive true
+end
+
+iso_extraction_dir = "#{Chef::Config['file_cache_path']}/sql_server/#{package_checksum}"
+
+execute 'extract_iso' do
+  command "#{File.join(node['7-zip']['home'], '7z.exe')} x -y -o\"#{iso_extraction_dir}\" #{download_path}"
+  only_if { is_iso && !(::File.directory?(iso_extraction_dir)) }
+end
+
+windows_package package_name do
+  source !is_iso ? package_url : "#{iso_extraction_dir}/#{node['sql_server']['server']['setup']}"
   checksum package_checksum
   timeout node['sql_server']['server']['installer_timeout']
   installer_type :custom
