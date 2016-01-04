@@ -3,7 +3,7 @@
 # Cookbook Name:: sql_server
 # Recipe:: client
 #
-# Copyright:: 2011, Chef Software, Inc.
+# Copyright:: 2011-2016, Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ unless node.recipe?('sql_server::server')
   end
 
   # update path
-  windows_path 'C:\Program Files\Microsoft SQL Server\100\Tools\Binn' do
+  windows_path "#{node['sql_server']['install_dir']}\\100\\Tools\\Binn" do
     action :add
   end
 
