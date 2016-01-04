@@ -3,7 +3,7 @@
 # Cookbook Name:: sql_server
 # Attribute:: server
 #
-# Copyright:: Copyright (c) 2011 Chef Software, Inc.
+# Copyright:: Copyright (c) 2011-2016 Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
