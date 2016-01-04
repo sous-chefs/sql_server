@@ -1,13 +1,9 @@
-sql_server Cookbook
-===================
-[![Build Status](https://travis-ci.org/chef-cookbooks/sql_server.svg?branch=master)](http://travis-ci.org/chef-cookbooks/sql_server)
-[![Cookbook Version](https://img.shields.io/cookbook/v/sql_server.svg)](https://supermarket.chef.io/cookbooks/sql_server)
+# sql_server Cookbook
+[![Build Status](https://travis-ci.org/chef-cookbooks/sql_server.svg?branch=master)](http://travis-ci.org/chef-cookbooks/sql_server) [![Cookbook Version](https://img.shields.io/cookbook/v/sql_server.svg)](https://supermarket.chef.io/cookbooks/sql_server)
 
-Installs and configures Microsoft SQL Server 2008 R2 and  Microsoft SQL Server 2012 server and client. By default the Express edition is installed, but the `sql_server::server` recipe supports installation of other editions (see __Usage__ below).
+Installs and configures Microsoft SQL Server 2008 R2 and  Microsoft SQL Server 2012 server and client. By default the Express edition is installed, but the `sql_server::server` recipe supports installation of other editions (see **Usage** below).
 
-
-Requirements
-------------
+## Requirements
 ### Platforms
 Tested on:
 - Windows Server 2008 R2
@@ -15,49 +11,43 @@ Tested on:
 
 May work on other versions of Windows.
 
-
-Attributes
-----------
+## Attributes
 ### default
 The following attributes are used by both client and server recipes.
-
-* `node['sql_server']['accept_eula']` - indicate that you accept the terms of the end user license, default is 'false'
-* `node['sql_server']['product_key']` - Specifies the product key for the edition of SQL Server, default is `nil` (not needed for SQL Server 2008 R2 Express installs)
+- `node['sql_server']['accept_eula']` - indicate that you accept the terms of the end user license, default is 'false'
+- `node['sql_server']['product_key']` - Specifies the product key for the edition of SQL Server, default is `nil` (not needed for SQL Server 2008 R2 Express installs)
 
 ### client
-This file also contains download url, checksum and package name for all client installation packages.  See the __Usage__ section below for more details.
+This file also contains download url, checksum and package name for all client installation packages.  See the **Usage** section below for more details.
 
 ### server
-* `node['sql_server']['install_dir']` - main directory for installation, default is `C:\Program Files\Microsoft SQL Server`
-* `node['sql_server']['port']` - static TCP port server should listen on for client connections, default is `1433`
-* `node['sql_server']['instance_name']` - name of the default instance, default is `SQLEXPRESS`
-* `node['sql_server']['instance_dir']` - root directory of the default instance, default is `C:\Program Files\Microsoft SQL Server`
-* `node['sql_server']['shared_wow_dir']` - root directory of the shared WOW directory, default is `C:\Program Files (x86)\Microsoft SQL Server`
-* `node['sql_server']['agent_account']` - Agent account name, default is `NT AUTHORITY\NETWORK SERVICE`
-* `node['sql_server']['agent_startup']` - Agent service startup mode, default is `Disabled`
-* `node['sql_server']['rs_mode']` - Reporting Services install mode, default is `FilesOnlyMode`
-* `node['sql_server']['rs_account']` - Reporting Services account name, default is `NT AUTHORITY\NETWORK SERVICE`
-* `node['sql_server']['rs_startup']` - Reporting Services startup mode, default is `Automatic`
-* `node['sql_server']['browser_startup']` - Browser Service startup mode, default is `Disabled`
-* `node['sql_server']['sysadmins']` - Windows accounts that are SQL administrators, default is `Administrator`
-* `node['sql_server']['sql_account']` - SQL service account name, default is `NT AUTHORITY\NETWORK SERVICE`
+- `node['sql_server']['install_dir']` - main directory for installation, default is `C:\Program Files\Microsoft SQL Server`
+- `node['sql_server']['port']` - static TCP port server should listen on for client connections, default is `1433`
+- `node['sql_server']['instance_name']` - name of the default instance, default is `SQLEXPRESS`
+- `node['sql_server']['instance_dir']` - root directory of the default instance, default is `C:\Program Files\Microsoft SQL Server`
+- `node['sql_server']['shared_wow_dir']` - root directory of the shared WOW directory, default is `C:\Program Files (x86)\Microsoft SQL Server`
+- `node['sql_server']['agent_account']` - Agent account name, default is `NT AUTHORITY\NETWORK SERVICE`
+- `node['sql_server']['agent_startup']` - Agent service startup mode, default is `Disabled`
+- `node['sql_server']['rs_mode']` - Reporting Services install mode, default is `FilesOnlyMode`
+- `node['sql_server']['rs_account']` - Reporting Services account name, default is `NT AUTHORITY\NETWORK SERVICE`
+- `node['sql_server']['rs_startup']` - Reporting Services startup mode, default is `Automatic`
+- `node['sql_server']['browser_startup']` - Browser Service startup mode, default is `Disabled`
+- `node['sql_server']['sysadmins']` - Windows accounts that are SQL administrators, default is `Administrator`
+- `node['sql_server']['sql_account']` - SQL service account name, default is `NT AUTHORITY\NETWORK SERVICE`
 
 This file also contains download url, checksum and package name for the server installation package.
 
-
-Usage
------
+## Usage
 ### default
 Includes the `sql_server::client` recipe.
 
 ### client
 Installs required the SQL Server Native Client and all required dependancies. These include:
-
-* [Microsoft SQL Server 2008 R2 Native Client](http://www.microsoft.com/download/en/details.aspx?id=16978#SNAC)
-* [Microsoft SQL Server 2008 R2 Command Line Utilities (ie `sqlcmd`)](http://www.microsoft.com/download/en/details.aspx?id=16978#SQLCMD)
-* [Microsoft SQL Server System CLR Types](http://www.microsoft.com/download/en/details.aspx?id=16978#SQLSYSCLR)
-* [Microsoft SQL Server 2008 R2 Management Objects](http://www.microsoft.com/download/en/details.aspx?id=16978#SMO)
-* [Windows PowerShell Extensions for SQL Server 2008 R2](http://www.microsoft.com/download/en/details.aspx?id=16978#PowerShell)
+- [Microsoft SQL Server 2008 R2 Native Client](http://www.microsoft.com/download/en/details.aspx?id=16978#SNAC)
+- [Microsoft SQL Server 2008 R2 Command Line Utilities (ie `sqlcmd`)](http://www.microsoft.com/download/en/details.aspx?id=16978#SQLCMD)
+- [Microsoft SQL Server System CLR Types](http://www.microsoft.com/download/en/details.aspx?id=16978#SQLSYSCLR)
+- [Microsoft SQL Server 2008 R2 Management Objects](http://www.microsoft.com/download/en/details.aspx?id=16978#SMO)
+- [Windows PowerShell Extensions for SQL Server 2008 R2](http://www.microsoft.com/download/en/details.aspx?id=16978#PowerShell)
 
 The SQL Server Native Client contains the SQL Server ODBC driver and the SQL Server OLE DB provider in one native dynamic link library (DLL) supporting applications using native-code APIs (ODBC, OLE DB and ADO) to Microsoft SQL Server.  In simple terms these packages should allow any other node to act as a client of a SQL Server instance.
 
@@ -79,10 +69,9 @@ node['sql_server']['server']['package_name']
 ```
 
 The installation is done using the `windows_package` resource and [ConfigurationFile](http://msdn.microsoft.com/en-us/library/dd239405.aspx) generated from a `template` resource.  The installation is slightly opinionated and does the following:
-
-* Enables [Mixed Mode](http://msdn.microsoft.com/en-us/library/aa905171\(v=sql.80\).aspx) (Windows Authentication and SQL Server Authentication) authentication
-* Auto-generates and sets a strong password for the 'sa' account
-* sets a static TCP port which is configurable via an attribute.
+- Enables [Mixed Mode](http://msdn.microsoft.com/en-us/library/aa905171\(v=sql.80\).aspx) (Windows Authentication and SQL Server Authentication) authentication
+- Auto-generates and sets a strong password for the 'sa' account
+- sets a static TCP port which is configurable via an attribute.
 
 Installing any of the SQL Server server or client packages in an unattended/automated way requires you to explicitly indicate that you accept the terms of the end user license. The hooks have been added to all recipes to do this via an attribute.  Create a role to set the `node['sql_server']['accept_license_terms']` attribute to 'true'.  For example:
 
@@ -135,9 +124,8 @@ execute "open-static-port" do
 end
 ```
 
-License & Authors
------------------
-- Author:: Seth Chisamore (<schisamo@chef.io>)
+## License & Authors
+- Author:: Seth Chisamore ([schisamo@chef.io](mailto:schisamo@chef.io))
 
 ```text
 Copyright:: 2011, Chef Software, Inc.
@@ -155,9 +143,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-Maintainers
------------
-* Sean O'Meara (<https://github.com/someara>)
-* Steve Murawski (<https://github.com/smurawski>)
-* Jerrel Blankenship (<https://github.com/jerrelblankenship>)
-* Thomas Petchel (<https://github.com/tpetchel>)
+## Maintainers
+- Sean O'Meara ([https://github.com/someara](https://github.com/someara))
+- Steve Murawski ([https://github.com/smurawski](https://github.com/smurawski))
+- Jerrel Blankenship ([https://github.com/jerrelblankenship](https://github.com/jerrelblankenship))
+- Thomas Petchel ([https://github.com/tpetchel](https://github.com/tpetchel))
