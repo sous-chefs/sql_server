@@ -29,9 +29,8 @@ suites:
   - name: client
     run_list:
       - recipe[sql_server::default]
+    attributes: { sql_server: { accept_eula: true } }
   - name: server
     run_list:
       - recipe[sql_server::server]
-    attributes:
-      sql_server:
-        accept_eula: true
+    attributes: { sql_server: { accept_eula: true } }
