@@ -20,9 +20,10 @@
 
 ::Chef::Recipe.send(:include, Opscode::OpenSSL::Password)
 
-service_name = node['sql_server']['instance_name']
 if node['sql_server']['instance_name'] == 'SQLEXPRESS'
   service_name = "MSSQL$#{node['sql_server']['instance_name']}"
+else
+  service_name = node['sql_server']['instance_name']
 end
 
 # Compute registry version based on sql server version
@@ -95,16 +96,16 @@ windows_package package_name do
   action :install
 end
 
-service service_name do
-  action :nothing
-end
-
 # set the static tcp port
 registry_key static_tcp_reg_key do
   values [{ name: 'TcpPort', type: :string, data: node['sql_server']['port'].to_s },
           { name: 'TcpDynamicPorts', type: :string, data: '' }]
   recursive true
   notifies :restart, "service[#{service_name}]", :immediately
+end
+
+service service_name do
+  action [:start, :enable]
 end
 
 include_recipe 'sql_server::client'
