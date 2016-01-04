@@ -20,7 +20,6 @@
 
 # server installer includes client packages
 unless node.recipe?('sql_server::server')
-
   %w( native_client command_line_utils clr_types smo ps_extensions ).each do |pkg|
     windows_package node['sql_server'][pkg]['package_name'] do
       source node['sql_server'][pkg]['url']
@@ -35,11 +34,4 @@ unless node.recipe?('sql_server::server')
   windows_path "#{node['sql_server']['install_dir']}\\100\\Tools\\Binn" do
     action :add
   end
-
-end
-
-# used by SQL Server providers for
-# database and database_user resources
-chef_gem 'tiny_tds' do
-  action :install
 end
