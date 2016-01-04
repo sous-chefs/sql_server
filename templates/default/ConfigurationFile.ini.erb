@@ -94,6 +94,12 @@ INSTANCEDIR="<%= node['sql_server']['instance_dir'] %>"
 INSTALLSQLDATADIR="<%= node['sql_server']['sql_data_dir'] %>"
 <% end -%>
 
+<% unless node['sql_server']['sql_backup_dir'].nil? -%>
+; Default directory for SQL backup files.
+
+SQLBACKUPDIR="<%= node['sql_server']['sql_backup_dir'] %>"
+<% end -%>
+
 <% unless node['sql_server']['sql_user_db_dir'].nil? -%>
 ; Default directory for the Database Engine user databases.
 
@@ -110,6 +116,12 @@ SQLUSERDBLOGDIR="<%= node['sql_server']['sql_user_db_log_dir'] %>"
 ; Directory for Database Engine TempDB files.
 
 SQLTEMPDBDIR="<%= node['sql_server']['sql_temp_db_dir'] %>"
+<% end -%>
+
+<% unless node['sql_server']['sql_temp_db_log_dir'].nil? -%>
+; Directory for Database Engine TempDB log files.
+
+SQLTEMPDBLOGDIR="<%= node['sql_server']['sql_temp_db_log_dir'] %>"
 <% end -%>
 
 ; Specify that SQL Server feature usage data can be collected and sent to Microsoft. Specify 1 or True to enable and 0 or False to disable this feature.
@@ -186,7 +198,7 @@ ENABLERANU="<%= node['sql_server']['instance_name'] == 'SQLEXPRESS' ? "True" : "
 
 ; Specifies a Windows collation or an SQL collation to use for the Database Engine.
 
-SQLCOLLATION="SQL_Latin1_General_CP1_CI_AS"
+SQLCOLLATION="<%= node['sql_server']['sql_collation'] || 'SQL_Latin1_General_CP1_CI_AS' %>"
 
 ; Account for SQL Server service: Domain\User or system account.
 
