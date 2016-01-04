@@ -15,7 +15,6 @@ Installs and configures Microsoft SQL Server 2008 R2 and  Microsoft SQL Server 2
 - windows
 - openssl
 
-
 ## Attributes
 ### default
 The following attributes are used by both client and server recipes.
