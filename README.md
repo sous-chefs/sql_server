@@ -55,8 +55,6 @@ Installs required the SQL Server Native Client and all required dependancies. Th
 
 The SQL Server Native Client contains the SQL Server ODBC driver and the SQL Server OLE DB provider in one native dynamic link library (DLL) supporting applications using native-code APIs (ODBC, OLE DB and ADO) to Microsoft SQL Server.  In simple terms these packages should allow any other node to act as a client of a SQL Server instance.
 
-The [TinyTDS](https://github.com/rails-sqlserver/tiny_tds) gem is also installed as this is used in the SQL Server providers for the `database` and `database_user` resources (see the `database` cookbook for more details).
-
 ### server
 Installs SQL Server 2008 R2 Express or SQL Server 2012 Express.
 
