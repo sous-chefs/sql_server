@@ -5,11 +5,16 @@ Installs and configures Microsoft SQL Server 2008 R2 and  Microsoft SQL Server 2
 
 ## Requirements
 ### Platforms
-Tested on:
-- Windows Server 2008 R2
-- Windows Server 2012 R2
+- Windows Server 2008 (R1, R2)
+- Windows Server 2012 (R1, R2)
 
-May work on other versions of Windows.
+### Chef
+- Chef 11+
+
+### Cookbooks
+- windows
+- openssl
+
 
 ## Attributes
 ### default
@@ -125,11 +130,11 @@ end
 ```
 
 ## License & Authors
-- Author:: Seth Chisamore ([schisamo@chef.io](mailto:schisamo@chef.io))
+**Author:** Cookbook Engineering Team ([cookbooks@chef.io](mailto:cookbooks@chef.io))
+
+**Copyright:** 2011-2015, Chef Software, Inc.
 
 ```text
-Copyright:: 2011, Chef Software, Inc.
-
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -142,9 +147,3 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
-
-## Maintainers
-- Sean O'Meara ([https://github.com/someara](https://github.com/someara))
-- Steve Murawski ([https://github.com/smurawski](https://github.com/smurawski))
-- Jerrel Blankenship ([https://github.com/jerrelblankenship](https://github.com/jerrelblankenship))
-- Thomas Petchel ([https://github.com/tpetchel](https://github.com/tpetchel))
