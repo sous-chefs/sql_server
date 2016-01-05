@@ -30,8 +30,17 @@ unless node.recipe?('sql_server::server')
     end
   end
 
+  sql_server_version = node['sql_server']['version']
+  if sql_server_version =~ /2008/
+    install_dir = '100'
+  elsif sql_server_version =~ /2012/
+    install_dir = '110'
+  else
+    Chef::Application.fatal!("SQL Server version #{sql_server_version} not supported")
+  end
+
   # update path
-  windows_path "#{node['sql_server']['install_dir']}\\100\\Tools\\Binn" do
+  windows_path "#{node['sql_server']['install_dir']}\\#{install_dir}\\Tools\\Binn" do
     action :add
   end
 end
