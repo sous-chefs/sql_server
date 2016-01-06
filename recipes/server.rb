@@ -33,6 +33,7 @@ reg_version = node['sql_server']['reg_version'] ||
               when '2008R2' then 'MSSQL10_50.'
               when '2012' then 'MSSQL11.'
               when '2014' then 'MSSQL12.'
+              when '2016' then 'MSSQL13.'
               else fail "Unsupported sql_server version '#{node['sql_server']['version']}'"
               end
 
