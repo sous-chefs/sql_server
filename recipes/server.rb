@@ -18,7 +18,7 @@
 # limitations under the License.
 #
 
-::Chef::Recipe.send(:include, Opscode::OpenSSL::Password)
+Chef::Application.fatal!("node['sql_server']['server_sa_password'] must be set for this cookbook to run") if node['sql_server']['server_sa_password'].nil?
 
 if node['sql_server']['instance_name'] == 'SQLEXPRESS'
   service_name = "MSSQL$#{node['sql_server']['instance_name']}"
@@ -39,11 +39,6 @@ reg_version = node['sql_server']['reg_version'] ||
 
 static_tcp_reg_key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\\' + reg_version +
                      node['sql_server']['instance_name'] + '\MSSQLServer\SuperSocketNetLib\Tcp\IPAll'
-
-# generate and set a password for the 'sa' super user
-node.set_unless['sql_server']['server_sa_password'] = "#{secure_password}-aA12"
-# force a save so we don't lose our generated password on a failed chef run
-node.save unless Chef::Config[:solo]
 
 config_file_path = win_friendly_path(File.join(Chef::Config[:file_cache_path], 'ConfigurationFile.ini'))
 

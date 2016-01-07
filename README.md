@@ -1,7 +1,7 @@
 # sql_server Cookbook
 [![Build Status](https://travis-ci.org/chef-cookbooks/sql_server.svg?branch=master)](http://travis-ci.org/chef-cookbooks/sql_server) [![Cookbook Version](https://img.shields.io/cookbook/v/sql_server.svg)](https://supermarket.chef.io/cookbooks/sql_server)
 
-Installs and configures Microsoft SQL Server 2008 R2 and  Microsoft SQL Server 2012 server and client. By default the Express edition is installed, but the `sql_server::server` recipe supports installation of other editions (see **Usage** below).
+Installs and configures Microsoft SQL Server 2008 R2 and Microsoft SQL Server 2012 server and client. By default the Express edition is installed, but the `sql_server::server` recipe supports installation of other editions (see **Usage** below).
 
 ## Requirements
 ### Platforms
@@ -13,7 +13,6 @@ Installs and configures Microsoft SQL Server 2008 R2 and  Microsoft SQL Server 2
 
 ### Cookbooks
 - windows
-- openssl
 
 ## Attributes
 ### default
@@ -59,6 +58,8 @@ The SQL Server Native Client contains the SQL Server ODBC driver and the SQL Ser
 Installs SQL Server 2008 R2 Express or SQL Server 2012 Express.
 
 By default, the cookbook installs SQL Server 2008 R2 Express. There are two options to install a different version.
+
+NOTE: For this recipe to run you must set the node['sql_server']['server_sa_password'] in an environment, role, or wrapper cookbook.
 
 **Option 1:** From a role, environment, or wrapper cookbook, set `node['sql_server']['version']` to '2008R2' to install SQL Server 2008 R2 Express or '2012' to install SQL Server 2012 Express.
 
