@@ -5,8 +5,8 @@ This file is used to list changes made in each version of the sql_server cookboo
 - Removed the logic that auto generated node['sql_server']['server_sa_password'] and saved it to the node. The user will now need to set this to use the server recipe
 - Removed the gem install of tiny_tds. This is not directly used by this cookbook. If you require this for the database cookbook you should install it in your own wrapper cookbook.
 - Added support for SQL Server Client 2008 R2 SP2/SP2 and 2012 package installation
-- Added the ability to specify the directories for system dbs, user dbs and logs and tempdb in ConfigurationFile.ini
-- Removed assumtions that C: is your system drive
+- Added the ability to specify the directories for system dbs, user dbs, logs, and tempdb in ConfigurationFile.ini
+- Removed assumptions that C: is your system drive
 - Added support SQL 2014 server in ConfigurationFile.ini
 - Added the ability to pass account passwords to the installer vs. placing them in ConfigurationFile.ini
 - Added ability to configure tempdb path, sqlbackupdir path, and sqlcollation in ConfigurationFile.ini
@@ -22,7 +22,6 @@ This file is used to list changes made in each version of the sql_server cookboo
 - Added Maintainers files
 - Added travis and cookbook version badges to the readme
 - Added source_url and issues_url metadata for Supermarket
-
 
 ## v2.4.0 (2014-08-13)
 - Fixing Checksums

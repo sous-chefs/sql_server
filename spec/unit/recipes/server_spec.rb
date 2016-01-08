@@ -9,7 +9,9 @@ require 'spec_helper'
 describe 'sql_server::server' do
   context 'When all attributes are default, on Windows 2008R2, it should converge successfully' do
     let(:chef_run) do
-      runner = ChefSpec::SoloRunner.new(platform: 'windows', version: '2008R2')
+      runner = ChefSpec::SoloRunner.new(platform: 'windows', version: '2008R2') do |node|
+        node.set['sql_server']['server_sa_password'] = 'supersecure'
+      end
       runner.converge(described_recipe)
     end
 
@@ -20,7 +22,9 @@ describe 'sql_server::server' do
 
   context 'When all attributes are default, on Windows 2012, it should converge successfully' do
     let(:chef_run) do
-      runner = ChefSpec::SoloRunner.new(platform: 'windows', version: '2012')
+      runner = ChefSpec::SoloRunner.new(platform: 'windows', version: '2012') do |node|
+        node.set['sql_server']['server_sa_password'] = 'supersecure'
+      end
       runner.converge(described_recipe)
     end
 
@@ -33,6 +37,7 @@ describe 'sql_server::server' do
     let(:chef_run) do
       runner = ChefSpec::SoloRunner.new(platform: 'windows', version: '2012', file_cache_path: 'C:\chef\cache') do |node|
         node.set['sql_server']['sysadmins'] = %w(Administrator Fred Barney)
+        node.set['sql_server']['server_sa_password'] = 'supersecure'
       end
       runner.converge(described_recipe)
     end
@@ -51,6 +56,7 @@ describe 'sql_server::server' do
     let(:chef_run) do
       runner = ChefSpec::SoloRunner.new(platform: 'windows', version: '2012', file_cache_path: 'C:\chef\cache') do |node|
         node.set['sql_server']['sysadmins'] = 'Administrator'
+        node.set['sql_server']['server_sa_password'] = 'supersecure'
       end
       runner.converge(described_recipe)
     end
