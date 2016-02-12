@@ -1,7 +1,8 @@
 # sql_server Cookbook CHANGELOG
 This file is used to list changes made in each version of the sql_server cookbook.
 
-## UNRELEASED
+## v2.5.0(2016-02-12)
+- Enable multiple sysadmin names.
 - Removed the logic that auto generated node['sql_server']['server_sa_password'] and saved it to the node. The user will now need to set this to use the server recipe
 - Removed the gem install of tiny_tds. This is not directly used by this cookbook. If you require this for the database cookbook you should install it in your own wrapper cookbook.
 - Added support for SQL Server Client 2008 R2 SP2/SP2 and 2012 package installation
