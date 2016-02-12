@@ -20,11 +20,11 @@
 
 Chef::Application.fatal!("node['sql_server']['server_sa_password'] must be set for this cookbook to run") if node['sql_server']['server_sa_password'].nil?
 
-if node['sql_server']['instance_name'] == 'SQLEXPRESS'
-  service_name = "MSSQL$#{node['sql_server']['instance_name']}"
-else
-  service_name = node['sql_server']['instance_name']
-end
+service_name = if node['sql_server']['instance_name'] == 'SQLEXPRESS'
+                 "MSSQL$#{node['sql_server']['instance_name']}"
+               else
+                 node['sql_server']['instance_name']
+               end
 
 # Compute registry version based on sql server version
 reg_version = node['sql_server']['reg_version'] ||
@@ -34,7 +34,7 @@ reg_version = node['sql_server']['reg_version'] ||
               when '2012' then 'MSSQL11.'
               when '2014' then 'MSSQL12.'
               when '2016' then 'MSSQL13.'
-              else fail "Unsupported sql_server version '#{node['sql_server']['version']}'"
+              else raise "Unsupported sql_server version '#{node['sql_server']['version']}'"
               end
 
 static_tcp_reg_key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\\' + reg_version +
@@ -42,11 +42,11 @@ static_tcp_reg_key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server
 
 config_file_path = win_friendly_path(File.join(Chef::Config[:file_cache_path], 'ConfigurationFile.ini'))
 
-if node['sql_server']['sysadmins'].is_a? Array
-  sql_sys_admin_list = node['sql_server']['sysadmins'].join(' ')
-else
-  sql_sys_admin_list = node['sql_server']['sysadmins']
-end
+sql_sys_admin_list = if node['sql_server']['sysadmins'].is_a? Array
+                       node['sql_server']['sysadmins'].join(' ')
+                     else
+                       node['sql_server']['sysadmins']
+                     end
 
 template config_file_path do
   source 'ConfigurationFile.ini.erb'
