@@ -23,3 +23,4 @@ for details on the process and how to become a maintainer or the project lead.
 * [Sean OMeara](https://github.com/someara)
 * [Tim Smith](https://github.com/tas50)
 * [Jennifer Davis](https://github.com/sigje)
+* [Sean Carolan](https://github.com/scarolan)
