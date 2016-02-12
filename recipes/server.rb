@@ -43,9 +43,9 @@ static_tcp_reg_key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server
 config_file_path = win_friendly_path(File.join(Chef::Config[:file_cache_path], 'ConfigurationFile.ini'))
 
 sql_sys_admin_list = if node['sql_server']['sysadmins'].is_a? Array
-                       node['sql_server']['sysadmins'].join(' ')
+                       node['sql_server']['sysadmins'].map { |account| %("#{account}") }.join(' ') # surround each in quotes, space delimit list
                      else
-                       node['sql_server']['sysadmins']
+                       %("#{node['sql_server']['sysadmins']}") # surround in quotes
                      end
 
 template config_file_path do
