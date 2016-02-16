@@ -103,5 +103,3 @@ end
 service service_name do
   action [:start, :enable]
 end
-
-include_recipe 'sql_server::client'
