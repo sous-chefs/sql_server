@@ -188,9 +188,13 @@ ASPROVIDERMSOLAP="1"
 
 SQLSVCSTARTUPTYPE="Automatic"
 
-; Level to enable FILESTREAM feature at (0, 1, 2 or 3).
+; Level to enable FILESTREAM feature at (0, 1, 2 or 3). 
 
-FILESTREAMLEVEL="0"
+FILESTREAMLEVEL="<%= node['sql_server']['filestream_level'] %>"
+
+; Name of Windows share to be created for FILESTREAM File I/O. 
+
+FILESTREAMSHARENAME="<%= node['sql_server']['filestream_share_name'] %>"
 
 ; Set to "1" to enable RANU for SQL Server Express.
 
