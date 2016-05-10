@@ -20,10 +20,20 @@
 
 Chef::Application.fatal!("node['sql_server']['server_sa_password'] must be set for this cookbook to run") if node['sql_server']['server_sa_password'].nil?
 
-service_name = if node['sql_server']['instance_name'] == 'SQLEXPRESS'
-                 "MSSQL$#{node['sql_server']['instance_name']}"
-               else
+# SQLEXPRESS is used as an instance name in Standard or Enterprise installs 
+# SQL Server it will default to MSSQLSERVER. Any instance name used will 
+# have MSSQ$ appeneded to the front
+service_name = if node['sql_server']['instance_name'] == 'MSSQLSERVER'
                  node['sql_server']['instance_name']
+               else
+                 "MSSQL$#{node['sql_server']['instance_name']}"
+               end
+# Agent name needs to be declared because if you use the SQL Agent, you need
+# to restart both services as the Agent is dependent on the SQL Service
+agent_service_name = if node['sql_server']['instance_name'] == 'MSSQLSERVER'
+                 'SQLSERVERAGENT'
+               else
+                 "SQLAgent$#{node['sql_server']['instance_name']}"
                end
 
 # Compute registry version based on sql server version
@@ -90,6 +100,8 @@ windows_package package_name do
   installer_type :custom
   options "/q /ConfigurationFile=#{config_file_path} #{passwords_options}"
   action :install
+  notifies :request_reboot, 'reboot[sql server install]'
+  returns [0, 42, 127, 3010]
 end
 
 # set the static tcp port
@@ -100,8 +112,25 @@ registry_key static_tcp_reg_key do
   notifies :restart, "service[#{service_name}]", :immediately
 end
 
-service service_name do
-  action [:start, :enable]
+# If you have declared an agent account it will restart both the
+# agent service and the sql service. If not only the sql service
+if node['sql_server']['agent_account']
+  service agent_service_name do
+    action [:start, :enable]
+  end
+  service service_name do
+    action [:start, :enable]
+  end
+else
+  service service_name do
+    action [:start, :enable]
+  end
+end
+
+# SQL Server requires a reboot to complete your install
+reboot 'sql server install' do
+  action :nothing
+  reason 'Needs to reboot after installing SQL Server'
 end
 
 include_recipe 'sql_server::client'
