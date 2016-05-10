@@ -20,8 +20,8 @@
 
 Chef::Application.fatal!("node['sql_server']['server_sa_password'] must be set for this cookbook to run") if node['sql_server']['server_sa_password'].nil?
 
-# SQLEXPRESS is used as an instance name in Standard or Enterprise installs 
-# SQL Server it will default to MSSQLSERVER. Any instance name used will 
+# SQLEXPRESS is used as an instance name in Standard or Enterprise installs
+# SQL Server it will default to MSSQLSERVER. Any instance name used will
 # have MSSQ$ appeneded to the front
 service_name = if node['sql_server']['instance_name'] == 'MSSQLSERVER'
                  node['sql_server']['instance_name']
@@ -31,10 +31,10 @@ service_name = if node['sql_server']['instance_name'] == 'MSSQLSERVER'
 # Agent name needs to be declared because if you use the SQL Agent, you need
 # to restart both services as the Agent is dependent on the SQL Service
 agent_service_name = if node['sql_server']['instance_name'] == 'MSSQLSERVER'
-                 'SQLSERVERAGENT'
-               else
-                 "SQLAgent$#{node['sql_server']['instance_name']}"
-               end
+                       'SQLSERVERAGENT'
+                     else
+                       "SQLAgent$#{node['sql_server']['instance_name']}"
+                     end
 
 # Compute registry version based on sql server version
 reg_version = node['sql_server']['reg_version'] ||
@@ -121,10 +121,10 @@ if node['sql_server']['agent_account']
   service service_name do
     action [:start, :enable]
   end
-else
-  service service_name do
-    action [:start, :enable]
-  end
+end
+
+service service_name do
+  action [:start, :enable]
 end
 
 # SQL Server requires a reboot to complete your install
