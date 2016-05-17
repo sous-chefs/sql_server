@@ -102,6 +102,7 @@ end
 
 service service_name do
   action [:start, :enable]
+  restart_command %(powershell.exe -C "restart-service '#{service_name}' -force")
 end
 
 include_recipe 'sql_server::client'
