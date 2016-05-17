@@ -118,9 +118,6 @@ if node['sql_server']['agent_account']
   service agent_service_name do
     action [:start, :enable]
   end
-  service service_name do
-    action [:start, :enable]
-  end
 end
 
 service service_name do
