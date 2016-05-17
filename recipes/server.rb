@@ -20,7 +20,7 @@
 
 Chef::Application.fatal!("node['sql_server']['server_sa_password'] must be set for this cookbook to run") if node['sql_server']['server_sa_password'].nil?
 
-service_name = if node['sql_server']['instance_name'] == 'SQLEXPRESS'
+service_name = if node['sql_server']['instance_name'] != 'MSSQLSERVER'
                  "MSSQL$#{node['sql_server']['instance_name']}"
                else
                  node['sql_server']['instance_name']
