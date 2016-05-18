@@ -89,7 +89,7 @@ end
 
 windows_package package_name do
   source !is_iso ? package_url : "#{iso_extraction_dir}/#{node['sql_server']['server']['setup']}"
-  checksum package_checksum
+  checksum !is_iso ? package_checksum : nil
   timeout node['sql_server']['server']['installer_timeout']
   installer_type :custom
   options "/q /ConfigurationFile=#{config_file_path}"
