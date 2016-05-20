@@ -11,7 +11,7 @@ Installs and configures Microsoft SQL Server 2008 R2 and Microsoft SQL Server 20
 - Windows Server 2012 (R1, R2)
 
 ### Chef
-- Chef 11+
+- Chef 12+
 
 ### Cookbooks
 - windows
@@ -62,6 +62,8 @@ Installs SQL Server 2008 R2 Express or SQL Server 2012 Express.
 By default, the cookbook installs SQL Server 2008 R2 Express. There are two options to install a different version.
 
 NOTE: For this recipe to run you must set the node['sql_server']['server_sa_password'] in an environment, role, or wrapper cookbook.
+
+NOTE: This recipe will request a reboot at the end of the Chef Client run if SQL Server was installed..  If you do not want to reboot after the installation, use the `reboot` resource to cancel the pending reboot. 
 
 **Option 1:** From a role, environment, or wrapper cookbook, set `node['sql_server']['version']` to '2008R2' to install SQL Server 2008 R2 Express or '2012' to install SQL Server 2012 Express.
 

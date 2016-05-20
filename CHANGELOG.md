@@ -1,6 +1,9 @@
 # sql_server Cookbook CHANGELOG
 This file is used to list changes made in each version of the sql_server cookbook.
 
+## v2.6.2(2016-05-17)
+- README updates
+
 ## v2.6.1(2016-05-17)
 - [PR #69](https://github.com/chef-cookbooks/sql_server/pull/69) Duplicate service restart
 - Clean up rake file, maintainers toml/markdown
