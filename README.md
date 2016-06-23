@@ -80,7 +80,7 @@ The installation is done using the `windows_package` resource and [Configuration
 - Auto-generates and sets a strong password for the 'sa' account
 - sets a static TCP port which is configurable via an attribute.
 
-Installing any of the SQL Server server or client packages in an unattended/automated way requires you to explicitly indicate that you accept the terms of the end user license. The hooks have been added to all recipes to do this via an attribute.  Create a role to set the `node['sql_server']['accept_license_terms']` attribute to 'true'.  For example:
+Installing any of the SQL Server server or client packages in an unattended/automated way requires you to explicitly indicate that you accept the terms of the end user license. The hooks have been added to all recipes to do this via an attribute.  Create a role to set the `node['sql_server']['accept_eula']` attribute to 'true'.  For example:
 
 ```ruby
 name "sql_server"
