@@ -20,9 +20,8 @@ install:
   - c:\opscode\chefdk\bin\chef.bat gem install chef-sugar
 
 test_script:
-  - c:\opscode\chefdk\bin\chef.bat exec rubocop --version
+  - c:\opscode\chefdk\bin\cookstyle --version
   - c:\opscode\chefdk\bin\chef.bat exec foodcritic --version
-  - c:\opscode\chefdk\bin\chef.bat exec rake style
-  - c:\opscode\chefdk\bin\chef.bat exec rake spec
+  - c:\opscode\chefdk\bin\chef.bat exec rake
 
 deploy: off
