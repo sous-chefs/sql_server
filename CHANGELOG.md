@@ -1,6 +1,11 @@
 # sql_server Cookbook CHANGELOG
 This file is used to list changes made in each version of the sql_server cookbook.
 
+## 3.0.0 (2016-09-07)
+- Correct attribute to accept eula
+- Require Chef 12+
+- Testing updates
+
 ## v2.6.2(2016-05-17)
 - README updates
 
