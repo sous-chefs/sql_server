@@ -10,4 +10,4 @@ depends          'windows', '>= 1.2.6'
 
 source_url 'https://github.com/chef-cookbooks/sql_server'
 issues_url 'https://github.com/chef-cookbooks/sql_server/issues'
-chef_version     '>= 12.1'
+chef_version '>= 12.1'

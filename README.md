@@ -15,7 +15,7 @@ Installs and configures Microsoft SQL Server 2008 R2 and Microsoft SQL Server 20
 
 ### Chef
 
-- Chef 12+
+- Chef 12.1+
 
 ### Cookbooks
 
