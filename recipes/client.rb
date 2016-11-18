@@ -35,6 +35,8 @@ unless node.recipe?('sql_server::server')
     install_dir = '100'
   elsif sql_server_version =~ /2012/
     install_dir = '110'
+  elsif sql_server_version =~ /2014/
+    install_dir = '120'
   else
     Chef::Application.fatal!("SQL Server version #{sql_server_version} not supported")
   end
