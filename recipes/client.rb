@@ -28,18 +28,7 @@
   end
 end
 
-case node['sql_server']['version']
-when /2008/
-  install_dir = '100'
-when /2012/
-  install_dir = '110'
-when /2014/
-  install_dir = '120'
-else
-  Chef::Application.fatal!("SQL Server version #{sql_server_version} not supported")
-end
-
 # update path
-windows_path "#{node['sql_server']['install_dir']}\\#{install_dir}\\Tools\\Binn" do
+windows_path "#{node['sql_server']['install_dir']}\\#{install_dir_version(node['sql_server']['version'])}\\Tools\\Binn" do
   action :add
 end

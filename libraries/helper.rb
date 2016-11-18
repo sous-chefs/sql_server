@@ -24,6 +24,21 @@ module SqlServer
   class Helper
     extend Chef::Mixin::ShellOut
 
+    def self.install_dir_version(version)
+      case version
+      when /2008/
+        '100'
+      when /2012/
+        '110'
+      when /2014/
+        '120'
+      when /2016/
+        '130'
+      else
+        Chef::Application.fatal!("SQL Server version #{version} not supported. Please open a PR to add support for this version.")
+      end
+    end
+
     def self.firewall_rule_enabled?(rule_name = nil)
       cmd = shell_out("netsh advfirewall firewall show rule \"#{rule_name}\"")
       cmd.stderr.empty? && (cmd.stdout =~ /Enabled:\s*Yes/i)
