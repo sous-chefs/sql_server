@@ -24,6 +24,17 @@ module SqlServer
   class Helper
     extend Chef::Mixin::ShellOut
 
+    def self.reg_version_string(version)
+      case version
+      when '2008' then 'MSSQL10.'
+      when '2008R2' then 'MSSQL10_50.'
+      when '2012' then 'MSSQL11.'
+      when '2014' then 'MSSQL12.'
+      when '2016' then 'MSSQL13.'
+      else raise "Unsupported sql_server version '#{node['sql_server']['version']}'"
+      end
+    end
+
     def self.install_dir_version(version)
       case version
       when /2008/
