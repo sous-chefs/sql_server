@@ -19,7 +19,7 @@
 #
 
 %w( native_client command_line_utils clr_types smo ps_extensions ).each do |pkg|
-  windows_package node['sql_server'][pkg]['package_name'] do
+  package node['sql_server'][pkg]['package_name'] do
     source node['sql_server'][pkg]['url']
     checksum node['sql_server'][pkg]['checksum']
     installer_type :msi
