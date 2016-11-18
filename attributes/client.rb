@@ -20,49 +20,6 @@
 
 if kernel['machine'] =~ /x86_64/
   case node['sql_server']['version']
-
-  when '2008R2'
-    default['sql_server']['native_client']['url']               = 'http://download.microsoft.com/download/B/6/3/B63CAC7F-44BB-41FA-92A3-CBF71360F022/1033/x64/sqlncli.msi'
-    default['sql_server']['native_client']['checksum']          = '012aca6cef50ed784f239d1ed5f6923b741d8530b70d14e9abcb3c7299a826cc'
-    default['sql_server']['native_client']['package_name']      = 'Microsoft SQL Server 2008 R2 Native Client'
-
-    default['sql_server']['command_line_utils']['url']          = 'http://download.microsoft.com/download/B/6/3/B63CAC7F-44BB-41FA-92A3-CBF71360F022/1033/x64/SqlCmdLnUtils.msi'
-    default['sql_server']['command_line_utils']['checksum']     = '5a321cad6c5f0f5280aa73ab8ed695f8a6369fa00937df538a971729552340b8'
-    default['sql_server']['command_line_utils']['package_name'] = 'Microsoft SQL Server 2008 R2 Command Line Utilities'
-
-    default['sql_server']['clr_types']['url']                   = 'http://download.microsoft.com/download/B/6/3/B63CAC7F-44BB-41FA-92A3-CBF71360F022/1033/x64/SQLSysClrTypes.msi'
-    default['sql_server']['clr_types']['checksum']              = '0ad774b0d124c83bbf0f31838ed9c628dd76d83ab2c8c57fd5e2f5305580fff2'
-    default['sql_server']['clr_types']['package_name']          = 'Microsoft SQL Server System CLR Types (x64)'
-
-    default['sql_server']['smo']['url']                         = 'http://download.microsoft.com/download/B/6/3/B63CAC7F-44BB-41FA-92A3-CBF71360F022/1033/x64/SharedManagementObjects.msi'
-    default['sql_server']['smo']['checksum']                    = 'dccec315e3c345a7efb5951f3e9b27512b4e91d73ec48c7196633b7449115b7c'
-    default['sql_server']['smo']['package_name']                = 'Microsoft SQL Server 2008 R2 Management Objects (x64)'
-
-    default['sql_server']['ps_extensions']['url']               = 'http://download.microsoft.com/download/B/6/3/B63CAC7F-44BB-41FA-92A3-CBF71360F022/1033/x64/PowerShellTools.msi'
-    default['sql_server']['ps_extensions']['checksum']          = 'eeb46c297523c7de388188ba27263a51b75e85efd478036a12040cc04d4ab344'
-    default['sql_server']['ps_extensions']['package_name']      = 'Windows PowerShell Extensions for SQL Server 2008 R2'
-
-  when '2008R2SP1'
-    default['sql_server']['native_client']['url']               = 'http://download.microsoft.com/download/9/1/3/9138773A-505D-43E2-AC08-9A77E1E0490B/1033/x64/sqlncli.msi'
-    default['sql_server']['native_client']['checksum']          = 'bdc21c671f533203c1bdf26e3eddeb29998fe8065e7122eb1f782c56723133b9'
-    default['sql_server']['native_client']['package_name']      = 'Microsoft SQL Server 2008 R2 Native Client'
-
-    default['sql_server']['command_line_utils']['url']          = 'http://download.microsoft.com/download/9/1/3/9138773A-505D-43E2-AC08-9A77E1E0490B/1033/x64/SqlCmdLnUtils.msi'
-    default['sql_server']['command_line_utils']['checksum']     = '0f1d388d142d9252e27fe563fbf6e21d7ae64333d6152e14c9aaee9e50564c80'
-    default['sql_server']['command_line_utils']['package_name'] = 'Microsoft SQL Server 2008 R2 Command Line Utilities'
-
-    default['sql_server']['clr_types']['url']                   = 'http://download.microsoft.com/download/9/1/3/9138773A-505D-43E2-AC08-9A77E1E0490B/1033/x64/SQLSysClrTypes.msi'
-    default['sql_server']['clr_types']['checksum']              = '6ec7ed48f707e4fa087a73f0420b6870daf344eba208bd4981ce354813b6af20'
-    default['sql_server']['clr_types']['package_name']          = 'Microsoft SQL Server System CLR Types (x64)'
-
-    default['sql_server']['smo']['url']                         = 'http://download.microsoft.com/download/9/1/3/9138773A-505D-43E2-AC08-9A77E1E0490B/1033/x64/SharedManagementObjects.msi'
-    default['sql_server']['smo']['checksum']                    = 'a730834c16359665dc5ed758b02cc18149ee3493ab1c44e55d89acfefe5f803d'
-    default['sql_server']['smo']['package_name']                = 'Microsoft SQL Server 2008 R2 Management Objects (x64)'
-
-    default['sql_server']['ps_extensions']['url']               = 'http://download.microsoft.com/download/9/1/3/9138773A-505D-43E2-AC08-9A77E1E0490B/1033/x64/PowerShellTools.msi'
-    default['sql_server']['ps_extensions']['checksum']          = '8e4d1dc77e3ee8ccd5e8f1ea6fa3a5ed741421a34c9407c2558a28773cc929e9'
-    default['sql_server']['ps_extensions']['package_name']      = 'Windows PowerShell Extensions for SQL Server 2008 R2'
-
   when '2008R2SP2'
     default['sql_server']['native_client']['url']               = 'http://download.microsoft.com/download/F/7/B/F7B7A246-6B35-40E9-8509-72D2F8D63B80/sqlncli_amd64.msi'
     default['sql_server']['native_client']['checksum']          = '77cb222d4e573e0aafb3d0339c2018eec2b8d7335388d0a2738e1b776ab0b2be'
@@ -108,49 +65,6 @@ if kernel['machine'] =~ /x86_64/
 
 else
   case node['sql_server']['version']
-
-  when '2008R2'
-    default['sql_server']['native_client']['url']               = 'http://download.microsoft.com/download/B/6/3/B63CAC7F-44BB-41FA-92A3-CBF71360F022/1033/x86/sqlncli.msi'
-    default['sql_server']['native_client']['checksum']          = '35c4b98f7f5f951cae9939c637593333c44aee920efbd4763b7bdca1e23ac335'
-    default['sql_server']['native_client']['package_name']      = 'Microsoft SQL Server 2008 R2 Native Client'
-
-    default['sql_server']['command_line_utils']['url']          = 'http://download.microsoft.com/download/B/6/3/B63CAC7F-44BB-41FA-92A3-CBF71360F022/1033/x86/SqlCmdLnUtils.msi'
-    default['sql_server']['command_line_utils']['checksum']     = 'b39981fa713feedaaf532ab393bf312ec7b5f63bb5f726b9d0e1ae5a65350eee'
-    default['sql_server']['command_line_utils']['package_name'] = 'Microsoft SQL Server 2008 R2 Command Line Utilities'
-
-    default['sql_server']['clr_types']['url']                   = 'http://download.microsoft.com/download/B/6/3/B63CAC7F-44BB-41FA-92A3-CBF71360F022/1033/x86/SQLSysClrTypes.msi'
-    default['sql_server']['clr_types']['checksum']              = '6166f2fa57fb971699ff66461434b2418820306c094b5dc3e7df1b827275bf20'
-    default['sql_server']['clr_types']['package_name']          = 'Microsoft SQL Server System CLR Types (x86)'
-
-    default['sql_server']['smo']['url']                         = 'http://download.microsoft.com/download/B/6/3/B63CAC7F-44BB-41FA-92A3-CBF71360F022/1033/x86/SharedManagementObjects.msi'
-    default['sql_server']['smo']['checksum']                    = '4b1ec03bc5cc69481b9da6b2db41ae6d3adeacffe854cc209d125e83a739f937'
-    default['sql_server']['smo']['package_name']                = 'Microsoft SQL Server 2008 R2 Management Objects (x86)'
-
-    default['sql_server']['ps_extensions']['url']               = 'http://download.microsoft.com/download/B/6/3/B63CAC7F-44BB-41FA-92A3-CBF71360F022/1033/x86/PowerShellTools.msi'
-    default['sql_server']['ps_extensions']['checksum']          = 'b0d63f8d3e3455fd390dfa0fefebde245bf1a272eb96a968d025f2cbd7842b6c'
-    default['sql_server']['ps_extensions']['package_name']      = 'Windows PowerShell Extensions for SQL Server 2008 R2'
-
-  when '2008R2SP1'
-    default['sql_server']['native_client']['url']               = 'http://download.microsoft.com/download/9/1/3/9138773A-505D-43E2-AC08-9A77E1E0490B/1033/x86/sqlncli.msi'
-    default['sql_server']['native_client']['checksum']          = 'f37e7965db52d3c89c78d350d59da0a50b3920630c1f376f9234c99b8c4241a4'
-    default['sql_server']['native_client']['package_name']      = 'Microsoft SQL Server 2008 R2 Native Client'
-
-    default['sql_server']['command_line_utils']['url']          = 'http://download.microsoft.com/download/9/1/3/9138773A-505D-43E2-AC08-9A77E1E0490B/1033/x86/SqlCmdLnUtils.msi'
-    default['sql_server']['command_line_utils']['checksum']     = 'a0229c8836c9499893a700ef142420e3b72ddc1929e32e785bff99dc26fae882'
-    default['sql_server']['command_line_utils']['package_name'] = 'Microsoft SQL Server 2008 R2 Command Line Utilities'
-
-    default['sql_server']['clr_types']['url']                   = 'http://download.microsoft.com/download/9/1/3/9138773A-505D-43E2-AC08-9A77E1E0490B/1033/x86/SQLSysClrTypes.msi'
-    default['sql_server']['clr_types']['checksum']              = 'd99e6aa1cb091bfe509c5edb9612676f59c123aee89b75cec0ccc08f91538719'
-    default['sql_server']['clr_types']['package_name']          = 'Microsoft SQL Server System CLR Types'
-
-    default['sql_server']['smo']['url']                         = 'http://download.microsoft.com/download/9/1/3/9138773A-505D-43E2-AC08-9A77E1E0490B/1033/x86/SharedManagementObjects.msi'
-    default['sql_server']['smo']['checksum']                    = '9e46605d489cfd7270e100788542365aeb7d7475df0d4b0edf847811bfe70883'
-    default['sql_server']['smo']['package_name']                = 'Microsoft SQL Server 2008 R2 Management Objects'
-
-    default['sql_server']['ps_extensions']['url']               = 'http://download.microsoft.com/download/9/1/3/9138773A-505D-43E2-AC08-9A77E1E0490B/1033/x86/PowerShellTools.msi'
-    default['sql_server']['ps_extensions']['checksum']          = 'ba997476151e0408ddf46fd54806e6039f7cb340e829e290e35bb101ec5de709'
-    default['sql_server']['ps_extensions']['package_name']      = 'Windows PowerShell Extensions for SQL Server 2008 R2'
-
   when '2008R2SP2'
     default['sql_server']['native_client']['url']               = 'http://download.microsoft.com/download/F/7/B/F7B7A246-6B35-40E9-8509-72D2F8D63B80/sqlncli_x86.msi'
     default['sql_server']['native_client']['checksum']          = 'ab5a889ec8ecaf6076422684e6914fd235216b6c0d2aba05564a126181a855d8'
