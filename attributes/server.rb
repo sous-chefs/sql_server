@@ -34,6 +34,8 @@ default['sql_server']['browser_startup'] = 'Disabled'
 default['sql_server']['sysadmins'] = ['Administrator']
 default['sql_server']['sql_account'] = 'NT AUTHORITY\NETWORK SERVICE'
 default['sql_server']['update_enabled'] = true # applies to SQL Server 2012 and later
+default['sql_server']['filestream_level'] = 0
+default['sql_server']['filestream_share_name'] = 'MSSQLSERVER'
 
 default['sql_server']['server']['installer_timeout'] = 1500
 
