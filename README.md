@@ -15,7 +15,7 @@ Installs and configures Microsoft SQL Server 2008 R2 SP2 and Microsoft SQL Serve
 
 ### Chef
 
-- Chef 12.1+
+- Chef 12.6+
 
 ### Cookbooks
 
@@ -90,7 +90,7 @@ node['sql_server']['server']['checksum']
 node['sql_server']['server']['package_name']
 ```
 
-The installation is done using the `windows_package` resource and [ConfigurationFile](http://msdn.microsoft.com/en-us/library/dd239405.aspx) generated from a `template` resource. The installation is slightly opinionated and does the following:
+The installation is done using the `package` resource and [ConfigurationFile](http://msdn.microsoft.com/en-us/library/dd239405.aspx) generated from a `template` resource. The installation is slightly opinionated and does the following:
 
 - Enables [Mixed Mode](http://msdn.microsoft.com/en-us/library/aa905171\(v=sql.80\).aspx) (Windows Authentication and SQL Server Authentication) authentication
 - Auto-generates and sets a strong password for the 'sa' account
