@@ -80,7 +80,7 @@ NOTE: For this recipe to run you must set the node['sql_server']['server_sa_pass
 
 NOTE: This recipe will request a reboot at the end of the Chef Client run if SQL Server was installed.. If you do not want to reboot after the installation, use the `reboot` resource to cancel the pending reboot.
 
-**Option 1:** From a role, environment, or wrapper cookbook, set `node['sql_server']['version']` to '2008R2' to install SQL Server 2008 R2 Express or '2012' to install SQL Server 2012 Express.
+**Option 1:** From a role, environment, or wrapper cookbook, set `node['sql_server']['version']` to '2008R2' to install SQL Server 2008 R2 Express, '2012' to install SQL Server 2012 Express or '2014' to install SQL Server 2014 Express.
 
 **Option 2:** From a role, environment, or wrapper cookbook, set these node attributes to specify the URL, checksum, and name of the package (as it appears in the Windows Registry).
 

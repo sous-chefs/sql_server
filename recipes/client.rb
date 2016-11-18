@@ -28,11 +28,13 @@
   end
 end
 
-sql_server_version = node['sql_server']['version']
-if sql_server_version =~ /2008/
+case node['sql_server']['version']
+when /2008/
   install_dir = '100'
-elsif sql_server_version =~ /2012/
+when /2012/
   install_dir = '110'
+when /2014/
+  install_dir = '120'
 else
   Chef::Application.fatal!("SQL Server version #{sql_server_version} not supported")
 end
