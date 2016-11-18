@@ -90,7 +90,9 @@ passwords_options = {
   next unless attribute
   # Escape password double quotes and backslashes
   safe_password = attribute.gsub(/["\\]/, '\\\\\0')
-  "/#{option}=\"#{safe_password}\""
+  # When the number of double quotes is odd, we need to escape the enclosing quotes
+  enclosing_escape = safe_password.count('"').odd? ? '^' : ''
+  "/#{option}=\"#{safe_password}#{enclosing_escape}\""
 end.compact.join ' '
 
 windows_package package_name do
