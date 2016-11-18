@@ -18,29 +18,26 @@
 # limitations under the License.
 #
 
-# server installer includes client packages
-unless node.recipe?('sql_server::server')
-  %w( native_client command_line_utils clr_types smo ps_extensions ).each do |pkg|
-    windows_package node['sql_server'][pkg]['package_name'] do
-      source node['sql_server'][pkg]['url']
-      checksum node['sql_server'][pkg]['checksum']
-      installer_type :msi
-      options "IACCEPTSQLNCLILICENSETERMS=#{node['sql_server']['accept_eula'] ? 'YES' : 'NO'}"
-      action :install
-    end
+%w( native_client command_line_utils clr_types smo ps_extensions ).each do |pkg|
+  windows_package node['sql_server'][pkg]['package_name'] do
+    source node['sql_server'][pkg]['url']
+    checksum node['sql_server'][pkg]['checksum']
+    installer_type :msi
+    options "IACCEPTSQLNCLILICENSETERMS=#{node['sql_server']['accept_eula'] ? 'YES' : 'NO'}"
+    action :install
   end
+end
 
-  sql_server_version = node['sql_server']['version']
-  if sql_server_version =~ /2008/
-    install_dir = '100'
-  elsif sql_server_version =~ /2012/
-    install_dir = '110'
-  else
-    Chef::Application.fatal!("SQL Server version #{sql_server_version} not supported")
-  end
+sql_server_version = node['sql_server']['version']
+if sql_server_version =~ /2008/
+  install_dir = '100'
+elsif sql_server_version =~ /2012/
+  install_dir = '110'
+else
+  Chef::Application.fatal!("SQL Server version #{sql_server_version} not supported")
+end
 
-  # update path
-  windows_path "#{node['sql_server']['install_dir']}\\#{install_dir}\\Tools\\Binn" do
-    action :add
-  end
+# update path
+windows_path "#{node['sql_server']['install_dir']}\\#{install_dir}\\Tools\\Binn" do
+  action :add
 end

@@ -132,5 +132,3 @@ reboot 'sql server install' do
   action :nothing
   reason 'Needs to reboot after installing SQL Server'
 end
-
-include_recipe 'sql_server::client'
