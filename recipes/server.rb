@@ -36,7 +36,7 @@ agent_service_name = if node['sql_server']['instance_name'] == 'MSSQLSERVER'
                        "SQLAgent$#{node['sql_server']['instance_name']}"
                      end
 
-static_tcp_reg_key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\\' + SqlServer::Helper.reg_version +
+static_tcp_reg_key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\\' + SqlServer::Helper.reg_version_string(node['sql_server']['version']) +
                      node['sql_server']['instance_name'] + '\MSSQLServer\SuperSocketNetLib\Tcp\IPAll'
 
 config_file_path = win_friendly_path(File.join(Chef::Config[:file_cache_path], 'ConfigurationFile.ini'))
