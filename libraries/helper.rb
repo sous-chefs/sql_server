@@ -64,6 +64,8 @@ module SqlServer
           'https://download.microsoft.com/download/8/D/D/8DD7BDBA-CEF7-4D8E-8C16-D9F69527F909/ENU/x64/SQLEXPR_x64_ENU.exe'
         when '2014'
           'https://download.microsoft.com/download/E/A/E/EAE6F7FC-767A-4038-A954-49B8B05D04EB/Express%2064BIT/SQLEXPR_x64_ENU.exe'
+        when '2016'
+          'https://download.microsoft.com/download/9/A/E/9AE09369-C53D-4FB7-985B-5CF0D547AE9F/SQLServer2016-SSEI-Expr.exe'
         end
       else
         case version
@@ -86,6 +88,8 @@ module SqlServer
           'Microsoft SQL Server 2012 (64-bit)'
         when '2014'
           'Microsoft SQL Server 2014 (64-bit)'
+        when '2016'
+          'Microsoft SQL Server 2016 (64-bit)'
         end
       else
         case version
@@ -108,6 +112,8 @@ module SqlServer
           '7f5e3d40b85fba2da5093e3621435c209c4ac90d34219bab8878e93a787cf29f'
         when '2014'
           '8f712faefee9cef1d15494c9d6cf5ad3b45ec06d0b2c247f8384a221baaadda7'
+        when '2016'
+          'bdb84067de0187234673de73216818fcfd774501307e84b8cba327b948ef4ca6'
         end
       else
         case version
