@@ -18,13 +18,30 @@ platforms:
   - name: windows-2012r2
     driver_config:
       box: chef/windows-server-2012r2-standard
+  - name: windows-2012r2-chef-12.6
+    driver_config:
+      box: chef/windows-server-2012r2-standard
+    provisioner:
+      require_chef_omnibus: 12.6.0
 
 suites:
   - name: client
     run_list:
       - recipe[sql_server::default]
     attributes: { sql_server: { accept_eula: true } }
-  - name: server
+  - name: server2008r2
     run_list:
       - recipe[sql_server::server]
-    attributes: { sql_server: { accept_eula: true } }
+    attributes: { sql_server: { accept_eula: true, version: 2008R2, server_sa_password: supersecurepassword123 } }
+  - name: server2012
+    run_list:
+      - recipe[sql_server::server]
+    attributes: { sql_server: { accept_eula: true, version: 2012, server_sa_password: supersecurepassword123 } }
+  - name: server2014
+    run_list:
+      - recipe[sql_server::server]
+    attributes: { sql_server: { accept_eula: true, version: 2014, server_sa_password: supersecurepassword123 } }
+  - name: server2016
+    run_list:
+      - recipe[sql_server::server]
+    attributes: { sql_server: { accept_eula: true, version: 2016, server_sa_password: supersecurepassword123 } }

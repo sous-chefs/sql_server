@@ -36,18 +36,7 @@ agent_service_name = if node['sql_server']['instance_name'] == 'MSSQLSERVER'
                        "SQLAgent$#{node['sql_server']['instance_name']}"
                      end
 
-# Compute registry version based on sql server version
-reg_version = node['sql_server']['reg_version'] ||
-              case node['sql_server']['version']
-              when '2008' then 'MSSQL10.'
-              when '2008R2' then 'MSSQL10_50.'
-              when '2012' then 'MSSQL11.'
-              when '2014' then 'MSSQL12.'
-              when '2016' then 'MSSQL13.'
-              else raise "Unsupported sql_server version '#{node['sql_server']['version']}'"
-              end
-
-static_tcp_reg_key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\\' + reg_version +
+static_tcp_reg_key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\\' + SqlServer::Helper.reg_version_string(node['sql_server']['version']) +
                      node['sql_server']['instance_name'] + '\MSSQLServer\SuperSocketNetLib\Tcp\IPAll'
 
 config_file_path = win_friendly_path(File.join(Chef::Config[:file_cache_path], 'ConfigurationFile.ini'))
@@ -95,7 +84,7 @@ passwords_options = {
   "/#{option}=\"#{safe_password}#{enclosing_escape}\""
 end.compact.join ' '
 
-windows_package package_name do
+package package_name do
   source package_url
   checksum package_checksum
   timeout node['sql_server']['server']['installer_timeout']

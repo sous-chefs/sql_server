@@ -3,7 +3,7 @@
 # Cookbook Name:: sql_server
 # Attribute:: default
 #
-# Copyright:: Copyright (c) 2011-2016 Chef Software, Inc.
+# Copyright:: 2011-2016, Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,4 +20,4 @@
 
 default['sql_server']['accept_eula'] = false
 default['sql_server']['product_key'] = nil
-default['sql_server']['version'] = '2008R2'
+default['sql_server']['version'] = '2012'

@@ -1,8 +1,6 @@
 # sql_server Cookbook
 
-[![Travis Build Status](https://travis-ci.org/chef-cookbooks/sql_server.svg?branch=master)](http://travis-ci.org/chef-cookbooks/sql_server) [![Cookbook Version](https://img.shields.io/cookbook/v/sql_server.svg)](https://supermarket.chef.io/cookbooks/sql_server)
-
-[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/ww3v5xdery9ha972/branch/master?svg=true)](https://ci.appveyor.com/project/ChefWindowsCookbooks/sql-server/branch/master)
+[![Travis Build Status](https://travis-ci.org/chef-cookbooks/sql_server.svg?branch=master)](http://travis-ci.org/chef-cookbooks/sql_server) [![Cookbook Version](https://img.shields.io/cookbook/v/sql_server.svg)](https://supermarket.chef.io/cookbooks/sql_server)[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/ww3v5xdery9ha972/branch/master?svg=true)](https://ci.appveyor.com/project/ChefWindowsCookbooks/sql-server/branch/master)
 
 Installs and configures Microsoft SQL Server 2008 R2 SP2 and Microsoft SQL Server 2012 server and client. By default the Express edition is installed, but the `sql_server::server` recipe supports installation of other editions (see **Usage** below).
 
@@ -15,7 +13,7 @@ Installs and configures Microsoft SQL Server 2008 R2 SP2 and Microsoft SQL Serve
 
 ### Chef
 
-- Chef 12.1+
+- Chef 12.6+
 
 ### Cookbooks
 
@@ -90,7 +88,7 @@ node['sql_server']['server']['checksum']
 node['sql_server']['server']['package_name']
 ```
 
-The installation is done using the `windows_package` resource and [ConfigurationFile](http://msdn.microsoft.com/en-us/library/dd239405.aspx) generated from a `template` resource. The installation is slightly opinionated and does the following:
+The installation is done using the `package` resource and [ConfigurationFile](http://msdn.microsoft.com/en-us/library/dd239405.aspx) generated from a `template` resource. The installation is slightly opinionated and does the following:
 
 - Enables [Mixed Mode](http://msdn.microsoft.com/en-us/library/aa905171\(v=sql.80\).aspx) (Windows Authentication and SQL Server Authentication) authentication
 - Auto-generates and sets a strong password for the 'sa' account

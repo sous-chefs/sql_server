@@ -19,7 +19,7 @@
 #
 
 %w( native_client command_line_utils clr_types smo ps_extensions ).each do |pkg|
-  windows_package node['sql_server'][pkg]['package_name'] do
+  package node['sql_server'][pkg]['package_name'] do
     source node['sql_server'][pkg]['url']
     checksum node['sql_server'][pkg]['checksum']
     installer_type :msi
@@ -28,18 +28,7 @@
   end
 end
 
-case node['sql_server']['version']
-when /2008/
-  install_dir = '100'
-when /2012/
-  install_dir = '110'
-when /2014/
-  install_dir = '120'
-else
-  Chef::Application.fatal!("SQL Server version #{sql_server_version} not supported")
-end
-
 # update path
-windows_path "#{node['sql_server']['install_dir']}\\#{install_dir}\\Tools\\Binn" do
+windows_path "#{node['sql_server']['install_dir']}\\#{SqlServer::Helper.install_dir_version(node['sql_server']['version'])}\\Tools\\Binn" do
   action :add
 end
