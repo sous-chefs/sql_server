@@ -77,8 +77,8 @@ ERRORREPORTING="False"
 ; Specify the root installation directory for native shared components.
 
 INSTALLSHAREDDIR="<%= node['sql_server']['install_dir'] %>"
-
 <% if node['kernel']['machine'] =~ /x86_64/ %>
+
 ; Specify the root installation directory for the WOW64 shared components.
 
 INSTALLSHAREDWOWDIR="<%= node['sql_server']['shared_wow_dir'] %>"
@@ -87,38 +87,38 @@ INSTALLSHAREDWOWDIR="<%= node['sql_server']['shared_wow_dir'] %>"
 ; Specify the installation directory.
 
 INSTANCEDIR="<%= node['sql_server']['instance_dir'] %>"
-
 <% unless node['sql_server']['sql_data_dir'].nil? -%>
+
 ; The Database Engine root data directory.
 
 INSTALLSQLDATADIR="<%= node['sql_server']['sql_data_dir'] %>"
 <% end -%>
-
 <% unless node['sql_server']['sql_backup_dir'].nil? -%>
+
 ; Default directory for SQL backup files.
 
 SQLBACKUPDIR="<%= node['sql_server']['sql_backup_dir'] %>"
 <% end -%>
-
 <% unless node['sql_server']['sql_user_db_dir'].nil? -%>
+
 ; Default directory for the Database Engine user databases.
 
 SQLUSERDBDIR="<%= node['sql_server']['sql_user_db_dir'] %>"
 <% end -%>
-
 <% unless node['sql_server']['sql_user_db_log_dir'].nil? -%>
+
 ; Default directory for the Database Engine user database logs.
 
 SQLUSERDBLOGDIR="<%= node['sql_server']['sql_user_db_log_dir'] %>"
 <% end -%>
-
 <% unless node['sql_server']['sql_temp_db_dir'].nil? -%>
+
 ; Directory for Database Engine TempDB files.
 
 SQLTEMPDBDIR="<%= node['sql_server']['sql_temp_db_dir'] %>"
 <% end -%>
-
 <% unless node['sql_server']['sql_temp_db_log_dir'].nil? -%>
+
 ; Directory for Database Engine TempDB log files.
 
 SQLTEMPDBLOGDIR="<%= node['sql_server']['sql_temp_db_log_dir'] %>"
