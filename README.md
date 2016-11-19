@@ -1,8 +1,6 @@
 # sql_server Cookbook
 
-[![Travis Build Status](https://travis-ci.org/chef-cookbooks/sql_server.svg?branch=master)](http://travis-ci.org/chef-cookbooks/sql_server) [![Cookbook Version](https://img.shields.io/cookbook/v/sql_server.svg)](https://supermarket.chef.io/cookbooks/sql_server)
-
-[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/ww3v5xdery9ha972/branch/master?svg=true)](https://ci.appveyor.com/project/ChefWindowsCookbooks/sql-server/branch/master)
+[![Travis Build Status](https://travis-ci.org/chef-cookbooks/sql_server.svg?branch=master)](http://travis-ci.org/chef-cookbooks/sql_server) [![Cookbook Version](https://img.shields.io/cookbook/v/sql_server.svg)](https://supermarket.chef.io/cookbooks/sql_server)[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/ww3v5xdery9ha972/branch/master?svg=true)](https://ci.appveyor.com/project/ChefWindowsCookbooks/sql-server/branch/master)
 
 Installs and configures Microsoft SQL Server 2008 R2 SP2 and Microsoft SQL Server 2012 server and client. By default the Express edition is installed, but the `sql_server::server` recipe supports installation of other editions (see **Usage** below).
 
