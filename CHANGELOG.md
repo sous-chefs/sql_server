@@ -2,6 +2,16 @@
 
 This file is used to list changes made in each version of the sql_server cookbook.
 
+## 5.0.0 (2016-11-22)
+- Avoid deprecation warnings with windows_package by using package instead. This requires Chef 12.6+ and Windows cookbook 2.0+
+- Adding support for SQL Server Version 2014
+- Default to SQL Server 2012
+- Move a good chunk of the version logic to helpers instead of doing it in the recipes
+- Use secure links to download older SQL express releases
+- Add basic sql express 2016 support
+- Don’t fail if the SQL version specified is an int and not a string
+- Avoid blank lines if the optional configs aren’t passed
+
 ## 4.0.0 (2016-11-18)
 
 - Remove relation between client & server recipes. This was not working correctly. You'll want to include both if you want client packages on your server now.
