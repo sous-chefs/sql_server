@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: sql_server
+# Cookbook:: sql_server
 # Spec:: server
 #
-# Copyright (c) 2015 Irving Popovetsky, All Rights Reserved.
+# Copyright:: 2015-2016, Irving Popovetsky, All Rights Reserved.
 
 require 'spec_helper'
 

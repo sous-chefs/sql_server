@@ -1,6 +1,6 @@
 #
 # Author:: Seth Chisamore (<schisamo@chef.io>)
-# Cookbook Name:: sql_server
+# Cookbook:: sql_server
 # Recipe:: default
 #
 # Copyright:: 2011-2016, Chef Software, Inc.
