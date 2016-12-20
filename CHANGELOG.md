@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of the sql_server cookbook.
 
+## 5.1.0 (2016-12-20)
+
+- Move server configuration in a new `sql_server::configure` recipe
+- Add attributes to control network listeners via registry keys.
+
 ## 5.0.0 (2016-11-22)
 - Avoid deprecation warnings with windows_package by using package instead. This requires Chef 12.6+ and Windows cookbook 2.0+
 - Adding support for SQL Server Version 2014
