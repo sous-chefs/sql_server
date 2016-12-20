@@ -19,8 +19,6 @@
 #
 
 default['sql_server']['install_dir']    = 'C:\Program Files\Microsoft SQL Server'
-default['sql_server']['port']           = 1433
-
 default['sql_server']['instance_name']  = 'SQLEXPRESS'
 default['sql_server']['instance_dir']   = 'C:\Program Files\Microsoft SQL Server'
 default['sql_server']['shared_wow_dir'] = 'C:\Program Files (x86)\Microsoft SQL Server'

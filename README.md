@@ -35,7 +35,6 @@ This file also contains download url, checksum and package name for all client i
 ### server
 
 - `node['sql_server']['install_dir']` - main directory for installation, default is `C:\Program Files\Microsoft SQL Server`
-- `node['sql_server']['port']` - static TCP port server should listen on for client connections, default is `1433`
 - `node['sql_server']['instance_name']` - name of the default instance, default is `SQLEXPRESS`
 - `node['sql_server']['instance_dir']` - root directory of the default instance, default is `C:\Program Files\Microsoft SQL Server`
 - `node['sql_server']['shared_wow_dir']` - root directory of the shared WOW directory, default is `C:\Program Files (x86)\Microsoft SQL Server`
@@ -49,6 +48,16 @@ This file also contains download url, checksum and package name for all client i
 - `node['sql_server']['sql_account']` - SQL service account name, default is `NT AUTHORITY\NETWORK SERVICE`
 
 This file also contains download url, checksum and package name for the server installation package.
+
+### configure
+- `node['sql_server']['tcp_enabled']` - Enables TCP listener, default is `true`
+- `node['sql_server']['port']` - Static TCP port server should listen on for client connections, default is `1433`
+- `node['sql_server']['tcp_dynamic_ports']` - Dynamic TCP ports server should listen on for client connections, default is `''`
+- `node['sql_server']['np_enabled']` - Enables Named pipes listener, default is `false`
+- `node['sql_server']['sm_enabled']` - Enables Shared Memory listener, default is `true`
+- `node['sql_server']['via_default_port']` - VIA default listener port, default is `0:1433`
+- `node['sql_server']['via_enabled']` - Enables VIA listener, default is `false`
+- `node['sql_server']['via_listen_info']` - VIA listener info, default is `0:1433`
 
 ## Usage
 
@@ -67,6 +76,17 @@ Installs required the SQL Server Native Client and all required dependancies. Th
 - [Windows PowerShell Extensions for SQL Server 2008 R2](http://www.microsoft.com/download/en/details.aspx?id=16978#PowerShell)
 
 The SQL Server Native Client contains the SQL Server ODBC driver and the SQL Server OLE DB provider in one native dynamic link library (DLL) supporting applications using native-code APIs (ODBC, OLE DB and ADO) to Microsoft SQL Server. In simple terms these packages should allow any other node to act as a client of a SQL Server instance.
+
+### configure
+Configures SQL Server registry keys via attributes, and restart the Engine service if required.
+
+Current supported settings are mostly connection listeners:
+- TCP or VIA listener ports
+- TCP, Named Pipes, Shared Memory or VIA listener activation.
+
+NOTE: It could be very dangerous to change these settings on a production server!
+
+This recipe is included by the `sql_server::server` recipe, but can be included independently if you setup SQL Server by yourself.
 
 ### server
 
@@ -92,7 +112,7 @@ The installation is done using the `package` resource and [ConfigurationFile](ht
 
 - Enables [Mixed Mode](http://msdn.microsoft.com/en-us/library/aa905171\(v=sql.80\).aspx) (Windows Authentication and SQL Server Authentication) authentication
 - Auto-generates and sets a strong password for the 'sa' account
-- sets a static TCP port which is configurable via an attribute.
+- sets a static TCP port which is configurable via an attribute, using the `sql_server::configure` recipe.
 
 Installing any of the SQL Server server or client packages in an unattended/automated way requires you to explicitly indicate that you accept the terms of the end user license. The hooks have been added to all recipes to do this via an attribute. Create a role to set the `node['sql_server']['accept_eula']` attribute to 'true'. For example:
 
