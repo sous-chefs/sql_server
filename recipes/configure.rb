@@ -66,7 +66,7 @@ end
 
 # If you have declared an agent account it will restart both the
 # agent service and the sql service. If not only the sql service
-if node['sql_server']['agent_account']
+if node['sql_server']['agent_startup'] == 'Automatic'
   service agent_service_name do
     action [:start, :enable]
   end
