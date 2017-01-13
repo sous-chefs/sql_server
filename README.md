@@ -67,7 +67,7 @@ Includes the `sql_server::client` recipe.
 
 ### client
 
-Installs required the SQL Server Native Client and all required dependancies. These include:
+Installs required the SQL Server Native Client and all required dependencies. These include:
 
 - [Microsoft SQL Server 2008 R2 Native Client](http://www.microsoft.com/download/en/details.aspx?id=16978#SNAC)
 - [Microsoft SQL Server 2008 R2 Command Line Utilities (ie `sqlcmd`)](http://www.microsoft.com/download/en/details.aspx?id=16978#SQLCMD)
