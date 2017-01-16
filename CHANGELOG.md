@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the sql_server cookbook.
 
+## 5.1.1 (2017-01-16)
+
+- Only start and enable agent if agent_startup is set to automatic
+
 ## 5.1.0 (2016-12-20)
 
 - Move server configuration in a new `sql_server::configure` recipe
