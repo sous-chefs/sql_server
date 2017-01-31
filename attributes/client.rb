@@ -18,7 +18,7 @@
 # limitations under the License.
 #
 
-if kernel['machine'] =~ /x86_64/
+if node['kernel']['machine'] =~ /x86_64/
   case node['sql_server']['version']
   when '2008R2SP2'
     default['sql_server']['native_client']['url']               = 'http://download.microsoft.com/download/F/7/B/F7B7A246-6B35-40E9-8509-72D2F8D63B80/sqlncli_amd64.msi'
