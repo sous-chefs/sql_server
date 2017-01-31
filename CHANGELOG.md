@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the sql_server cookbook.
 
+## 5.1.2 (2017-01-31)
+
+- Fix issue with Deprecation:Some Attribute Methods (CHEF-4) error
+
 ## 5.1.1 (2017-01-16)
 
 - Only start and enable agent if agent_startup is set to automatic
