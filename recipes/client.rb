@@ -18,17 +18,10 @@
 # limitations under the License.
 #
 
-def netfx_install
+if node['platform_version'].to_f == 6.1
   windows_feature 'NetFx3' do
     action :install
   end
-end
-
-case node['platform_version']
-when '6.1.7600'
-  netfx_install
-when '6.1.7601'
-  netfx_install
 end
 
 %w( native_client command_line_utils clr_types smo ps_extensions ).each do |pkg|
