@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the sql_server cookbook.
 
+## 5.2.1 (2017-03-08)
+
+- Add appveyer integration testing of the client recipe and remove Travis CI testing (#86)
+
 ## 5.2.0 (2017-03-07)
 
 - Test with Local Delivery instead of Rake
