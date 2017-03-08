@@ -18,6 +18,12 @@
 # limitations under the License.
 #
 
+if node['platform_version'].to_f == 6.1
+  windows_feature 'NetFx3' do
+    action :install
+  end
+end
+
 %w( native_client command_line_utils clr_types smo ps_extensions ).each do |pkg|
   package node['sql_server'][pkg]['package_name'] do
     source node['sql_server'][pkg]['url']
