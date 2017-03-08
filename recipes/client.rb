@@ -18,23 +18,4 @@
 # limitations under the License.
 #
 
-if node['platform_version'].to_f == 6.1
-  windows_feature 'NetFx3' do
-    action :install
-  end
-end
-
-%w( native_client command_line_utils clr_types smo ps_extensions ).each do |pkg|
-  package node['sql_server'][pkg]['package_name'] do
-    source node['sql_server'][pkg]['url']
-    checksum node['sql_server'][pkg]['checksum']
-    installer_type :msi
-    options "IACCEPTSQLNCLILICENSETERMS=#{node['sql_server']['accept_eula'] ? 'YES' : 'NO'}"
-    action :install
-  end
-end
-
-# update path
-windows_path "#{node['sql_server']['install_dir']}\\#{SqlServer::Helper.install_dir_version(node['sql_server']['version'])}\\Tools\\Binn" do
-  action :add
-end
+Chef::Log.warn('The sql_server::client cookbook has been replaced with a new sql_server_client resource better designed for the wrapper cookbook model.')
