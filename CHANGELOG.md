@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of the sql_server cookbook.
 
+## 5.2.0 (2017-03-07)
+
+- Test with Local Delivery instead of Rake
+- Fix failures on Windows 2008r2 by installing NetFx3 if necessary
+
 ## 5.1.2 (2017-01-31)
 
 - Fix issue with Deprecation:Some Attribute Methods (CHEF-4) error
