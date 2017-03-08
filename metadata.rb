@@ -9,4 +9,4 @@ supports         'windows'
 depends          'windows', '>= 2.0'
 source_url       'https://github.com/chef-cookbooks/sql_server'
 issues_url       'https://github.com/chef-cookbooks/sql_server/issues'
-chef_version     '>= 12.6'
+chef_version     '>= 12.6' if respond_to?(:chef_version)
