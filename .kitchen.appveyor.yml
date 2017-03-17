@@ -17,9 +17,4 @@ suites:
   - name: client
     run_list:
       - recipe[sql_server::default]
-    attributes: { sql_server: { accept_eula: true } }
-  - name: server2016
-    run_list:
-      - recipe[sql_server::server]
-    attributes: { sql_server: { accept_eula: true, version: 2016, server_sa_password: Supersecurepassword123 } }
-    
+    attributes: { sql_server: { accept_eula: true } }  
