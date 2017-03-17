@@ -10,7 +10,7 @@ Installs and configures Microsoft SQL Server 2008 R2 SP2 and Microsoft SQL Serve
 
 - Windows Server 2008 R2 (SP2)
 - Windows Server 2012 (R1, R2)
-NOTE: SQL Server 2016 is not supported on Server 2012 R1 and R2
+NOTE: Install of SQL Server 2016 is not supported on Server 2008 R2
 
 ### Chef
 
