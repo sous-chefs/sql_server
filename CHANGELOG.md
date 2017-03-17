@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the sql_server cookbook.
 
+## 5.3.0 (2017-03-17)
+
+- Update SQL 2016 Express URL to SP1 and update readme to reflect support for 2016. (#88)
+
 ## 5.2.1 (2017-03-08)
 
 - Add appveyer integration testing of the client recipe and remove Travis CI testing (#86)
