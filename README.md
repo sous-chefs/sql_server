@@ -10,6 +10,7 @@ Installs and configures Microsoft SQL Server 2008 R2 SP2 and Microsoft SQL Serve
 
 - Windows Server 2008 R2 (SP2)
 - Windows Server 2012 (R1, R2)
+NOTE: SQL Server 2016 is not supported on Server 2012 R1 and R2
 
 ### Chef
 
@@ -90,7 +91,7 @@ This recipe is included by the `sql_server::server` recipe, but can be included 
 
 ### server
 
-Installs SQL Server 2008 R2 Express or SQL Server 2012 Express.
+Installs SQL Server 2008 R2 Express, SQL Server 2012 Express, SQL Server 2014 Express, or SQL Server 2016 Express.
 
 By default, the cookbook installs SQL Server 2008 R2 Express. There are two options to install a different version.
 
@@ -98,7 +99,7 @@ NOTE: For this recipe to run you must set the node['sql_server']['server_sa_pass
 
 NOTE: This recipe will request a reboot at the end of the Chef Client run if SQL Server was installed.. If you do not want to reboot after the installation, use the `reboot` resource to cancel the pending reboot.
 
-**Option 1:** From a role, environment, or wrapper cookbook, set `node['sql_server']['version']` to '2008R2' to install SQL Server 2008 R2 Express, '2012' to install SQL Server 2012 Express or '2014' to install SQL Server 2014 Express.
+**Option 1:** From a role, environment, or wrapper cookbook, set `node['sql_server']['version']` to '2008R2' to install SQL Server 2008 R2 Express, '2012' to install SQL Server 2012 Express, '2014' to install SQL Server 2014 Express, or '2016' to install SQL Server 2016 Express.
 
 **Option 2:** From a role, environment, or wrapper cookbook, set these node attributes to specify the URL, checksum, and name of the package (as it appears in the Windows Registry).
 
@@ -173,7 +174,7 @@ SQL Server does not support remote installation over WinRM. For example, the ins
 
 **Author:** Cookbook Engineering Team ([cookbooks@chef.io](mailto:cookbooks@chef.io))
 
-**Copyright:** 2011-2016, Chef Software, Inc.
+**Copyright:** 2011-2017, Chef Software, Inc.
 
 ```text
 Licensed under the Apache License, Version 2.0 (the "License");
