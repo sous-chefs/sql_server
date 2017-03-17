@@ -56,7 +56,7 @@ module SqlServer
         when '2008R2' then 'https://download.microsoft.com/download/D/1/8/D1869DEC-2638-4854-81B7-0F37455F35EA/SQLEXPR_x64_ENU.exe'
         when '2012' then 'https://download.microsoft.com/download/8/D/D/8DD7BDBA-CEF7-4D8E-8C16-D9F69527F909/ENU/x64/SQLEXPR_x64_ENU.exe'
         when '2014' then 'https://download.microsoft.com/download/E/A/E/EAE6F7FC-767A-4038-A954-49B8B05D04EB/Express%2064BIT/SQLEXPR_x64_ENU.exe'
-        when '2016' then 'https://download.microsoft.com/download/9/A/E/9AE09369-C53D-4FB7-985B-5CF0D547AE9F/SQLServer2016-SSEI-Expr.exe'
+        when '2016' then 'https://download.microsoft.com/download/9/0/7/907AD35F-9F9C-43A5-9789-52470555DB90/ENU/SQLEXPR_x64_ENU.exe'
         end
       else
         case version.to_s
@@ -90,7 +90,7 @@ module SqlServer
         when '2008R2' then '8ebf6bdd805f3326d5b9a35a129af276c7fe99bfca64ac0cfe0ffc66311dfe09'
         when '2012' then '7f5e3d40b85fba2da5093e3621435c209c4ac90d34219bab8878e93a787cf29f'
         when '2014' then '8f712faefee9cef1d15494c9d6cf5ad3b45ec06d0b2c247f8384a221baaadda7'
-        when '2016' then 'bdb84067de0187234673de73216818fcfd774501307e84b8cba327b948ef4ca6'
+        when '2016' then '2A5B64AE64A8285C024870EC4643617AC5146894DD59DD560E75CEA787BF9333'
         end
       else
         case version.to_s
