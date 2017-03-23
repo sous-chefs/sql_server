@@ -21,6 +21,7 @@
 if node['platform_version'].to_f == 6.1
   windows_feature 'NetFx3' do
     action :install
+    install_method :windows_feature_powershell
   end
 end
 
