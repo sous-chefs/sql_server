@@ -80,6 +80,7 @@ end
 reboot 'sql server install' do
   action :nothing
   reason 'Needs to reboot after installing SQL Server'
+  only_if { reboot_pending? }
 end
 
 include_recipe 'sql_server::configure'
