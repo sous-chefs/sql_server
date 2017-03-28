@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of the sql_server cookbook.
 
+## 5.3.1 (2017-03-27)
+
+- Update windows cookbook dependency to 3.0.0 due to changes to windows_feature resource. (#89)
+- Fix reboot post install logic. (#90)
+
 ## 5.3.0 (2017-03-17)
 
 - Update SQL 2016 Express URL to SP1 and update readme to reflect support for 2016. (#88)
