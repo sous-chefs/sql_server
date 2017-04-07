@@ -93,7 +93,7 @@ This recipe is included by the `sql_server::server` recipe, but can be included 
 
 Installs SQL Server 2008 R2 Express, SQL Server 2012 Express, SQL Server 2014 Express, or SQL Server 2016 Express.
 
-By default, the cookbook installs SQL Server 2008 R2 Express. There are two options to install a different version.
+By default, the cookbook installs SQL Server 2012 Express. There are two options to install a different version.
 
 NOTE: For this recipe to run you must set the node['sql_server']['server_sa_password'] in an environment, role, or wrapper cookbook.
 
@@ -130,7 +130,7 @@ default_attributes(
 )
 ```
 
-Out of the box this recipe installs the Express edition of SQL Server 2008 R2\. If you would like to install the Standard edition create a role as follows:
+Out of the box this recipe installs the Express edition of SQL Server 2012\. If you would like to install the Standard edition create a role as follows:
 
 ```ruby
 name "sql_server_standard"
