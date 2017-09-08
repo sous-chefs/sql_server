@@ -154,7 +154,7 @@ ASSVCSTARTUPTYPE="Automatic"
 
 ; The collation to be used by Analysis Services.
 
-ASCOLLATION="Latin1_General_CI_AS"
+ASCOLLATION="<%= node['sql_server']['collation'] %>"
 
 ; The location for the Analysis Services data files.
 

@@ -47,6 +47,7 @@ This file also contains download url, checksum and package name for all client i
 - `node['sql_server']['browser_startup']` - Browser Service startup mode, default is `Disabled`
 - `node['sql_server']['sysadmins']` - Windows accounts that are SQL administrators, default is `Administrator`
 - `node['sql_server']['sql_account']` - SQL service account name, default is `NT AUTHORITY\NETWORK SERVICE`
+- `node['sql_server']['collation']` - collation for your database, default is `Latin1_General_CI_AS`
 
 This file also contains download url, checksum and package name for the server installation package.
 
