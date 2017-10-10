@@ -170,6 +170,18 @@ end
 
 SQL Server does not support remote installation over WinRM. For example, the installation fails when you run `knife bootstrap windows winrm` or `knife winrm 'chef-client'` with a run-list that includes `server.rb`. However, you can use a scheduled task or run `chef-client` as a service. [Learn more](https://learn.chef.io/manage-a-web-app/windows/) in this Learn Chef tutorial.
 
+### Installing with test kitchen
+
+Recent versions of test kitchen can bypass WinRM limitations with elevated mode. 
+
+```yaml
+transport:
+  name: winrm
+  elevated: true
+  elevated_username: System
+  elevated_password: null
+```
+
 ## License & Authors
 
 **Author:** Cookbook Engineering Team ([cookbooks@chef.io](mailto:cookbooks@chef.io))
