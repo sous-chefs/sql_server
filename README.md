@@ -95,7 +95,11 @@ Installs SQL Server 2008 R2 Express, SQL Server 2012 Express, SQL Server 2014 Ex
 
 By default, the cookbook installs SQL Server 2012 Express. There are two options to install a different version.
 
-NOTE: For this recipe to run you must set the node['sql_server']['server_sa_password'] in an environment, role, or wrapper cookbook.
+NOTE: For this recipe to run you must set the following attributes in an environment, role, or wrapper cookbook.
+
+`node['sql_server']['agent_account_pwd']`  
+`node['sql_server']['rs_account_pwd']`  
+`node['sql_server']['sql_account_pwd']`  
 
 NOTE: This recipe will request a reboot at the end of the Chef Client run if SQL Server was installed.. If you do not want to reboot after the installation, use the `reboot` resource to cancel the pending reboot.
 
@@ -112,7 +116,6 @@ node['sql_server']['server']['package_name']
 The installation is done using the `package` resource and [ConfigurationFile](http://msdn.microsoft.com/en-us/library/dd239405.aspx) generated from a `template` resource. The installation is slightly opinionated and does the following:
 
 - Enables [Mixed Mode](http://msdn.microsoft.com/en-us/library/aa905171\(v=sql.80\).aspx) (Windows Authentication and SQL Server Authentication) authentication
-- Auto-generates and sets a strong password for the 'sa' account
 - sets a static TCP port which is configurable via an attribute, using the `sql_server::configure` recipe.
 
 Installing any of the SQL Server server or client packages in an unattended/automated way requires you to explicitly indicate that you accept the terms of the end user license. The hooks have been added to all recipes to do this via an attribute. Create a role to set the `node['sql_server']['accept_eula']` attribute to 'true'. For example:
