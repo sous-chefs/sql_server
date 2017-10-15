@@ -2,6 +2,13 @@
 
 This file is used to list changes made in each version of the sql_server cookbook.
 
+## 5.3.2 (2017-10-14)
+
+- Change default version to 2012 in the readme
+- Remove maintainer files and add info to the readme
+- Clarifies password in the readme
+- Clean up broken link in README
+
 ## 5.3.1 (2017-03-27)
 
 - Update windows cookbook dependency to 3.0.0 due to changes to windows_feature resource. (#89)
