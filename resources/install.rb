@@ -1,5 +1,3 @@
-extend SqlServer::Helper
-
 action :install do
   Chef::Application.fatal!("node['sql_server']['server_sa_password'] must be set for this cookbook to run") if node['sql_server']['server_sa_password'].nil?
 
@@ -67,4 +65,8 @@ action :install do
   end
 
   include_recipe 'sql_server::configure'
+end
+
+action_class do
+  include SqlServer::Helper
 end
