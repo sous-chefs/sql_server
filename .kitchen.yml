@@ -11,6 +11,13 @@ transport:
 provisioner:
   name: chef_zero
   deprecations_as_errors: true
+  retry_on_exit_code:
+    - 35 # 35 is the exit code signaling that the node is rebooting
+  max_retries: 2
+  wait_for_retry: 90
+
+verifier:
+  name: inspec
 
 platforms:
   - name: windows-2008r2
@@ -46,3 +53,10 @@ suites:
     run_list:
       - recipe[sql_server::server]
     attributes: { sql_server: { accept_eula: true, version: 2016, server_sa_password: Supersecurepassword123 } }
+  - name: install
+    run_list:
+      - recipe[test::install]
+    verifier:
+      inspec_tests:
+        - test/integration/install
+    attributes: { sql_server: { accept_eula: true, version: 2012, server_sa_password: Supersecurepassword123 } }
