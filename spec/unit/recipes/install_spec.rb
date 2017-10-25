@@ -38,4 +38,23 @@ describe 'test::install' do
       chef_run
     end
   end
+
+  context 'When specifying a String for "sysadmins"' do
+    let(:chef_run) do
+      runner = ChefSpec::SoloRunner.new(platform: 'windows', version: '2012', step_into: ['sql_server_install'], file_cache_path: 'C:\chef\cache') do |node|
+        node.normal['sql_server']['sysadmins'] = 'Administrator'
+        node.normal['sql_server']['server_sa_password'] = 'supersecure'
+      end
+      runner.converge(described_recipe)
+    end
+
+    it 'creates the correct ConfigurationFile.ini template' do
+      expect(chef_run).to create_template('C:\chef\cache/ConfigurationFile.ini')
+      expect(chef_run).to render_file('C:\chef\cache/ConfigurationFile.ini').with_content(/^SQLSYSADMINACCOUNTS="Administrator"/)
+    end
+
+    it 'converges successfully' do
+      chef_run # This should not raise an error
+    end
+  end
 end
