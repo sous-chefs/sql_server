@@ -1,3 +1,6 @@
+property :name, kind_of: String, name_property: true
+property :sql_reboot, kind_of: [TrueClass, FalseClass], default: true
+
 action :install do
   Chef::Application.fatal!("node['sql_server']['server_sa_password'] must be set for this cookbook to run") if node['sql_server']['server_sa_password'].nil?
 
@@ -54,7 +57,7 @@ action :install do
     installer_type :custom
     options "/q /ConfigurationFile=#{config_file_path} #{passwords_options}"
     action :install
-    notifies :request_reboot, 'reboot[sql server install]'
+    notifies :reboot_now, 'reboot[sql server install]' if new_resource.sql_reboot
     returns [0, 42, 127, 3010]
   end
 
@@ -62,7 +65,7 @@ action :install do
   reboot 'sql server install' do
     action :nothing
     reason 'Needs to reboot after installing SQL Server'
-    only_if { reboot_pending? }
+    delay_mins 1
   end
 
   include_recipe 'sql_server::configure'
