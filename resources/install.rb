@@ -6,6 +6,10 @@ property :version, kind_of: String, default: '2012'
 property :source_url, kind_of: String
 property :package_name, kind_of: String
 property :package_checksum, kind_of: String
+property :installer_timeout, kind_of: Integer, default: 1500
+property :agent_account_pwd, kind_of: String
+property :rs_account_pwd, kind_of: String
+property :sql_account_pwd, kind_of: String
 
 action :install do
   config_file_path = ::File.join(Chef::Config[:file_cache_path], 'ConfigurationFile.ini')
@@ -42,9 +46,9 @@ action :install do
   # Build safe password command line options for the installer
   # see http://technet.microsoft.com/library/ms144259
   passwords_options = {
-    AGTSVCPASSWORD: node['sql_server']['agent_account_pwd'],
-    RSSVCPASSWORD:  node['sql_server']['rs_account_pwd'],
-    SQLSVCPASSWORD: node['sql_server']['sql_account_pwd'],
+    AGTSVCPASSWORD: new_resource.agent_account_pwd,
+    RSSVCPASSWORD:  new_resource.rs_account_pwd,
+    SQLSVCPASSWORD: new_resource.sql_account_pwd,
   }.map do |option, attribute|
     next unless attribute
     # Escape password double quotes and backslashes
@@ -57,7 +61,7 @@ action :install do
   package install_name do
     source package_url
     checksum install_checksum
-    timeout node['sql_server']['server']['installer_timeout']
+    timeout new_resource.installer_timeout
     installer_type :custom
     options "/q /ConfigurationFile=#{config_file_path} #{passwords_options}"
     action :install
@@ -71,8 +75,6 @@ action :install do
     reason 'Needs to reboot after installing SQL Server'
     delay_mins 1
   end
-
-  include_recipe 'sql_server::configure'
 end
 
 action_class do

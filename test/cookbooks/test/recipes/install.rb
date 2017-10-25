@@ -3,3 +3,5 @@ sql_server_install 'Install SQL' do
   sysadmins node['sql_server']['sysadmins']
   action :install
 end
+
+include_recipe 'sql_server::configure'
