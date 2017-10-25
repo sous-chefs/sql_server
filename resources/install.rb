@@ -5,9 +5,9 @@ action :install do
 
   sql_sys_admin_list = if node['sql_server']['sysadmins'].is_a? Array
                          node['sql_server']['sysadmins'].map { |account| %("#{account}") }.join(' ') # surround each in quotes, space delimit list
-                      else
-                        %("#{node['sql_server']['sysadmins']}") # surround in quotes
-                      end
+                       else
+                         %("#{node['sql_server']['sysadmins']}") # surround in quotes
+                       end
 
   template config_file_path do
     source 'ConfigurationFile.ini.erb'
@@ -25,12 +25,12 @@ action :install do
                 ::Chef::Application.fatal!("No package URL matches '#{version}'. node['sql_server']['server']['url'] must be set or node['sql_server']['version'] must match a supported version.")
 
   package_name = node['sql_server']['server']['package_name'] ||
-                ::SqlServer::Helper.sql_server_package_name(version, x86_64) ||
-                ::Chef::Application.fatal!("No package name matches '#{version}'. node['sql_server']['server']['package_name'] must be set or node['sql_server']['version'] must match a supported version.")
+                 ::SqlServer::Helper.sql_server_package_name(version, x86_64) ||
+                 ::Chef::Application.fatal!("No package name matches '#{version}'. node['sql_server']['server']['package_name'] must be set or node['sql_server']['version'] must match a supported version.")
 
   package_checksum = node['sql_server']['server']['checksum'] ||
-                    ::SqlServer::Helper.sql_server_checksum(version, x86_64) ||
-                    ::Chef::Application.fatal!("No package checksum matches '#{version}'. node['sql_server']['server']['checksum'] must be set or node['sql_server']['version'] must match a supported version.")
+                     ::SqlServer::Helper.sql_server_checksum(version, x86_64) ||
+                     ::Chef::Application.fatal!("No package checksum matches '#{version}'. node['sql_server']['server']['checksum'] must be set or node['sql_server']['version'] must match a supported version.")
 
   # Build safe password command line options for the installer
   # see http://technet.microsoft.com/library/ms144259
