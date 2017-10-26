@@ -1,4 +1,3 @@
-property :name, kind_of: String, name_property: true
 property :sql_reboot, kind_of: [TrueClass, FalseClass], default: true
 property :security_mode, kind_of: String, equal_to: ['Windows Authenication', 'Mixed Mode Authentication'], default: 'Windows Authenication'
 property :sa_password, kind_of: String

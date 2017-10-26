@@ -22,10 +22,3 @@ suites:
     run_list:
       - recipe[sql_server::default]
     attributes: { sql_server: { accept_eula: true } }
-  # - name: install
-  #   run_list:
-  #     - recipe[test::install]
-  #   verifier:
-  #     inspec_tests:
-  #       - test/integration/install
-  #   attributes: { sql_server: { accept_eula: true, version: 2012, server_sa_password: Supersecurepassword123 } }
