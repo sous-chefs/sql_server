@@ -16,12 +16,11 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
 
 require 'chef/mixin/shell_out'
 
 module SqlServer
-  class Helper
+  module Helper
     extend Chef::Mixin::ShellOut
 
     def self.reg_version_string(version)

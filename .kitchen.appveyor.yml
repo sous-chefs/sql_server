@@ -9,6 +9,10 @@ driver:
 
 provisioner:
   name: chef_zero
+  retry_on_exit_code:
+    - 35 # 35 is the exit code signaling that the node is rebooting
+  max_retries: 2
+  wait_for_retry: 90
 
 platforms:
   - name: windows-2012R2
@@ -17,4 +21,4 @@ suites:
   - name: client
     run_list:
       - recipe[sql_server::default]
-    attributes: { sql_server: { accept_eula: true } }  
+    attributes: { sql_server: { accept_eula: true } }
