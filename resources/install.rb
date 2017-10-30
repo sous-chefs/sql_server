@@ -22,7 +22,7 @@ property :security_mode, String, equal_to: ['Windows Authenication', 'Mixed Mode
 property :sa_password, String
 property :sysadmins, [Array, String], default: ['Administrator']
 property :agent_account, String, default: 'NT AUTHORITY\NETWORK SERVICE'
-property :agent_startup, String, equal_to: ['Automatic', 'Manual', 'Disabled', 'Automatic (Delayed Start)'], default: 'Automatic'
+property :agent_startup, String, equal_to: ['Automatic', 'Manual', 'Disabled', 'Automatic (Delayed Start)'], default: 'Disabled'
 property :agent_account_pwd, String
 property :rs_account, String, default: 'NT AUTHORITY\NETWORK SERVICE'
 property :rs_account_pwd, String

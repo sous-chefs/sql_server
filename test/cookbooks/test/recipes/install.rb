@@ -6,4 +6,4 @@ sql_server_install 'Install SQL' do
   action :install
 end
 
-include_recipe 'sql_server::configure'
+sql_server_configure 'SQLEXPRESS'
