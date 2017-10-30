@@ -18,7 +18,7 @@
 # limitations under the License.
 
 property :sql_reboot, [true, false], default: true
-property :security_mode, String, equal_to: ['Windows Authenication', 'Mixed Mode Authentication'], default: 'Windows Authenication'
+property :security_mode, String, equal_to: ['Windows Authentication', 'Mixed Mode Authentication'], default: 'Windows Authentication'
 property :sa_password, String
 property :sysadmins, [Array, String], default: ['Administrator']
 property :agent_account, String, default: 'NT AUTHORITY\NETWORK SERVICE'
