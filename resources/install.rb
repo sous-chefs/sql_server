@@ -69,7 +69,7 @@ action :install do
   windows_feature 'NET-Framework-Core' do
     action :install
     source new_resource.netfx35_source if new_resource.netfx35_source
-    install_methos :windows_feature_powershell
+    install_method :windows_feature_powershell
   end
 
   config_file_path = ::File.join(Chef::Config[:file_cache_path], 'ConfigurationFile.ini')
