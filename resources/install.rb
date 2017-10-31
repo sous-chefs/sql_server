@@ -66,7 +66,7 @@ action :install do
     ::Chef::Application.fatal!('You cannot have set the security mode to "Mixed Mode Authenication" without specifying the sa_password property')
   end
 
-  windows_feature 'NET-Framework-Core' do
+  windows_feature ['NET-Framework-Features', 'NET-Framework-Core'] do
     action :install
     source new_resource.netfx35_source if new_resource.netfx35_source
     install_method :windows_feature_powershell
