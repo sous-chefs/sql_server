@@ -55,6 +55,7 @@ property :filestream_share_name, String, default: 'MSSQLSERVER'
 property :sql_collation, String
 property :dreplay_ctlr_admins, [Array, String], default: ['Administrator']
 property :dreplay_client_name, String
+property :netfx35_source, String
 
 action :install do
   if new_resource.feature.include?('DREPLAY_CLT') && new_resource.dreplay_client_name.nil?
@@ -63,6 +64,12 @@ action :install do
 
   if new_resource.security_mode == 'Mixed Mode Authentication' && new_resource.sa_password.nil?
     ::Chef::Application.fatal!('You cannot have set the security mode to "Mixed Mode Authenication" without specifying the sa_password property')
+  end
+
+  windows_feature 'NET-Framework-Core' do
+    action :install
+    source new_resource.netfx35_source if new_resource.netfx35_source
+    install_methos :windows_feature_powershell
   end
 
   config_file_path = ::File.join(Chef::Config[:file_cache_path], 'ConfigurationFile.ini')
