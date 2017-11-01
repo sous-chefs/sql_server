@@ -27,21 +27,157 @@ NOTE: Install of SQL Server 2016 is not supported on Server 2008 R2
 
 #### Actions
 
-- `:install`
+- `:install` - Installs the version of Microsoft SQL server specified. Default install is SQL 2012 Express. 
 
 #### Properties
 
+- `feature` - An Array of the SQL Instance or Server features that are going to be enabled / installed.
+   - [SQL 2012 Available Features list](https://technet.microsoft.com/library/cc645993(SQL.110).aspx)
+      - Instance Features
+         - SQLENGINE = Database Engine
+         - REPLICATION = Replication 
+         - FULLTEXT = Full-Text and Semantic Extractions for search
+         - DQ = Data Quality Services
+         - AS = Analysis Services
+         - RS = Reporting Services - Native
+      - Shared Features
+         - RS_SHP = Reporting Services - SharePoint
+         - RS_SHPWFE = Reporting Services Add-in for SharePoint Products
+         - DQC = Data Quality Client
+         - BIDS = SQL Server data tools
+         - CONN = Client tools connectivity 
+         - IS = Integration Services
+         - BC = Client tools backwards compatibility
+         - SDK = Client tools SDK
+         - BOL = Documentation components
+         - SSMS = Management tools
+         - SSMS_ADV = Management tools - advanced
+         - Distributed replay controller = DREPLAY_CTLR
+         - Distributed replay client = DREPLAY_CLT
+         - SQL client connectivity SDK = SNAC_SDK
+    - [SQL 2014 Available Features list](https://technet.microsoft.com/library/cc645993(SQL.120).aspx)
+       - Instance Features
+          SAME AS 2012
+       - Shared Features
+         - REMOVED
+           - BIDS -SQL Server data tools
+    - [SQL 2016 Available Features list](https://technet.microsoft.com/library/cc645993(SQL.130).aspx)
+      _TODO: Pending update to resource to support all 2016 features_
+
+- `version` - Version of SQL to be installed. Valid otpions are `2008`, `2008R2`, `2012`, `2014`, or `2016`. Default is `2012`
+- `source_url` - Source of the SQL setup.exe install file. Default is built from the helper libraries.
+- `package_name` - Package name for the SQL install. If you specify a version this property is not necessary. Default is built from the helper libraries.
+- `package_checksum` - Package checksum in SHA256 format for the setup.exe file. Default is built from the helper libraries.
+- `sql_reboot` - Determines whether the node will be rebooted after the SQL Server installation. Default setting is true
+- `security_mode` - The Autentication mode for SQL. Valid options are `Windows Athentication` or `Mixed Mode Authentication`. Default value is `Windows Authentication`
+- `sa_password` - The SQL Administrator password when `Mixed Mode Authentication` is being used. SQL enforces a strong passwords for this value.
+- `sysadmin` - The list of Systems Administrators who can access the SQL Instance. This can either be a String or an Array.
+- `agent_account` - The Service Account that will be used to run the SQL Agent Service. Default is `NT AUTHORITY\SYSTEM`.
+- `agent_startup` - The Agent Service startup type. Valid options are `Automatic`, `Manual`, `Disabled`, or `Automatic (Delayed Start)`. Default is `Disabled`.
+- `agent_account_pwd` - Agent Service Account password.
+- `sql_account` - Service Account used to run the SQL service. Default is `NT AUTHORITY\NETWORK SERVICE`
+- `sql_account_pwd` - Service Account password for the SQL service account.
+- `installer_timeout` - Time out for the SQL installation. Default is `1500`
+- `accept_eula` - Whether or not to accept the end user license agreement. Default is `false`
+- `product_key` - Product key for not Express or Evaluation versions.
+- `update_enabled` - Whether or not to download updates during install. Default is true.
+- `instance_name` - Name for the instance to be installed. Default is `SQLEXPRESS`. For non-express installs that want the default install it should be set to `MSSQLSERVER`.
+- `install_dir` - Directory SQL binaries will be installed to. Default is `C:\Program Files\Microsoft SQL Server`
+- `instance_dir` - Directory the Instance will be stored. Default is `C:\Program Files\Microsoft SQL Server`
+- `sql_data_dir` - Directory for SQL data
+- `sql_backup_dir` - Directory for backups
+- `sql_user_db_dir` - Directory for the user database
+- `sql_user_db_log_dir`  - Directory for the user database logs
+- `sql_temp_db_dir` - Directory for the temporary database
+- `sql_temp_db_log_dir` - Directory for the temporary database logs
+- `filestream_level` - Level to enable the filestream feature, Valid values are 0, 1, 2 or 3. Default is 0
+- `filestream_share_name` - Share name for the filestream feature. Default is `MSSQLSERVER`
+- `sql_collation` - SQL Collation type for the instance
+- `netfx35_source` - Source location for the .Net 3.5 Windows Features install. Only required for offline installs
+
+Distributed Replay
+- `dreplay_ctlr_admins` - List of admins for the Distributed Replay Controller. Default is `Administrator`. The `DREPLAY_CTLR` feature needs to be included in the feature Array for this property to work.
+- `dreplay_client_name` - Host name of the Distributed Replay Controller that the Client will point to. If the `DREPLAY_CLT` is in the feature list this property needs to be set.
+
+
+Reporting Services
+- `rs_account` - Service Account name used to run SQL Reporting Services. To have reporting services it needs to be listed in the `feature` property array.
+- `rs_account_pwd` - Service Account password for the Reporting Services Service
+- `rs_startup` - Reporting Services service startup type. Valid options are `Automatic`, `Manual`, `Disabled`, or `Automatic (Delayed Start)`. Default is `Automatic`.
+- `rs_mode` - Mode the Reporting Services is installed in. Default is `FilesOnlyMode`
+
+Analysis Services 
+
 #### Examples
+Install SQL 2012 Express with all the defaults
+
+```ruby
+sql_server_install 'Install SQL 2012 Express'
+```
+
+Install SQL 2014 Express
+
+```ruby
+sql_server_install `Install SQL 2014 Express` do
+  version '2014'
+end
+```
+
+Install SQL 2014 Evaluation from a local source with default instance name, Integrated Services, Reporting Services, and the SQL Management Tools.
+
+```ruby
+sql_server_install `Install SQL Server 2014 Evaluation` do
+  source_url 'C:\\Sources\\SQL 2014 Eval\\setup.exe'
+  version '2014'
+  package_checksum '0FE903...420E8F'
+  accept_eula true
+  instance_name 'MSSQLSERVER'
+  feature %w(SQLENGINE IS RS SSMS ADV_SSMS)
+end
+```
 
 ### sql_server_configure
 
 #### Actions
 
-- `:service`
+- `:service` - Configures the ports that SQL be listening on and starts and enables the SQL Service.
 
 #### Properties
+- `name` - The Instance name to be configured.
+- `version` - SQL Version of the instance to be configured. Valid otpions are `2008`, `2008R2`, `2012`, `2014`, or `2016`. Default is `2012`
+- `tcp_enabled` - If TCP is enabled for the instance. Default is true
+- `sql_port` - Port SQL will listen on. Default is 1433
+- `tcp_dynamic_ports` - Sets the Dynamic port SQL will listen on. Default is an empty string
+- `np_enabled` - Whether named pipes is enabled. Default is false
+- `sm_enabled` - Whether shared memory is enabled for the instance
+- `via_default_port` - Configures the Virtual Interface Adapter default port. Default is `0:1433`
+- `via_enabled` - Whether Virtual Interface Adapter is enabled. Default is false
+- `via_listen_info` - Configures the Virtual interface listening information. Default is `0:1433`
+- `agent_startup` - Configures the SQL Agent Service startup type. Valid options are `Automatic`, `Manual`, `Disabled`, or `Automatic (Delayed Start)`. Default is `Disabled` 
 
 #### Examples
+Configure a SQL 2012 Express install with all the defaults
+
+```ruby
+sql_server_configure `SQLEXPRESS`
+```
+
+Configure a SQL 2014 Express install
+
+```ruby
+sql_server_configure `SQLEXPRESS` do
+  version '2014'
+end
+```
+
+Configure a SQL 2014 Evaluation install with a different port
+
+```ruby
+sql_server_configure 'MSSQLSERVER' do
+  version '2014'
+  sql_port '1434'
+end
+```
 
 ## Attributes
 
