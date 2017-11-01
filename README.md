@@ -10,11 +10,12 @@ Provides resources for the installation and configuration of Microsoft SQL Serve
 
 - Windows Server 2008 R2 (SP2)
 - Windows Server 2012 (R1, R2)
+
 NOTE: Install of SQL Server 2016 is not supported on Server 2008 R2
 
 ### Chef
 
-- Chef 12.6+
+- Chef 12.7+
 
 ### Cookbooks
 
@@ -51,6 +52,7 @@ This file also contains download url, checksum and package name for all client i
 This file also contains download url, checksum and package name for the server installation package.
 
 ### configure
+
 - `node['sql_server']['tcp_enabled']` - Enables TCP listener, default is `true`
 - `node['sql_server']['port']` - Static TCP port server should listen on for client connections, default is `1433`
 - `node['sql_server']['tcp_dynamic_ports']` - Dynamic TCP ports server should listen on for client connections, default is `''`
@@ -79,9 +81,11 @@ Installs required the SQL Server Native Client and all required dependencies. Th
 The SQL Server Native Client contains the SQL Server ODBC driver and the SQL Server OLE DB provider in one native dynamic link library (DLL) supporting applications using native-code APIs (ODBC, OLE DB and ADO) to Microsoft SQL Server. In simple terms these packages should allow any other node to act as a client of a SQL Server instance.
 
 ### configure
+
 Configures SQL Server registry keys via attributes, and restart the Engine service if required.
 
 Current supported settings are mostly connection listeners:
+
 - TCP or VIA listener ports
 - TCP, Named Pipes, Shared Memory or VIA listener activation.
 
@@ -97,9 +101,9 @@ By default, the cookbook installs SQL Server 2012 Express. There are two options
 
 NOTE: For this recipe to run you must set the following attributes in an environment, role, or wrapper cookbook.
 
-`node['sql_server']['agent_account_pwd']`  
-`node['sql_server']['rs_account_pwd']`  
-`node['sql_server']['sql_account_pwd']`  
+`node['sql_server']['agent_account_pwd']`<br>
+`node['sql_server']['rs_account_pwd']`<br>
+`node['sql_server']['sql_account_pwd']`
 
 NOTE: This recipe will request a reboot at the end of the Chef Client run if SQL Server was installed.. If you do not want to reboot after the installation, use the `reboot` resource to cancel the pending reboot.
 
