@@ -21,6 +21,28 @@ NOTE: Install of SQL Server 2016 is not supported on Server 2008 R2
 
 - windows
 
+## Resources
+
+### sql_server_install
+
+#### Actions
+
+- `:install`
+
+#### Properties
+
+#### Examples
+
+### sql_server_configure
+
+#### Actions
+
+- `:service`
+
+#### Properties
+
+#### Examples
+
 ## Attributes
 
 ### default
