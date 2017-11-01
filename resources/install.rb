@@ -18,11 +18,11 @@
 # limitations under the License.
 
 property :sql_reboot, [true, false], default: true
-property :security_mode, String, equal_to: ['Windows Authenication', 'Mixed Mode Authentication'], default: 'Windows Authenication'
+property :security_mode, String, equal_to: ['Windows Authentication', 'Mixed Mode Authentication'], default: 'Windows Authentication'
 property :sa_password, String
 property :sysadmins, [Array, String], default: ['Administrator']
 property :agent_account, String, default: 'NT AUTHORITY\NETWORK SERVICE'
-property :agent_startup, String, equal_to: ['Automatic', 'Manual', 'Disabled', 'Automatic (Delayed Start)'], default: 'Automatic'
+property :agent_startup, String, equal_to: ['Automatic', 'Manual', 'Disabled', 'Automatic (Delayed Start)'], default: 'Disabled'
 property :agent_account_pwd, String
 property :rs_account, String, default: 'NT AUTHORITY\NETWORK SERVICE'
 property :rs_account_pwd, String
@@ -55,6 +55,7 @@ property :filestream_share_name, String, default: 'MSSQLSERVER'
 property :sql_collation, String
 property :dreplay_ctlr_admins, [Array, String], default: ['Administrator']
 property :dreplay_client_name, String
+property :netfx35_source, String
 
 action :install do
   if new_resource.feature.include?('DREPLAY_CLT') && new_resource.dreplay_client_name.nil?
@@ -63,6 +64,12 @@ action :install do
 
   if new_resource.security_mode == 'Mixed Mode Authentication' && new_resource.sa_password.nil?
     ::Chef::Application.fatal!('You cannot have set the security mode to "Mixed Mode Authenication" without specifying the sa_password property')
+  end
+
+  windows_feature ['NET-Framework-Features', 'NET-Framework-Core'] do
+    action :install
+    source new_resource.netfx35_source if new_resource.netfx35_source
+    install_method :windows_feature_powershell
   end
 
   config_file_path = ::File.join(Chef::Config[:file_cache_path], 'ConfigurationFile.ini')
