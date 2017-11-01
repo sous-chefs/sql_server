@@ -52,9 +52,9 @@ NOTE: Install of SQL Server 2016 is not supported on Server 2008 R2
          - BOL = Documentation components
          - SSMS = Management tools
          - SSMS_ADV = Management tools - advanced
-         - Distributed replay controller = DREPLAY_CTLR
-         - Distributed replay client = DREPLAY_CLT
-         - SQL client connectivity SDK = SNAC_SDK
+         - DREPLAY_CTLR = Distributed replay controller 
+         - DREPLAY_CLT = Distributed replay client 
+         - SNAC_SDK = SQL client connectivity SDK
     - [SQL 2014 Available Features list](https://technet.microsoft.com/library/cc645993(SQL.120).aspx)
        - Instance Features
           SAME AS 2012
