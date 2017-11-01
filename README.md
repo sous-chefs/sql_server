@@ -2,7 +2,7 @@
 
 [![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/ww3v5xdery9ha972/branch/master?svg=true)](https://ci.appveyor.com/project/ChefWindowsCookbooks/sql-server/branch/master) [![Cookbook Version](https://img.shields.io/cookbook/v/sql_server.svg)](https://supermarket.chef.io/cookbooks/sql_server)
 
-Installs and configures Microsoft SQL Server 2008 R2 SP2 and Microsoft SQL Server 2012 server and client. By default the Express edition is installed, but the `sql_server::server` recipe supports installation of other editions (see **Usage** below).
+Provides resources for the installation and configuration of Microsoft SQL Server 2008 R2 SP2 and Microsoft SQL Server 2012 server and client. Includes several basic recipes that utilize install and configure resources. See the usage section below for more information.
 
 ## Requirements
 
