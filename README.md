@@ -77,6 +77,7 @@ NOTE: Install of SQL Server 2016 is not supported on Server 2008 R2
 - `agent_account_pwd` - Agent Service Account password.
 - `sql_account` - Service Account used to run the SQL service. Default is `NT AUTHORITY\NETWORK SERVICE`
 - `sql_account_pwd` - Service Account password for the SQL service account.
+- `browser_startup` - Service startup type for the SQL Browser Service. Valid options are `Automatic`, `Manual`, `Disabled`, or `Automatic (Delayed Start)`. Default is `Disabled`.
 - `installer_timeout` - Time out for the SQL installation. Default is `1500`
 - `accept_eula` - Whether or not to accept the end user license agreement. Default is `false`
 - `product_key` - Product key for not Express or Evaluation versions.
@@ -106,7 +107,8 @@ Reporting Services
 - `rs_startup` - Reporting Services service startup type. Valid options are `Automatic`, `Manual`, `Disabled`, or `Automatic (Delayed Start)`. Default is `Automatic`.
 - `rs_mode` - Mode the Reporting Services is installed in. Default is `FilesOnlyMode`
 
-Analysis Services 
+Analysis Services
+- `as_sysadmins` - Analysis Services Systems Administrator list. Default is `Administrator`
 
 #### Examples
 Install SQL 2012 Express with all the defaults
