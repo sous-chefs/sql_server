@@ -1,7 +1,7 @@
 
 #
 # Cookbook:: sql_server
-# Resource:: install
+# Resource:: configure
 #
 # Copyright:: 2017, Chef Software, Inc.
 #
@@ -30,13 +30,6 @@ property :via_listen_info, String, default: '0:1433'
 property :agent_startup, String, equal_to: ['Automatic', 'Manual', 'Disabled', 'Automatic (Delayed Start)'], default: 'Disabled'
 
 action :service do
-  # Compute service name based on sql server instance name defined as the resource name
-  service_name = (new_resource.name != 'MSSQLSERVER') ? "MSSQL$#{new_resource.name}" : new_resource.name
-
-  # Agent name needs to be declared because if you use the SQL Agent, you need
-  # to restart both services as the Agent is dependent on the SQL Service
-  agent_service_name = (new_resource.name == 'MSSQLSERVER') ? 'SQLSERVERAGENT' : "SQLAgent$#{new_resource.name}"
-
   # Compute registry version based on sql server version
   reg_version = new_resource.reg_version || ::SqlServer::Helper.reg_version_string(new_resource.version)
 
@@ -48,21 +41,21 @@ action :service do
             { name: 'TcpPort', type: :string, data: new_resource.sql_port.to_s },
             { name: 'TcpDynamicPorts', type: :string, data: new_resource.tcp_dynamic_ports.to_s }]
     recursive true
-    notifies :restart, "service[#{service_name}]", :immediately
+    notifies :restart, "service[#{service_name}]", :delayed
   end
 
   # Configure Named Pipes settings
   registry_key "#{reg_prefix}\\SuperSocketNetLib\\Np" do
     values [{ name: 'Enabled', type: :dword, data: new_resource.np_enabled ? 1 : 0 }]
     recursive true
-    notifies :restart, "service[#{service_name}]", :immediately
+    notifies :restart, "service[#{service_name}]", :delayed
   end
 
   # Configure Shared Memory settings
   registry_key "#{reg_prefix}\\SuperSocketNetLib\\Sm" do
     values [{ name: 'Enabled', type: :dword, data: new_resource.sm_enabled ? 1 : 0 }]
     recursive true
-    notifies :restart, "service[#{service_name}]", :immediately
+    notifies :restart, "service[#{service_name}]", :delayed
   end
 
   # Configure Via settings
@@ -71,7 +64,7 @@ action :service do
             { name: 'Enabled', type: :dword, data: new_resource.via_enabled ? 1 : 0 },
             { name: 'ListenInfo', type: :string, data: new_resource.via_listen_info.to_s }]
     recursive true
-    notifies :restart, "service[#{service_name}]", :immediately
+    notifies :restart, "service[#{service_name}]", :delayed
   end
 
   # If you have declared an agent account it will restart both the
@@ -90,4 +83,12 @@ end
 
 action_class do
   include ::SqlServer::Helper
+
+  def service_name
+    (new_resource.name != 'MSSQLSERVER') ? "MSSQL$#{new_resource.name}" : new_resource.name
+  end
+
+  def agent_service_name
+    (new_resource.name == 'MSSQLSERVER') ? 'SQLSERVERAGENT' : "SQLAgent$#{new_resource.name}"
+  end
 end
