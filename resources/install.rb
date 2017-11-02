@@ -56,6 +56,7 @@ property :sql_collation, String
 property :dreplay_ctlr_admins, [Array, String], default: ['Administrator']
 property :dreplay_client_name, String
 property :netfx35_source, String
+property :polybase_port_range, String, default: '16450-16460'
 
 action :install do
   if new_resource.feature.include?('DREPLAY_CLT') && new_resource.dreplay_client_name.nil?
@@ -116,7 +117,8 @@ action :install do
       asSysAdminList: as_sys_admin_list,
       dreplayCtlrList: dreplay_ctlr_admin_list,
       dreplay_client_name: new_resource.dreplay_client_name,
-      security_mode: new_resource.security_mode
+      security_mode: new_resource.security_mode,
+      polybase_port_range: new_resource.polybase_port_range
     )
     sensitive true
   end

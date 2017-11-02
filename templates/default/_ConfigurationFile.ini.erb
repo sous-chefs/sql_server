@@ -321,3 +321,37 @@ CLTRESULTDIR="ResultDir"
 
 CLTWORKINGDIR="WorkingDir"
 <% end %>
+
+<% if @version == '2016' %>
+<% if @feature.include?('ADVANCEDANALYTICS' || 'SQL_SHARED_MR') %>
+IACCEPTROPENLICENSETERMS=<%= @accept_eula %>
+
+EXTSVCACCOUNT="NT Service\MSSQLLaunchpad"
+<% end%>
+
+<% if @feature.include?('POLYBASE')%>
+; PolybasePdwUserNameConfigDescription
+
+PBENGSVCACCOUNT="NT AUTHORITY\NETWORK SERVICE"
+
+; PolybasePdwStartupConfigDescription
+
+PBENGSVCSTARTUPTYPE="Automatic"
+
+; PolybaseDmsUserNameConfigDescription
+
+PBDMSSVCACCOUNT="NT AUTHORITY\NETWORK SERVICE"
+
+; PolybaseDmsStartupConfigDescription
+
+PBDMSSVCSTARTUPTYPE="Automatic"
+
+; PolybaseScaleOutDescription
+
+PBSCALEOUT="False"
+
+; PolybasePortRangeDescription
+
+PBPORTRANGE="<%= @polybase_port_range %>"
+<% end %>
+<% end %>
