@@ -34,44 +34,44 @@ NOTE: Install of SQL Server 2016 is not supported on Server 2008 R2
 - `feature` - An Array of the SQL Instance or Server features that are going to be enabled / installed.
    - [SQL 2012 Available Features list](https://technet.microsoft.com/library/cc645993(SQL.110).aspx)
       - Instance Features
-         - SQLENGINE = Database Engine
-         - REPLICATION = Replication 
-         - FULLTEXT = Full-Text and Semantic Extractions for search
-         - DQ = Data Quality Services
-         - AS = Analysis Services
-         - RS = Reporting Services - Native
+         - `SQLENGINE` = Database Engine
+         - `REPLICATION` = Replication 
+         - `FULLTEXT` = Full-Text and Semantic Extractions for search
+         - `DQ` = Data Quality Services
+         - `AS` = Analysis Services
+         - `RS` = Reporting Services - Native
       - Shared Features
-         - RS_SHP = Reporting Services - SharePoint
-         - RS_SHPWFE = Reporting Services Add-in for SharePoint Products
-         - DQC = Data Quality Client
-         - BIDS = SQL Server data tools
-         - CONN = Client tools connectivity 
-         - IS = Integration Services
-         - BC = Client tools backwards compatibility
-         - SDK = Client tools SDK
-         - BOL = Documentation components
-         - SSMS = Management tools
-         - SSMS_ADV = Management tools - Advanced
-         - DREPLAY_CTLR = Distributed replay controller 
-         - DREPLAY_CLT = Distributed replay client 
-         - SNAC_SDK = SQL client connectivity SDK
+         - `RS_SHP` = Reporting Services - SharePoint
+         - `RS_SHPWFE` = Reporting Services Add-in for SharePoint Products
+         - `DQC` = Data Quality Client
+         - `BIDS` = SQL Server data tools
+         - `CONN` = Client tools connectivity 
+         - `IS` = Integration Services
+         - `BC` = Client tools backwards compatibility
+         - `SDK` = Client tools SDK
+         - `BOL` = Documentation components
+         - `SSMS` = Management tools
+         - `SSMS_ADV` = Management tools - Advanced
+         - `DREPLAY_CTLR` = Distributed replay controller 
+         - `DREPLAY_CLT` = Distributed replay client 
+         - `SNAC_SDK` = SQL client connectivity SDK
     - [SQL 2014 Available Features list](https://technet.microsoft.com/library/cc645993(SQL.120).aspx)
        - Instance Features
           SAME AS 2012
        - Shared Features
-         - REMOVED
-           - BIDS = SQL Server data tools
+         - REMOVED for standalone install
+           - `BIDS` = SQL Server data tools
     - [SQL 2016 Available Features list](https://technet.microsoft.com/library/cc645993(SQL.130).aspx)
        - Instance Features
-          - ADVANCEDANALYTICS = R Services (In-Datbase)
-          - POLYBASE = PolyBase Query Service for External Data
+          - `ADVANCEDANALYTICS` = R Services (In-Datbase)
+          - `POLYBASE` = PolyBase Query Service for External Data
              Note: This Feature Requires Java Runtime Environment greater than 7 update 51. Only the standalone Polybase-enabled Instance is currently support by this cookbook.
        - Shared Features
-          - SQL_SHARED_MR = R Server (Standalone)
-          - MDS = Master Data Services
-          - REMOVED
-             - SSMS = Management tools
-             - SSMS_ADV = Management tools - Advanced       
+          - `SQL_SHARED_MR` = R Server (Standalone)
+          - `MDS` = Master Data Services
+          - REMOVED for standalone install
+             - `SSMS` = Management tools
+             - `SSMS_ADV` = Management tools - Advanced       
 
 - `version` - Version of SQL to be installed. Valid otpions are `2008`, `2008R2`, `2012`, `2014`, or `2016`. Default is `2012`
 - `source_url` - Source of the SQL setup.exe install file. Default is built from the helper libraries.
