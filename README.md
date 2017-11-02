@@ -51,7 +51,7 @@ NOTE: Install of SQL Server 2016 is not supported on Server 2008 R2
          - SDK = Client tools SDK
          - BOL = Documentation components
          - SSMS = Management tools
-         - SSMS_ADV = Management tools - advanced
+         - SSMS_ADV = Management tools - Advanced
          - DREPLAY_CTLR = Distributed replay controller 
          - DREPLAY_CLT = Distributed replay client 
          - SNAC_SDK = SQL client connectivity SDK
@@ -60,9 +60,18 @@ NOTE: Install of SQL Server 2016 is not supported on Server 2008 R2
           SAME AS 2012
        - Shared Features
          - REMOVED
-           - BIDS -SQL Server data tools
+           - BIDS = SQL Server data tools
     - [SQL 2016 Available Features list](https://technet.microsoft.com/library/cc645993(SQL.130).aspx)
-      _TODO: Pending update to resource to support all 2016 features_
+       - Instance Features
+          - ADVANCEDANALYTICS = R Services (In-Datbase)
+          - POLYBASE = PolyBase Query Service for External Data
+             Note: This Feature Requires Java Runtime Environment greater than 7 update 51. Only the standalone Polybase-enabled Instance is currently support by this cookbook.
+       - Shared Features
+          - SQL_SHARED_MR = R Server (Standalone)
+          - MDS = Master Data Services
+          - REMOVED
+             - SSMS = Management tools
+             - SSMS_ADV = Management tools - Advanced       
 
 - `version` - Version of SQL to be installed. Valid otpions are `2008`, `2008R2`, `2012`, `2014`, or `2016`. Default is `2012`
 - `source_url` - Source of the SQL setup.exe install file. Default is built from the helper libraries.
@@ -80,6 +89,7 @@ NOTE: Install of SQL Server 2016 is not supported on Server 2008 R2
 - `browser_startup` - Service startup type for the SQL Browser Service. Valid options are `Automatic`, `Manual`, `Disabled`, or `Automatic (Delayed Start)`. Default is `Disabled`.
 - `installer_timeout` - Time out for the SQL installation. Default is `1500`
 - `accept_eula` - Whether or not to accept the end user license agreement. Default is `false`
+   Note: For SQL 2016 if this will also accept the license for using R if `ADVANCEDANALYTICS` or `SQL_SHARED_MR` is listed in the feature property array.
 - `product_key` - Product key for not Express or Evaluation versions.
 - `update_enabled` - Whether or not to download updates during install. Default is true.
 - `instance_name` - Name for the instance to be installed. Default is `SQLEXPRESS`. For non-express installs that want the default install it should be set to `MSSQLSERVER`.
@@ -100,7 +110,6 @@ Distributed Replay
 - `dreplay_ctlr_admins` - List of admins for the Distributed Replay Controller. Default is `Administrator`. The `DREPLAY_CTLR` feature needs to be included in the feature Array for this property to work.
 - `dreplay_client_name` - Host name of the Distributed Replay Controller that the Client will point to. If the `DREPLAY_CLT` is in the feature list this property needs to be set.
 
-
 Reporting Services
 - `rs_account` - Service Account name used to run SQL Reporting Services. To have reporting services it needs to be listed in the `feature` property array.
 - `rs_account_pwd` - Service Account password for the Reporting Services Service
@@ -109,6 +118,9 @@ Reporting Services
 
 Analysis Services
 - `as_sysadmins` - Analysis Services Systems Administrator list. Default is `Administrator`
+
+PolyBase Query Services
+- `polybase_port_range` - Port Range for the PolyBase Query Service. Default is `16450-16460`.
 
 #### Examples
 Install SQL 2012 Express with all the defaults
