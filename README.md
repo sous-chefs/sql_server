@@ -99,7 +99,7 @@ NOTE: Install of SQL Server 2016 and SQL Server 2017 is not supported on Server 
              - `IS_WORKER` - Scale Out Worker
 
 
-- `version` - Version of SQL to be installed. Valid otpions are `2008`, `2008R2`, `2012`, `2014`, `2016`, of `2017`. Default is `2012`
+- `version` - Version of SQL to be installed. Valid otpions are `2008`, `2008R2`, `2012`, `2014`, `2016`, or `2017`. Default is `2012`
 - `source_url` - Source of the SQL setup.exe install file. Default is built from the helper libraries.
 - `package_name` - Package name for the SQL install. If you specify a version this property is not necessary. Default is built from the helper libraries.
 - `package_checksum` - Package checksum in SHA256 format for the setup.exe file. Default is built from the helper libraries.
@@ -190,7 +190,7 @@ end
 
 #### Properties
 - `name` - The Instance name to be configured.
-- `version` - SQL Version of the instance to be configured. Valid otpions are `2008`, `2008R2`, `2012`, `2014`, or `2016`. Default is `2012`
+- `version` - SQL Version of the instance to be configured. Valid otpions are `2008`, `2008R2`, `2012`, `2014`, `2016`, `2017`. Default is `2012`
 - `tcp_enabled` - If TCP is enabled for the instance. Default is true
 - `sql_port` - Port SQL will listen on. Default is 1433
 - `tcp_dynamic_ports` - Sets the Dynamic port SQL will listen on. Default is an empty string
