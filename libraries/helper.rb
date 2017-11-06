@@ -30,6 +30,7 @@ module SqlServer
       when '2012' then 'MSSQL11.'
       when '2014' then 'MSSQL12.'
       when '2016' then 'MSSQL13.'
+      when '2017' then 'MSSQL14.'
       else raise "Unsupported sql_server version '#{version}'. Please open a PR to add support for this version."
       end
     end
@@ -40,6 +41,7 @@ module SqlServer
       when '2012' then '110'
       when '2014' then '120'
       when '2016' then '130'
+      when '2017' then '140'
       else raise "SQL Server version #{version} not supported. Please open a PR to add support for this version."
       end
     end
@@ -56,6 +58,7 @@ module SqlServer
         when '2012' then 'https://download.microsoft.com/download/8/D/D/8DD7BDBA-CEF7-4D8E-8C16-D9F69527F909/ENU/x64/SQLEXPR_x64_ENU.exe'
         when '2014' then 'https://download.microsoft.com/download/E/A/E/EAE6F7FC-767A-4038-A954-49B8B05D04EB/Express%2064BIT/SQLEXPR_x64_ENU.exe'
         when '2016' then 'https://download.microsoft.com/download/9/0/7/907AD35F-9F9C-43A5-9789-52470555DB90/ENU/SQLEXPR_x64_ENU.exe'
+        when '2017' then 'https://download.microsoft.com/download/E/F/2/EF23C21D-7860-4F05-88CE-39AA114B014B/SQLEXPR_x64_ENU.exe'
         end
       else
         case version.to_s
@@ -73,6 +76,7 @@ module SqlServer
         when '2012' then 'Microsoft SQL Server 2012 (64-bit)'
         when '2014' then 'Microsoft SQL Server 2014 (64-bit)'
         when '2016' then 'Microsoft SQL Server 2016 (64-bit)'
+        when '2017' then 'Microsoft SQL Server 2017 (64-bit)'
         end
       else
         case version.to_s
@@ -90,6 +94,7 @@ module SqlServer
         when '2012' then '7f5e3d40b85fba2da5093e3621435c209c4ac90d34219bab8878e93a787cf29f'
         when '2014' then '8f712faefee9cef1d15494c9d6cf5ad3b45ec06d0b2c247f8384a221baaadda7'
         when '2016' then '2A5B64AE64A8285C024870EC4643617AC5146894DD59DD560E75CEA787BF9333'
+        when '2017' then 'F857FF82145E196BF85AF32EEB0193FE38302E57B30BEB54E513630C60D83E0D'
         end
       else
         case version.to_s

@@ -2,7 +2,7 @@
 
 [![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/ww3v5xdery9ha972/branch/master?svg=true)](https://ci.appveyor.com/project/ChefWindowsCookbooks/sql-server/branch/master) [![Cookbook Version](https://img.shields.io/cookbook/v/sql_server.svg)](https://supermarket.chef.io/cookbooks/sql_server)
 
-Provides resources for the installation and configuration of Microsoft SQL Server 2008 R2 SP2 and Microsoft SQL Server 2012 server and client. Includes several basic recipes that utilize install and configure resources. See the usage section below for more information.
+Provides resources for the installation and configuration of Microsoft SQL Server server and client. Includes several basic recipes that utilize install and configure resources. See the usage section below for more information.
 
 ## Requirements
 
@@ -11,7 +11,20 @@ Provides resources for the installation and configuration of Microsoft SQL Serve
 - Windows Server 2008 R2 (SP2)
 - Windows Server 2012 (R1, R2)
 
-NOTE: Install of SQL Server 2016 is not supported on Server 2008 R2
+NOTE: Install of SQL Server 2016 and SQL Server 2017 is not supported on Server 2008 R2
+
+### Supported Server Verions
+
+- Microsoft SQL Server 2008 R2
+- Microsoft SQL Server 2012
+- Microsoft SQL Server 2014
+- Microsoft SQL Server 2016
+- Microsoft SQL Server 2017
+
+### Supported Client Versions
+
+- Microsoft SQL Server 2008 R2
+- Microsoft SQL Server 2012
 
 ### Chef
 
@@ -200,7 +213,7 @@ end
 The following attributes are used by both client and server recipes.
 
 - `node['sql_server']['accept_eula']` - indicate that you accept the terms of the end user license, default is 'false'
-- `node['sql_server']['product_key']` - Specifies the product key for the edition of SQL Server, default is `nil` (not needed for SQL Server 2008 R2 Express installs)
+- `node['sql_server']['product_key']` - Specifies the product key for the edition of SQL Server, default is `nil` (not needed for SQL Server Express installs)
 
 ### client
 
