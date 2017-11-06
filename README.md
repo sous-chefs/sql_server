@@ -76,7 +76,7 @@ NOTE: Install of SQL Server 2016 and SQL Server 2017 is not supported on Server 
            - `BIDS` = SQL Server data tools
     - [SQL 2016 Available Features list](https://technet.microsoft.com/library/cc645993(SQL.130).aspx)
        - Instance Features
-          - `ADVANCEDANALYTICS` = R Services (In-Datbase)
+          - `ADVANCEDANALYTICS` = R Services (In-Database)
           - `POLYBASE` = PolyBase Query Service for External Data
              Note: This Feature Requires Java Runtime Environment greater than 7 update 51. Only the standalone Polybase-enabled Instance is currently support by this cookbook.
        - Shared Features
@@ -84,9 +84,22 @@ NOTE: Install of SQL Server 2016 and SQL Server 2017 is not supported on Server 
           - `MDS` = Master Data Services
           - REMOVED for standalone install
              - `SSMS` = Management tools
-             - `SSMS_ADV` = Management tools - Advanced       
+             - `SSMS_ADV` = Management tools - Advanced
+    - [SQL 2017 Available Features list](https://docs.microsoft.com/en-us/sql/sql-server/editions-and-components-of-sql-server-2017)
+       - Instance Features
+          - `ADVANCEDANALYTICS` = Machine Learning services (In-Database)
+             - `SQL_INST_MPY` = Machine Learning services (In-Database) with Python
+             - `SQL_INST_MR` = Machine Learning services (In-Database) with R
+       - Shared Features
+          - `SQL_SHARED_AA` = Machine Learning Services (Standalone)
+             - `SQL_SHARED_MR` = Machine Learning services (In-Database) with R
+             - `SQL_SHARED_MPY` = Machine Learning services (In-Database) with Python
+          - `IS` = Integrated Services
+             - `IS_MASTER` - Scale Out Master
+             - `IS_WORKER` - Scale Out Worker
 
-- `version` - Version of SQL to be installed. Valid otpions are `2008`, `2008R2`, `2012`, `2014`, or `2016`. Default is `2012`
+
+- `version` - Version of SQL to be installed. Valid otpions are `2008`, `2008R2`, `2012`, `2014`, `2016`, or `2017`. Default is `2012`
 - `source_url` - Source of the SQL setup.exe install file. Default is built from the helper libraries.
 - `package_name` - Package name for the SQL install. If you specify a version this property is not necessary. Default is built from the helper libraries.
 - `package_checksum` - Package checksum in SHA256 format for the setup.exe file. Default is built from the helper libraries.
@@ -135,6 +148,12 @@ Analysis Services
 PolyBase Query Services
 - `polybase_port_range` - Port Range for the PolyBase Query Service. Default is `16450-16460`.
 
+Integrated Services
+- `is_master_port` - Port for the Integrated Services Scale out Master. Default is 8391.
+- `is_master_ssl_cert` - The CNs in the certificate used to protect communications between the integration services scale out worker and scale out master.
+- `is_master_cert_thumbprint` - The certificate thumbprint for the scale out master ssl certificate.
+- `is_worker_master_url` - The url of the scale out master when installing a scale out worker.
+
 #### Examples
 Install SQL 2012 Express with all the defaults
 
@@ -171,7 +190,7 @@ end
 
 #### Properties
 - `name` - The Instance name to be configured.
-- `version` - SQL Version of the instance to be configured. Valid otpions are `2008`, `2008R2`, `2012`, `2014`, or `2016`. Default is `2012`
+- `version` - SQL Version of the instance to be configured. Valid otpions are `2008`, `2008R2`, `2012`, `2014`, `2016`, or `2017`. Default is `2012`
 - `tcp_enabled` - If TCP is enabled for the instance. Default is true
 - `sql_port` - Port SQL will listen on. Default is 1433
 - `tcp_dynamic_ports` - Sets the Dynamic port SQL will listen on. Default is an empty string

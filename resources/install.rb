@@ -57,6 +57,10 @@ property :dreplay_ctlr_admins, [Array, String], default: ['Administrator']
 property :dreplay_client_name, String
 property :netfx35_source, String
 property :polybase_port_range, String, default: '16450-16460'
+property :is_master_port, String, default: '8391'
+property :is_master_ssl_cert, String
+property :is_master_cert_thumbprint, String
+property :is_worker_master_url, String
 
 action :install do
   if new_resource.feature.include?('DREPLAY_CLT') && new_resource.dreplay_client_name.nil?
@@ -118,7 +122,11 @@ action :install do
       dreplayCtlrList: dreplay_ctlr_admin_list,
       dreplay_client_name: new_resource.dreplay_client_name,
       security_mode: new_resource.security_mode,
-      polybase_port_range: new_resource.polybase_port_range
+      polybase_port_range: new_resource.polybase_port_range,
+      is_master_port: new_resource.is_master_port,
+      is_master_ssl_cert: new_resource.is_master_ssl_cert,
+      is_master_cert_thumbprint: new_resource.is_master_cert_thumbprint,
+      is_worker_master_url: new_resource.is_worker_master_url
     )
     sensitive true
   end

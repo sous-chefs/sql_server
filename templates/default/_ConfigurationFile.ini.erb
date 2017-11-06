@@ -327,9 +327,11 @@ CLTWORKINGDIR="WorkingDir"
 IACCEPTROPENLICENSETERMS=<%= @accept_eula %>
 
 EXTSVCACCOUNT="NT Service\MSSQLLaunchpad"
-<% end%>
+<% end %>
+<% end %>
 
-<% if @feature.include?('POLYBASE')%>
+<% if (@version == '2016') || (@version == '2017') %>
+<% if @feature.include?('POLYBASE') %>
 ; PolybasePdwUserNameConfigDescription
 
 PBENGSVCACCOUNT="NT AUTHORITY\NETWORK SERVICE"
@@ -353,5 +355,57 @@ PBSCALEOUT="False"
 ; PolybasePortRangeDescription
 
 PBPORTRANGE="<%= @polybase_port_range %>"
+<% end %>
+<% end %>
+
+<% if @version == '2017' %>
+<% if @feature.include?('SQL_INST_MR' || 'SQL_SHARED_MR' || 'SQL_SHARED_AA') %>
+IACCEPTROPENLICENSETERMS=<%= @accept_eula %>
+<% end%>
+
+<% if @feature.include?('SQL_INST_MPY' || 'SQL_SHARED_MPY' || 'SQL_SHARED_AA') %>
+IACCEPTPYTHONLICENSETERMS=<%= @accept_eula %>
+<% end %>
+
+<% if @feature.include?('ADVANCEDANALYTICS') %>
+EXTSVCACCOUNT="NT Service\MSSQLLaunchpad"
+<% end %>
+
+<% if @feature.include?('IS_MASTER')%>
+; Startup type for Integration Services Scale Out Master service.
+
+ISMASTERSVCSTARTUPTYPE="Automatic"
+
+; Account for Integration Services Scale Out Master service: Domain\User or system account.
+
+ISMASTERSVCACCOUNT="NT Service\SSISScaleOutMaster140"
+
+; Port for Integration Services Scale Out Master.
+
+ISMASTERSVCPORT=<%= @is_master_port %>
+
+; The CNs in the certificate used to protect communication with Integration Services Scale Out Worker.
+
+ISMASTERSVCSSLCERTCN=<%= @is_master_ssl_cert %>
+
+; The thumbprint of certificate used to protect communication with Integration Services Scale Out Worker.
+
+<% if @is_master_cert_thumbprint %>
+ISMASTERSVCTHUMBPRINT=<%= @is_master_cert_thumbprint %>
+<% end %>
+<% end %>
+
+<% if @feature.include?('IS_WORKER') %>
+; Startup type for Integration Services Scale Out Worker service.
+
+ISWORKERSVCSTARTUPTYPE="Automatic"
+
+; Account for Integration Services Scale Out Worker service: Domain\User or system account.
+
+ISWORKERSVCACCOUNT="NT Service\SSISScaleOutWorker140"
+
+; Master endpoint.
+
+ISWORKERSVCMASTER=<%= @is_worker_master_url %>
 <% end %>
 <% end %>
