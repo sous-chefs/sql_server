@@ -28,6 +28,10 @@ SAPWD="<%= @sa_password %>"
 UpdateEnabled="<%= @update_enabled ? "True" : "False" %>"
 <% end %>
 
+; Specify the location where SQL Server Setup will obtain product updates. The valid values are "MU" to search Microsoft Update, a valid folder path, a relative path such as .\MyUpdates or a UNC share. By default SQL Server Setup will search Microsoft Update or a Windows Update service through the Window Server Update Services.
+
+UpdateSource= "<%= @update_source %>"
+
 ; Specify the Instance ID for the SQL Server features you have specified. SQL Server directory structure, registry structure, and service names will reflect the instance ID of the SQL Server instance.
 
 INSTANCEID="<%= @instance_name %>"
