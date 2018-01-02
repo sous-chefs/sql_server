@@ -118,6 +118,7 @@ NOTE: Install of SQL Server 2016 and SQL Server 2017 is not supported on Server 
    Note: For SQL 2016 if this will also accept the license for using R if `ADVANCEDANALYTICS` or `SQL_SHARED_MR` is listed in the feature property array.
 - `product_key` - Product key for not Express or Evaluation versions.
 - `update_enabled` - Whether or not to download updates during install. Default is true.
+- `update_source` - The Source Location of Windows Update or WSUS. Default is `MU`. Example = `c:/path/to/update`
 - `instance_name` - Name for the instance to be installed. Default is `SQLEXPRESS`. For non-express installs that want the default install it should be set to `MSSQLSERVER`.
 - `install_dir` - Directory SQL binaries will be installed to. Default is `C:\Program Files\Microsoft SQL Server`
 - `instance_dir` - Directory the Instance will be stored. Default is `C:\Program Files\Microsoft SQL Server`

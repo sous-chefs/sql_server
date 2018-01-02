@@ -40,6 +40,7 @@ property :installer_timeout, Integer, default: 1500
 property :accept_eula, [true, false], default: false
 property :product_key, String
 property :update_enabled, [true, false], default: true
+property :update_source, String, default: 'MU'
 property :instance_name, String, default: 'SQLEXPRESS'
 property :feature, [Array, String], default: %w(SQLENGINE REPLICATION SNAC_SDK)
 property :install_dir, String, default: 'C:\Program Files\Microsoft SQL Server'
@@ -99,6 +100,7 @@ action :install do
       agent_account: new_resource.agent_account,
       agent_startup: new_resource.agent_startup,
       update_enabled: new_resource.update_enabled,
+      update_source: new_resource.update_source,
       instance_name: new_resource.instance_name,
       feature_list: new_resource.feature,
       install_dir: new_resource.install_dir,
