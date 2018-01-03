@@ -156,6 +156,7 @@ Integrated Services
 - `is_worker_master_url` - The url of the scale out master when installing a scale out worker.
 
 #### Examples
+
 Install SQL 2012 Express with all the defaults
 
 ```ruby
@@ -190,7 +191,7 @@ end
 - `:service` - Configures the ports that SQL be listening on and starts and enables the SQL Service.
 
 #### Properties
-- `name` - The Instance name to be configured.
+
 - `version` - SQL Version of the instance to be configured. Valid otpions are `2008`, `2008R2`, `2012`, `2014`, `2016`, or `2017`. Default is `2012`
 - `tcp_enabled` - If TCP is enabled for the instance. Default is true
 - `sql_port` - Port SQL will listen on. Default is 1433
@@ -203,6 +204,7 @@ end
 - `agent_startup` - Configures the SQL Agent Service startup type. Valid options are `Automatic`, `Manual`, `Disabled`, or `Automatic (Delayed Start)`. Default is `Disabled` 
 
 #### Examples
+
 Configure a SQL 2012 Express install with all the defaults
 
 ```ruby
@@ -267,7 +269,9 @@ This file also contains download url, checksum and package name for the server i
 - `node['sql_server']['via_enabled']` - Enables VIA listener, default is `false`
 - `node['sql_server']['via_listen_info']` - VIA listener info, default is `0:1433`
 
-## Usage
+## Recipe Usage
+
+We highly recommend writing your own wrapper cookbook utilizing the above resources, but this cookbook also ships with legacy recipes that can be used to install sql_server using recipes/attributes.
 
 ### default
 
@@ -388,7 +392,7 @@ SQL Server does not support remote installation over WinRM. For example, the ins
 
 **Author:** Cookbook Engineering Team ([cookbooks@chef.io](mailto:cookbooks@chef.io))
 
-**Copyright:** 2011-2017, Chef Software, Inc.
+**Copyright:** 2011-2018, Chef Software, Inc.
 
 ```text
 Licensed under the Apache License, Version 2.0 (the "License");
