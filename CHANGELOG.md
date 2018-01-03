@@ -2,6 +2,17 @@
 
 This file is used to list changes made in each version of the sql_server cookbook.
 
+## 5.4.0 (2018-01-03)
+
+- Add `install` custom resource that installs specified version of SQL Server
+- Add `configure` custom resource that configures SQL ports and services
+- Bump minimum chef version to 12.7
+- Update readme to support new resources (#92)
+- Add support of SQL 2017 to the resource
+- Add support to all features to custom resources
+- Recommend wrapper cookbook over backwards compatible recipes
+- Update licensing for the new year
+
 ## 5.3.2 (2017-10-14)
 
 - Change default version to 2012 in the readme
