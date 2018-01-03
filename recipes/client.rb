@@ -26,7 +26,7 @@ if node['platform_version'].to_f == 6.1
 end
 
 %w( native_client command_line_utils clr_types smo ps_extensions ).each do |pkg|
-  package node['sql_server'][pkg]['package_name'] do
+  package node['sql_server'][pkg]['package_name'] do # ~FC009
     source node['sql_server'][pkg]['url']
     checksum node['sql_server'][pkg]['checksum']
     installer_type :msi

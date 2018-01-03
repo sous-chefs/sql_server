@@ -65,7 +65,7 @@ passwords_options = {
   "/#{option}=\"#{safe_password}#{enclosing_escape}\""
 end.compact.join ' '
 
-package package_name do
+package package_name do # ~FC009
   source package_url
   checksum package_checksum
   timeout node['sql_server']['server']['installer_timeout']
