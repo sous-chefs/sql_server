@@ -30,7 +30,7 @@ platforms:
     driver_config:
       box: chef/windows-server-2012r2-standard
     provisioner:
-      require_chef_omnibus: 12.7.0
+      require_chef_omnibus: 12.7.2
 
 suites:
   - name: client
