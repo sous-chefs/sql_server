@@ -106,7 +106,7 @@ NOTE: Install of SQL Server 2016 and SQL Server 2017 is not supported on Server 
 - `sql_reboot` - Determines whether the node will be rebooted after the SQL Server installation. Default setting is true
 - `security_mode` - The Autentication mode for SQL. Valid options are `Windows Athentication` or `Mixed Mode Authentication`. Default value is `Windows Authentication`
 - `sa_password` - The SQL Administrator password when `Mixed Mode Authentication` is being used. SQL enforces a strong passwords for this value.
-- `sysadmin` - The list of Systems Administrators who can access the SQL Instance. This can either be a String or an Array.
+- `sysadmins` - The list of Systems Administrators who can access the SQL Instance. This can either be a String or an Array.
 - `agent_account` - The Service Account that will be used to run the SQL Agent Service. Default is `NT AUTHORITY\SYSTEM`.
 - `agent_startup` - The Agent Service startup type. Valid options are `Automatic`, `Manual`, `Disabled`, or `Automatic (Delayed Start)`. Default is `Disabled`.
 - `agent_account_pwd` - Agent Service Account password.
