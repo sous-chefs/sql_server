@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the sql_server cookbook.
 
+## 5.4.1 (2018-01-10)
+
+- Fix .kitchen.yml file for chef 12.7 testing
+- Fix typo with sysadmins property
+- Fix feature_list property in ConfigurationFile.ini
+
 ## 5.4.0 (2018-01-03)
 
 - Add `install` custom resource that installs specified version of SQL Server
