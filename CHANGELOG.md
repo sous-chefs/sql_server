@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the sql_server cookbook.
 
+## 5.5.0 (2018-02-10)
+
+- Add property to make .Net 3.5 install optional
+
 ## 5.4.1 (2018-01-10)
 
 - Fix .kitchen.yml file for chef 12.7 testing
