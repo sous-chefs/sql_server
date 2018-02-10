@@ -32,7 +32,7 @@ property :as_sysadmins, [Array, String], default: ['Administrator']
 property :sql_account, String, default: 'NT AUTHORITY\NETWORK SERVICE'
 property :sql_account_pwd, String
 property :browser_startup, String, equal_to: ['Automatic', 'Manual', 'Disabled', 'Automatic (Delayed Start)'], default: 'Disabled'
-property :version, String, default: '2012'
+property :version, [Integer, String], default: '2012'
 property :source_url, String
 property :package_name, String
 property :package_checksum, String
@@ -56,6 +56,7 @@ property :filestream_share_name, String, default: 'MSSQLSERVER'
 property :sql_collation, String
 property :dreplay_ctlr_admins, [Array, String], default: ['Administrator']
 property :dreplay_client_name, String
+property :netfx35_install, [true, false], default: true
 property :netfx35_source, String
 property :polybase_port_range, String, default: '16450-16460'
 property :is_master_port, String, default: '8391'
@@ -72,10 +73,12 @@ action :install do
     ::Chef::Application.fatal!('You cannot have set the security mode to "Mixed Mode Authenication" without specifying the sa_password property')
   end
 
-  windows_feature ['NET-Framework-Features', 'NET-Framework-Core'] do
-    action :install
-    source new_resource.netfx35_source if new_resource.netfx35_source
-    install_method :windows_feature_powershell
+  if new_resource.netfx35_install
+    windows_feature ['NET-Framework-Features', 'NET-Framework-Core'] do
+      action :install
+      source new_resource.netfx35_source if new_resource.netfx35_source
+      install_method :windows_feature_powershell
+    end
   end
 
   config_file_path = ::File.join(Chef::Config[:file_cache_path], 'ConfigurationFile.ini')

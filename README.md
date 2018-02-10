@@ -131,6 +131,7 @@ NOTE: Install of SQL Server 2016 and SQL Server 2017 is not supported on Server 
 - `filestream_level` - Level to enable the filestream feature, Valid values are 0, 1, 2 or 3. Default is 0
 - `filestream_share_name` - Share name for the filestream feature. Default is `MSSQLSERVER`
 - `sql_collation` - SQL Collation type for the instance
+- `netfx35_install` - If the .Net 3.5 Windows Feature is installed. This is required to successfully install SQL 2012 and 2014. Default is true.
 - `netfx35_source` - Source location for the .Net 3.5 Windows Features install. Only required for offline installs
 
 Distributed Replay
