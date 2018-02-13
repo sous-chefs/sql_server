@@ -236,6 +236,7 @@ end
 The following attributes are used by both client and server recipes.
 
 - `node['sql_server']['accept_eula']` - indicate that you accept the terms of the end user license, default is 'false'
+- `node['sql_server']['accept_r_eula']` - indicate that you accept the terms of the end user license for R support, default is 'false'
 - `node['sql_server']['product_key']` - Specifies the product key for the edition of SQL Server, default is `nil` (not needed for SQL Server Express installs)
 
 ### client
@@ -248,14 +249,39 @@ This file also contains download url, checksum and package name for all client i
 - `node['sql_server']['instance_name']` - name of the default instance, default is `SQLEXPRESS`
 - `node['sql_server']['instance_dir']` - root directory of the default instance, default is `C:\Program Files\Microsoft SQL Server`
 - `node['sql_server']['shared_wow_dir']` - root directory of the shared WOW directory, default is `C:\Program Files (x86)\Microsoft SQL Server`
-- `node['sql_server']['agent_account']` - Agent account name, default is `NT AUTHORITY\NETWORK SERVICE`
 - `node['sql_server']['agent_startup']` - Agent service startup mode, default is `Disabled`
+- `node['sql_server']['agent_account']` - Agent account name, default is `NT AUTHORITY\NETWORK SERVICE`
+- `node['sql_server']['agent_account_password']` - Agent account password, default is `nil`
+- `node['sql_server']['iss_startup']` - Startup type for Integration Services, default is `Automatic`
+- `node['sql_server']['iss_account']` - Integration Services account, default is `NT AUTHORITY\NetworkService`
+- `node['sql_server']['iss_account_password']` - Integration Services account, default is `nil`
 - `node['sql_server']['rs_mode']` - Reporting Services install mode, default is `FilesOnlyMode`
 - `node['sql_server']['rs_account']` - Reporting Services account name, default is `NT AUTHORITY\NETWORK SERVICE`
 - `node['sql_server']['rs_startup']` - Reporting Services startup mode, default is `Automatic`
 - `node['sql_server']['browser_startup']` - Browser Service startup mode, default is `Disabled`
 - `node['sql_server']['sysadmins']` - Windows accounts that are SQL administrators, default is `Administrator`
 - `node['sql_server']['sql_account']` - SQL service account name, default is `NT AUTHORITY\NETWORK SERVICE`
+- `node['sql_server']['sql_account_password']` - SQL service account password, default is `nil`
+
+- `node['sql_server']['sql_inst_init']` - Enables instant file initialization for SQL Server service account, default is nil
+- `node['sql_server']['update_enabled']` - Specify whether SQL Server Setup should discover and include product updates., default is true
+- `node['sql_server']['filestream_level']` - Level to enable FILESTREAM feature at (0, 1, 2 or 3), default is 0
+- `node['sql_server']['filestream_share_name']` - Name of Windows share to be created for FILESTREAM File I/O, default is 'MSSQLSERVER'
+- `node['sql_server']['server']['installer_timeout']` - Timeout to wait for installer to finish, default is 1500
+- `node['sql_server']['privacy_statment']` - Specifies that SQL Server Setup should not display the privacy statement when ran from the command line, default is nil
+- `node['sql_server']['update_source']` - Specify the location where SQL Server setup will obtain product updates, default is nil
+- `node['sql_server']['cm_port']` - CM brick TCP communication port, default is nil
+- `node['sql_server']['cm_network']` - How matrix will use private networks, default is nil
+- `node['sql_server']['cm_encryption']` - How inter brick communication will be protected, default is nil
+- `node['sql_server']['mcm_port']` - TCP port used by the CM brick, default is nil
+- `node['sql_server']['temp_db_count']` - Specifies the number of tempdb data files to be added by setup. This value can be increased up to the number of cores, default is nil
+- `node['sql_server']['temp_db_size']` - Introduced in SQL Server 2016. Specifies the initial size of each tempdb data file, default is nil
+- `node['sql_server']['temp_db_growth']` - Specifies the file growth increment of each tempdb data file in MB. A value of 0 indicates that automatic growth is off and no additional space is allowed. Setup allows the size up to 1024, default is nil
+- `node['sql_server']['temp_db_log_size']` - Specifies the initial size of the tempdb log file in MB. Setup allows the size up to 1024, default is nil
+- `node['sql_server']['temp_db_log_growth']` - Introduced in SQL Server 2016. Specifies the initial size of each tempdb log file, default is nil
+- `node['sql_server']['ft_account']` - Specifies the account for Full-Text filter launcher service, default is nil
+- `node['sql_server']['ft_account_password']` - Specifies the password for Full-Text filter launcher service, default is nil
+
 
 This file also contains download url, checksum and package name for the server installation package.
 
