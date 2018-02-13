@@ -10,6 +10,11 @@
 
 IACCEPTSQLSERVERLICENSETERMS="<%= node['sql_server']['accept_eula'] ? "True" : "False" %>"
 
+<% if node['sql_server']['accept_r_eula'] %>
+; Required to acknowledge acceptance of the license terms.
+IACCEPTROPENLICENSETERMS="<%= node['sql_server']['accept_r_eula'] ? "True" : "False" %>"
+<% end %>
+
 <% unless (node['sql_server']['product_key'].nil? || node['sql_server']['product_key'].empty?)  -%>
 ; Product Key
 
@@ -135,6 +140,10 @@ INSTANCENAME="<%= node['sql_server']['instance_name'] %>"
 ; Agent account name
 
 AGTSVCACCOUNT="<%= node['sql_server']['agent_account'] %>"
+<% if node['sql_server']['agent_account_password'] %>
+AGTSVCPASSWORD="<%= node['sql_server']['agent_account_password'] %>"
+<% end %>
+
 
 ; Auto-start service after installation.
 
@@ -142,11 +151,16 @@ AGTSVCSTARTUPTYPE="<%= node['sql_server']['agent_startup'] %>"
 
 ; Startup type for Integration Services.
 
-ISSVCSTARTUPTYPE="Automatic"
+ISSVCSTARTUPTYPE="<%= node['sql_server']['iss_startup'] || 'Automatic' %>"
 
 ; Account for Integration Services: Domain\User or system account.
 
-ISSVCACCOUNT="NT AUTHORITY\NetworkService"
+ISSVCACCOUNT="<%= node['sql_server']['iss_account'] || 'NT AUTHORITY\NetworkService' %>"
+
+<% if node['sql_server']['iss_account_password'] %>
+ISSVCPASSWORD="<%= node['sql_server']['iss_account_password'] %>"
+<% end %>
+
 
 ; Controls the service startup type setting after the service has been created.
 
@@ -207,9 +221,17 @@ SQLCOLLATION="<%= node['sql_server']['sql_collation'] || 'SQL_Latin1_General_CP1
 ; Account for SQL Server service: Domain\User or system account.
 
 SQLSVCACCOUNT="<%= node['sql_server']['sql_account'] %>"
+<% if node['sql_server']['sql_account_password'] %>
+SQLSVCPASSWORD="<%= node['sql_server']['sql_account_password'] %>"
+<% end %>
+
+<% if node['sql_server']['sql_inst_init'] %>
+SQLSVCINSTANTFILEINIT="<%= node['sql_server']['sql_inst_init'] %>"
+<% end %>
 
 ; Windows account(s) to provision as SQL Server system administrators.
 
+<%# Node Attribut: default['sql_server']['sysadmins'] %>
 SQLSYSADMINACCOUNTS=<%= @sqlSysAdminList %>
 
 ; Provision current user as a Database Engine system administrator for SQL Server 2008 R2 Express.
@@ -245,3 +267,77 @@ RSSVCSTARTUPTYPE="<%= node['sql_server']['rs_startup'] %>"
 ; Default value: "FilesOnly"
 
 RSINSTALLMODE="<%= node['sql_server']['rs_mode'] %>"
+
+<% if node['sql_server']['privacy_statment'] %>
+SUPPRESSPRIVACYSTATEMENTNOTICE="<%= node['sql_server']['privacy_statment'] %>"
+<% end %>
+
+<% if node['sql_server']['ms_update'] %>
+USEMICROSOFTUPDATE="<%= node['sql_server']['ms_update'] %>"
+<% end %>
+
+<% if node['sql_server']['update_source'] %>
+; Specify the location where SQL Server setup will obtain product updates.
+UpdateSource="<%= node['sql_server']['update_source'] %>"
+<% end %>
+
+<% if node['sql_server']['cm_port'] %>
+; CM brick TCP communication port 
+COMMFABRICPORT="<%= node['sql_server']['cm_port'] %>"
+<% end %>
+
+<% if node['sql_server']['cm_network'] %>
+; How matrix will use private networks
+COMMFABRICNETWORKLEVEL="<%= node['sql_server']['cm_network'] %>"
+<% end %>
+
+<% if node['sql_server']['cm_encryption'] %>
+; How inter brick communication will be protected
+COMMFABRICENCRYPTION="<%= node['sql_server']['cm_encryption'] %>"
+<% end %>
+
+; TCP port used by the CM brick
+<% if node['sql_server']['mcm_port'] %>
+MATRIXCMBRICKCOMMPORT="<%= node['sql_server']['mcm_port'] %>"
+<% end %>
+
+<% if node['sql_server']['temp_db_count'] %>
+; Specifies the number of tempdb data files to be added by setup. This value can be increased up to the number of cores.
+SQLTEMPDBFILECOUNT="<%= node['sql_server']['temp_db_count'] %>"
+<% end %>
+
+<% if node['sql_server']['temp_db_size'] %>
+; Introduced in SQL Server 2016. Specifies the initial size of each tempdb data file.
+SQLTEMPDBFILESIZE="<%= node['sql_server']['temp_db_size'] %>"
+<% end %>
+
+<% if node['sql_server']['temp_db_growth'] %>
+; Specifies the file growth increment of each tempdb data file in MB. A value of 0 indicates that automatic growth is off and no additional space is allowed. Setup allows the size up to 1024.
+SQLTEMPDBFILEGROWTH="<%= node['sql_server']['temp_db_growth'] %>"
+<% end %>
+
+<% if node['sql_server']['temp_db_log_size'] %>
+; Specifies the initial size of the tempdb log file in MB. Setup allows the size up to 1024. 
+SQLTEMPDBLOGFILESIZE="<%= node['sql_server']['temp_db_log_size'] %>"
+<% end %>
+
+<% if node['sql_server']['temp_db_log_growth'] %>
+; Introduced in SQL Server 2016. Specifies the initial size of each tempdb log file.
+SQLTEMPDBLOGFILEGROWTH="<%= node['sql_server']['temp_db_log_growth'] %>"
+<% end %>
+
+<% if node['sql_server']['temp_db_log_growth'] %>
+; Introduced in SQL Server 2016. Specifies the initial size of each tempdb log file.
+SQLTEMPDBLOGFILEGROWTH="<%= node['sql_server']['temp_db_log_growth'] %>"
+<% end %>
+
+<% if node['sql_server']['ft_account'] %>
+; Specifies the account for Full-Text filter launcher service
+FTSVCACCOUNT="<%= node['sql_server']['ft_account'] %>"
+<% end %>
+
+<% if node['sql_server']['ft_account_password'] %>
+; Specifies the password for Full-Text filter launcher service
+FTSVCPASSWORD="<%= node['sql_server']['ft_account_password'] %>"
+<% end %>
+
