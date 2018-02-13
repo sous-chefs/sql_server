@@ -226,6 +226,7 @@ SQLSVCPASSWORD="<%= node['sql_server']['sql_account_password'] %>"
 <% end %>
 
 <% if node['sql_server']['sql_inst_init'] %>
+; Enables instant file initialization for SQL Server service account.
 SQLSVCINSTANTFILEINIT="<%= node['sql_server']['sql_inst_init'] %>"
 <% end %>
 
@@ -269,6 +270,7 @@ RSSVCSTARTUPTYPE="<%= node['sql_server']['rs_startup'] %>"
 RSINSTALLMODE="<%= node['sql_server']['rs_mode'] %>"
 
 <% if node['sql_server']['privacy_statment'] %>
+; Specifies that SQL Server Setup should not display the privacy statement when ran from the command line.
 SUPPRESSPRIVACYSTATEMENTNOTICE="<%= node['sql_server']['privacy_statment'] %>"
 <% end %>
 
@@ -282,7 +284,7 @@ UpdateSource="<%= node['sql_server']['update_source'] %>"
 <% end %>
 
 <% if node['sql_server']['cm_port'] %>
-; CM brick TCP communication port 
+; CM brick TCP communication port
 COMMFABRICPORT="<%= node['sql_server']['cm_port'] %>"
 <% end %>
 
@@ -296,8 +298,8 @@ COMMFABRICNETWORKLEVEL="<%= node['sql_server']['cm_network'] %>"
 COMMFABRICENCRYPTION="<%= node['sql_server']['cm_encryption'] %>"
 <% end %>
 
-; TCP port used by the CM brick
 <% if node['sql_server']['mcm_port'] %>
+; TCP port used by the CM brick
 MATRIXCMBRICKCOMMPORT="<%= node['sql_server']['mcm_port'] %>"
 <% end %>
 
@@ -319,11 +321,6 @@ SQLTEMPDBFILEGROWTH="<%= node['sql_server']['temp_db_growth'] %>"
 <% if node['sql_server']['temp_db_log_size'] %>
 ; Specifies the initial size of the tempdb log file in MB. Setup allows the size up to 1024. 
 SQLTEMPDBLOGFILESIZE="<%= node['sql_server']['temp_db_log_size'] %>"
-<% end %>
-
-<% if node['sql_server']['temp_db_log_growth'] %>
-; Introduced in SQL Server 2016. Specifies the initial size of each tempdb log file.
-SQLTEMPDBLOGFILEGROWTH="<%= node['sql_server']['temp_db_log_growth'] %>"
 <% end %>
 
 <% if node['sql_server']['temp_db_log_growth'] %>
