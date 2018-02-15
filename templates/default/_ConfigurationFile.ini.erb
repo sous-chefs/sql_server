@@ -10,6 +10,9 @@
 
 IACCEPTSQLSERVERLICENSETERMS="<%= @accept_eula ? "True" : "False" %>"
 
+; Specifies that SQL Server Setup should not display the privacy statement when ran from the command line.
+SUPPRESSPRIVACYSTATEMENTNOTICE="<%= @suppress_privacy_statement ? 'True' : 'False' %>"
+
 <% unless (@product_key.nil? || @product_key.empty?)  -%>
 ; Product Key
 
@@ -26,6 +29,7 @@ SAPWD="<%= @sa_password %>"
 ; Specify whether SQL Server Setup should discover and include product updates. The valid values are True and False or 1 and 0. By default SQL Server Setup will include updates that are found.
 
 UpdateEnabled="<%= @update_enabled ? "True" : "False" %>"
+USEMICROSOFTUPDATE="<%= @use_microsoft_update ? "True" : "False" %>"
 <% end %>
 
 ; Specify the location where SQL Server Setup will obtain product updates. The valid values are "MU" to search Microsoft Update, a valid folder path, a relative path such as .\MyUpdates or a UNC share. By default SQL Server Setup will search Microsoft Update or a Windows Update service through the Window Server Update Services.
@@ -145,6 +149,9 @@ INSTANCENAME="<%= @instance_name %>"
 ; Agent account name
 
 AGTSVCACCOUNT="<%= @agent_account %>"
+<% unless @agent_account_pwd.nil? -%>
+AGTSVCPASSWORD="<%= @agent_acount_pwd %>"
+<% end -%>
 
 ; Auto-start service after installation.
 
@@ -153,11 +160,14 @@ AGTSVCSTARTUPTYPE="<%= @agent_startup %>"
 <% if @feature_list.include?('IS')%>
 ; Startup type for Integration Services.
 
-ISSVCSTARTUPTYPE="Automatic"
+ISSVCSTARTUPTYPE="<%= @is_startup %>"
 
 ; Account for Integration Services: Domain\User or system account.
 
-ISSVCACCOUNT="NT AUTHORITY\NetworkService"
+ISSVCACCOUNT="<%= @is_account %>"
+<% unless @is_account_pwd.nil? -%>
+ISSVCPASSWORD="<%= @is_account_pwd %>"
+<% end -%>
 <% end %>
 
 ; A port number used to connect to the SharePoint Central Administration web application.
@@ -167,6 +177,10 @@ ISSVCACCOUNT="NT AUTHORITY\NetworkService"
 ; Startup type for the SQL Server service.
 
 SQLSVCSTARTUPTYPE="Automatic"
+
+<% unless @sql_instant_file_int -%>
+SQLTEMPDBFILEGROWTH="True"
+<% end -%>
 
 ; Level to enable FILESTREAM feature at (0, 1, 2 or 3).
 
@@ -187,6 +201,9 @@ SQLCOLLATION="<%= @sql_collation || 'SQL_Latin1_General_CP1_CI_AS' %>"
 ; Account for SQL Server service: Domain\User or system account.
 
 SQLSVCACCOUNT="<%= @sql_account %>"
+<% unless @sql_account_pwd.nil? -%>
+SQLSVCPASSWORD="<%= @sql_account_pwd %>"
+<% end -%>
 
 ; Windows account(s) to provision as SQL Server system administrators.
 
@@ -231,7 +248,10 @@ RSINSTALLMODE="<%= @rs_mode %>"
 <% if @feature_list.include?('FULLTEXT')%>
 ; Add description of input arguemtn FTSVCACCOUNT
 
-FTSVCACCOUNT="NT Service\MSSQLFDLauncher"
+FTSVCACCOUNT="<%= @ft_account %>"
+<% unless @ft_account_pwd.nil? -%>
+FTSVCPASSWORD="<%= @ft_account_pwd %>"
+<% end -%>
 <% end %>
 
 <% if @feature_list.include?('RS_SHP') %>
@@ -413,3 +433,57 @@ ISWORKERSVCACCOUNT="NT Service\SSISScaleOutWorker140"
 ISWORKERSVCMASTER=<%= @is_worker_master_url %>
 <% end %>
 <% end %>
+
+<% unless @cf_port.nil? -%>
+; CM brick TCP communication port
+
+COMMFABRICPORT="<%= @cf_port %>"
+<% end -%>
+
+<% unless @cf_network_level.nil? -%>
+; How matrix will use private networks
+
+COMMFABRICNETWORKLEVEL="<%= @cf_network_level %>"
+<% end -%>
+
+<% unless @cf_encryption.nil? -%>
+; How inter brick communication will be protected
+
+COMMFABRICENCRYPTION="<%= @cf_encryption %>"
+<% end -%>
+
+<% unless @cm_brick.nil? -%>
+; TCP port used by the CM brick
+
+MATRIXCMBRICKCOMMPORT="<%= @cm_brick %>"
+<% end -%>
+
+<% unless @tmp_db_log_size.nil? -%>
+; Specifies the initial size of the Database Engine TempDB log file in MB.
+
+SQLTEMPDBLOGFILESIZE="<%= @tmp_db_log_size %>"
+<% end -%>
+
+<% unless @tmp_db_log_growth.nil? -%>
+; Specifies the automatic growth increment of the Database Engine TempDB log file in MB.
+
+SQLTEMPDBLOGFILEGROWTH="<%= @tmp_db_log_growth %>"
+<% end -%>
+
+<% unless @tmp_db_count.nil? -%>
+; The number of Database Engine TempDB files.
+
+SQLTEMPDBFILECOUNT="<%= @tmp_db_count %>"
+<% end -%>
+
+<% unless @tmp_db_size.nil? -%>
+; Specifies the initial size of a Database Engine TempDB data file in MB.
+
+SQLTEMPDBFILESIZE="<%= @tmp_db_size %>"
+<% end -%>
+
+<% unless @tmp_db_growth.nil? -%>
+; Specifies the automatic growth increment of each Database Engine TempDB data file in MB.
+
+SQLTEMPDBFILEGROWTH="<%= @tmp_db_growth %>"
+<% end -%>

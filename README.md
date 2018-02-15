@@ -133,6 +133,23 @@ NOTE: Install of SQL Server 2016 and SQL Server 2017 is not supported on Server 
 - `sql_collation` - SQL Collation type for the instance
 - `netfx35_install` - If the .Net 3.5 Windows Feature is installed. This is required to successfully install SQL 2012 and 2014. Default is true.
 - `netfx35_source` - Source location for the .Net 3.5 Windows Features install. Only required for offline installs
+- `ft_account` - Specifies the account for Full-Text filter launcher service. Default is `NT Service\MSSQLFDLauncher`
+- `ft_account_pwd` - Specifies the password for the Full-Text filter launcher service.
+- `sql_instant_file_int` - Enables instant file initialization for SQL Server service account. Default is `false`
+- `is_account` - Specifies the account for Integration Services. Default is `NT AUTHORITY\NetworkService`
+- `is_account_pwd` - Specifies the Integration Services password.
+- `is_startup` - Specifies the startup mode for the Integration Services service. Default is `Automatic`
+- `suppress_privacy_statement` - Specifies that SQL Server Setup should not display the privacy statement when ran from the command line. Default is `true`
+- `cf_port` - CM brick TCP communication port
+- `cf_network_level` - How matrix will use private networks
+- `cf_encryption` - How inter brick communication will be protected
+- `cm_brick` - TCP port used by the CM brick
+- `tmp_db_log_size` - Specifies the initial size of the Database Engine TempDB log file in MB.
+- `tmp_db_log_growth` - Specifies the automatic growth increment of the Database Engine TempDB log file in MB.
+- `tmp_db_count` - The number of Database Engine TempDB files.
+- `tmp_db_size` - Specifies the initial size of a Database Engine TempDB data file in MB
+- `tmp_db_growth` - Specifies the automatic growth increment of each Database Engine TempDB data file in MB.
+
 
 Distributed Replay
 - `dreplay_ctlr_admins` - List of admins for the Distributed Replay Controller. Default is `Administrator`. The `DREPLAY_CTLR` feature needs to be included in the feature Array for this property to work.
