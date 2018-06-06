@@ -389,6 +389,18 @@ SQL Server does not support remote installation over WinRM. For example, the ins
 
 [Learn more](https://learn.chef.io/modules/create-a-web-app-cookbook/windows/virtualbox) in this Learn Chef tutorial.
 
+### Installing with test kitchen
+
+Recent versions of test kitchen can bypass WinRM limitations with elevated mode. 
+
+```yaml
+transport:
+  name: winrm
+  elevated: true
+  elevated_username: System
+  elevated_password: null
+```
+
 ## License & Authors
 
 **Author:** Cookbook Engineering Team ([cookbooks@chef.io](mailto:cookbooks@chef.io))
