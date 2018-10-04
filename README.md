@@ -167,7 +167,7 @@ sql_server_install 'Install SQL 2012 Express'
 Install SQL 2014 Express
 
 ```ruby
-sql_server_install `Install SQL 2014 Express` do
+sql_server_install 'Install SQL 2014 Express' do
   version '2014'
 end
 ```
@@ -175,7 +175,7 @@ end
 Install SQL 2014 Evaluation from a local source with default instance name, Integrated Services, Reporting Services, and the SQL Management Tools.
 
 ```ruby
-sql_server_install `Install SQL Server 2014 Evaluation` do
+sql_server_install 'Install SQL Server 2014 Evaluation' do
   source_url 'C:\\Sources\\SQL 2014 Eval\\setup.exe'
   version '2014'
   package_checksum '0FE903...420E8F'
@@ -209,13 +209,13 @@ end
 Configure a SQL 2012 Express install with all the defaults
 
 ```ruby
-sql_server_configure `SQLEXPRESS`
+sql_server_configure 'SQLEXPRESS'
 ```
 
 Configure a SQL 2014 Express install
 
 ```ruby
-sql_server_configure `SQLEXPRESS` do
+sql_server_configure 'SQLEXPRESS' do
   version '2014'
 end
 ```
