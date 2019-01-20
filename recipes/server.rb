@@ -54,7 +54,7 @@ package_checksum = node['sql_server']['server']['checksum'] ||
 # see http://technet.microsoft.com/library/ms144259
 passwords_options = {
   AGTSVCPASSWORD: node['sql_server']['agent_account_pwd'],
-  RSSVCPASSWORD:  node['sql_server']['rs_account_pwd'],
+  RSSVCPASSWORD: node['sql_server']['rs_account_pwd'],
   SQLSVCPASSWORD: node['sql_server']['sql_account_pwd'],
 }.map do |option, attribute|
   next unless attribute

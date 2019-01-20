@@ -1,4 +1,3 @@
-
 #
 # Cookbook:: sql_server
 # Resource:: install
@@ -152,7 +151,7 @@ action :install do
   # see http://technet.microsoft.com/library/ms144259
   passwords_options = {
     AGTSVCPASSWORD: new_resource.agent_account_pwd,
-    RSSVCPASSWORD:  new_resource.rs_account_pwd,
+    RSSVCPASSWORD: new_resource.rs_account_pwd,
     SQLSVCPASSWORD: new_resource.sql_account_pwd,
   }.map do |option, attribute|
     next unless attribute

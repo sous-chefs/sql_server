@@ -1,4 +1,3 @@
-
 #
 # Cookbook:: sql_server
 # Resource:: configure
