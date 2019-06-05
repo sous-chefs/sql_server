@@ -146,6 +146,7 @@ Reporting Services
 
 Analysis Services
 - `as_sysadmins` - Analysis Services Systems Administrator list. Default is `Administrator`
+- `as_svc_account` - Service Account used by Analysis Services. Default is `NT Service\MSSQLServerOLAPService`
 
 PolyBase Query Services
 - `polybase_port_range` - Port Range for the PolyBase Query Service. Default is `16450-16460`.

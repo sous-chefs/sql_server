@@ -62,6 +62,7 @@ property :is_master_port, String, default: '8391'
 property :is_master_ssl_cert, String
 property :is_master_cert_thumbprint, String
 property :is_worker_master_url, String
+property :as_svc_account, String, default: 'NT Service\MSSQLServerOLAPService'
 
 action :install do
   if new_resource.feature.include?('DREPLAY_CLT') && new_resource.dreplay_client_name.nil?
@@ -130,7 +131,8 @@ action :install do
       is_master_port: new_resource.is_master_port,
       is_master_ssl_cert: new_resource.is_master_ssl_cert,
       is_master_cert_thumbprint: new_resource.is_master_cert_thumbprint,
-      is_worker_master_url: new_resource.is_worker_master_url
+      is_worker_master_url: new_resource.is_worker_master_url,
+      as_svc_account: new_resource.as_svc_account
     )
     sensitive true
   end
