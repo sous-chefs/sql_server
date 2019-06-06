@@ -13,6 +13,7 @@ provisioner:
     - 35 # 35 is the exit code signaling that the node is rebooting
   max_retries: 2
   wait_for_retry: 90
+  chef_license: accept-no-persist
 
 platforms:
   - name: windows-2012R2
