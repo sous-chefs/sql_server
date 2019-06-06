@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of the sql_server cookbook.
 
+## 5.5.1 (2019-06-05)
+
+- Example resources should not have backticks but single quotes - [@gsreynolds](https://github.com/gsreynolds)
+- Added the ability to override ASSVCACCOUNT in the Configuration File - [@jcurcio](https://github.com/jcurcio)
+
 ## 5.5.0 (2018-02-10)
 
 - Add property to make .Net 3.5 install optional
