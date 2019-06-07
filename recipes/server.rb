@@ -56,6 +56,8 @@ passwords_options = {
   AGTSVCPASSWORD: node['sql_server']['agent_account_pwd'],
   RSSVCPASSWORD: node['sql_server']['rs_account_pwd'],
   SQLSVCPASSWORD: node['sql_server']['sql_account_pwd'],
+  ASSVCPASSWORD: node['sql_server']['as_account_pwd'],
+  ISSVCPASSWORD: node['sql_server']['is_account_pwd']
 }.map do |option, attribute|
   next unless attribute
   # Escape password double quotes and backslashes

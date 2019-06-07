@@ -157,7 +157,7 @@ ISSVCSTARTUPTYPE="Automatic"
 
 ; Account for Integration Services: Domain\User or system account.
 
-ISSVCACCOUNT="NT AUTHORITY\NetworkService"
+ISSVCACCOUNT="<%= @is_account %>"
 <% end %>
 
 ; A port number used to connect to the SharePoint Central Administration web application.
@@ -243,7 +243,7 @@ RSSHPINSTALLMODE="SharePointFilesOnlyMode"
 <% if @feature_list.include?('AS')%>
 ; The name of the account that the Analysis Services service runs under.
 
-ASSVCACCOUNT=<%= @as_svc_account %>
+ASSVCACCOUNT=<%= @as_account %>
 
 ; Controls the service startup type setting after the service has been created.
 
@@ -255,23 +255,23 @@ ASCOLLATION="Latin1_General_CI_AS"
 
 ; The location for the Analysis Services data files.
 
-ASDATADIR="Data"
+ASDATADIR="<%= @as_data_dir %>"
 
 ; The location for the Analysis Services log files.
 
-ASLOGDIR="Log"
+ASLOGDIR="<%= @as_log_dir %>"
 
 ; The location for the Analysis Services backup files.
 
-ASBACKUPDIR="Backup"
+ASBACKUPDIR="<%= @as_backup_dir %>"
 
 ; The location for the Analysis Services temporary files.
 
-ASTEMPDIR="Temp"
+ASTEMPDIR="<%= @as_temp_dir %>"
 
 ; The location for the Analysis Services configuration files.
 
-ASCONFIGDIR="Config"
+ASCONFIGDIR="<%= @as_config_dir %>"
 
 ; Specifies whether or not the MSOLAP provider is allowed to run in process.
 

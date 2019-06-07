@@ -62,7 +62,15 @@ property :is_master_port, String, default: '8391'
 property :is_master_ssl_cert, String
 property :is_master_cert_thumbprint, String
 property :is_worker_master_url, String
-property :as_svc_account, String, default: 'NT Service\MSSQLServerOLAPService'
+property :as_account, String, default: 'NT Service\MSSQLServerOLAPService'
+property :as_account_pwd, String
+property :is_account, String, default: 'NT AUTHORITY\NetworkService'
+property :is_account_pwd, String
+property :as_data_dir, String, default: "Data"
+property :as_log_dir, String, default: "Log"
+property :as_backup_dir, String, default: "Backup"
+property :as_temp_dir, String, default: "Temp"
+property :as_config_dir, String, default: "Config"
 
 action :install do
   if new_resource.feature.include?('DREPLAY_CLT') && new_resource.dreplay_client_name.nil?
@@ -132,7 +140,13 @@ action :install do
       is_master_ssl_cert: new_resource.is_master_ssl_cert,
       is_master_cert_thumbprint: new_resource.is_master_cert_thumbprint,
       is_worker_master_url: new_resource.is_worker_master_url,
-      as_svc_account: new_resource.as_svc_account
+      as_account: new_resource.as_account,
+      is_account: new_resource.is_account,
+      as_data_dir: new_resource.as_data_dir,
+      as_log_dir: new_resource.as_log_dir,
+      as_backup_dir: new_resource.as_backup_dir,
+      as_temp_dir: new_resource.as_temp_dir,
+      as_config_dir: new_resource.as_config_dir
     )
     sensitive true
   end
@@ -155,6 +169,8 @@ action :install do
     AGTSVCPASSWORD: new_resource.agent_account_pwd,
     RSSVCPASSWORD: new_resource.rs_account_pwd,
     SQLSVCPASSWORD: new_resource.sql_account_pwd,
+    ASSVCPASSWORD: new_resource.as_account_pwd,
+    ISSVCPASSWORD: new_resource.is_account_pwd
   }.map do |option, attribute|
     next unless attribute
     # Escape password double quotes and backslashes

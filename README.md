@@ -146,7 +146,14 @@ Reporting Services
 
 Analysis Services
 - `as_sysadmins` - Analysis Services Systems Administrator list. Default is `Administrator`
-- `as_svc_account` - Service Account used by Analysis Services. Default is `NT Service\MSSQLServerOLAPService`
+- `as_account` - Service Account used by Analysis Services. Default is `NT Service\MSSQLServerOLAPService`
+- `as_account_pwd` - Service Account password for Analysis Services. Only needed if `as_account` is not default.
+- `as_data_dir` - Directory for Analysis Services data files. 
+- `as_log_dir` - Directory for Analysis Services log files.
+- `as_backup_dir` - Directory for Analysis Services backup files.
+- `as_temp_dir` - Directory for Analysis Services temporary files.
+- `as_config_dir` - Directory for Analysis Services configuration files.
+
 
 PolyBase Query Services
 - `polybase_port_range` - Port Range for the PolyBase Query Service. Default is `16450-16460`.
@@ -156,6 +163,8 @@ Integrated Services
 - `is_master_ssl_cert` - The CNs in the certificate used to protect communications between the integration services scale out worker and scale out master.
 - `is_master_cert_thumbprint` - The certificate thumbprint for the scale out master ssl certificate.
 - `is_worker_master_url` - The url of the scale out master when installing a scale out worker.
+- `is_account` - Service Account used by Integrated Services. Default is `NT AUTHORITY\NetworkService`
+- `is_account_pwd` - Service Account password for Analysis Services. Only needed if `is_account` is not default.
 
 #### Examples
 
