@@ -148,11 +148,11 @@ Analysis Services
 - `as_sysadmins` - Analysis Services Systems Administrator list. Default is `Administrator`
 - `as_account` - Service Account used by Analysis Services. Default is `NT Service\MSSQLServerOLAPService`
 - `as_account_pwd` - Service Account password for Analysis Services. Only needed if `as_account` is not default.
-- `as_data_dir` - Directory for Analysis Services data files. 
-- `as_log_dir` - Directory for Analysis Services log files.
-- `as_backup_dir` - Directory for Analysis Services backup files.
-- `as_temp_dir` - Directory for Analysis Services temporary files.
-- `as_config_dir` - Directory for Analysis Services configuration files.
+- `as_data_dir` - Directory for Analysis Services data files. Default is `Data`
+- `as_log_dir` - Directory for Analysis Services log files. Default is `Log`
+- `as_backup_dir` - Directory for Analysis Services backup files. Default is `Backup`
+- `as_temp_dir` - Directory for Analysis Services temporary files. Default is `Temp`
+- `as_config_dir` - Directory for Analysis Services configuration files. Default is `Config`
 
 
 PolyBase Query Services
