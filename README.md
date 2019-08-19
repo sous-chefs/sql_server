@@ -13,7 +13,6 @@ Provides resources for the installation and configuration of Microsoft SQL Serve
 ### Supported Server Verions
 
 - Microsoft SQL Server 2012
-- Microsoft SQL Server 2014
 - Microsoft SQL Server 2016
 - Microsoft SQL Server 2017
 
@@ -63,12 +62,6 @@ Provides resources for the installation and configuration of Microsoft SQL Serve
          - `DREPLAY_CTLR` = Distributed replay controller
          - `DREPLAY_CLT` = Distributed replay client
          - `SNAC_SDK` = SQL client connectivity SDK
-    - [SQL 2014 Available Features list](https://technet.microsoft.com/library/cc645993(SQL.120).aspx)
-       - Instance Features
-          SAME AS 2012
-       - Shared Features
-         - REMOVED for standalone install
-           - `BIDS` = SQL Server data tools
     - [SQL 2016 Available Features list](https://technet.microsoft.com/library/cc645993(SQL.130).aspx)
        - Instance Features
           - `ADVANCEDANALYTICS` = R Services (In-Database)
@@ -94,7 +87,7 @@ Provides resources for the installation and configuration of Microsoft SQL Serve
              - `IS_WORKER` - Scale Out Worker
 
 
-- `version` - Version of SQL to be installed. Valid otpions are `2012`, `2014`, `2016`, or `2017`. Default is `2012`
+- `version` - Version of SQL to be installed. Valid otpions are `2012`, `2016`, or `2017`. Default is `2012`
 - `source_url` - Source of the SQL setup.exe install file. Default is built from the helper libraries.
 - `package_name` - Package name for the SQL install. If you specify a version this property is not necessary. Default is built from the helper libraries.
 - `package_checksum` - Package checksum in SHA256 format for the setup.exe file. Default is built from the helper libraries.
@@ -126,7 +119,7 @@ Provides resources for the installation and configuration of Microsoft SQL Serve
 - `filestream_level` - Level to enable the filestream feature, Valid values are 0, 1, 2 or 3. Default is 0
 - `filestream_share_name` - Share name for the filestream feature. Default is `MSSQLSERVER`
 - `sql_collation` - SQL Collation type for the instance
-- `netfx35_install` - If the .Net 3.5 Windows Feature is installed. This is required to successfully install SQL 2012 and 2014. Default is true.
+- `netfx35_install` - If the .Net 3.5 Windows Feature is installed. This is required to successfully install SQL 2012. Default is true.
 - `netfx35_source` - Source location for the .Net 3.5 Windows Features install. Only required for offline installs
 
 Distributed Replay
@@ -160,20 +153,20 @@ Install SQL 2012 Express with all the defaults
 sql_server_install 'Install SQL 2012 Express'
 ```
 
-Install SQL 2014 Express
+Install SQL 2016 Express
 
 ```ruby
-sql_server_install 'Install SQL 2014 Express' do
-  version '2014'
+sql_server_install 'Install SQL 2016 Express' do
+  version '2016'
 end
 ```
 
-Install SQL 2014 Evaluation from a local source with default instance name, Integrated Services, Reporting Services, and the SQL Management Tools.
+Install SQL 2012 Evaluation from a local source with default instance name, Integrated Services, Reporting Services, and the SQL Management Tools.
 
 ```ruby
-sql_server_install 'Install SQL Server 2014 Evaluation' do
-  source_url 'C:\\Sources\\SQL 2014 Eval\\setup.exe'
-  version '2014'
+sql_server_install 'Install SQL Server 2012 Evaluation' do
+  source_url 'C:\\Sources\\SQL 2012 Eval\\setup.exe'
+  version '2012'
   package_checksum '0FE903...420E8F'
   accept_eula true
   instance_name 'MSSQLSERVER'
@@ -189,7 +182,7 @@ end
 
 #### Properties
 
-- `version` - SQL Version of the instance to be configured. Valid otpions are `2012`, `2014`, `2016`, or `2017`. Default is `2012`
+- `version` - SQL Version of the instance to be configured. Valid otpions are `2012`, `2016`, or `2017`. Default is `2012`
 - `tcp_enabled` - If TCP is enabled for the instance. Default is true
 - `sql_port` - Port SQL will listen on. Default is 1433
 - `tcp_dynamic_ports` - Sets the Dynamic port SQL will listen on. Default is an empty string
@@ -208,19 +201,19 @@ Configure a SQL 2012 Express install with all the defaults
 sql_server_configure 'SQLEXPRESS'
 ```
 
-Configure a SQL 2014 Express install
+Configure a SQL 2016 Express install
 
 ```ruby
 sql_server_configure 'SQLEXPRESS' do
-  version '2014'
+  version '2016'
 end
 ```
 
-Configure a SQL 2014 Evaluation install with a different port
+Configure a SQL 2012 Evaluation install with a different port
 
 ```ruby
 sql_server_configure 'MSSQLSERVER' do
-  version '2014'
+  version '2012'
   sql_port '1434'
 end
 ```
@@ -293,7 +286,7 @@ This recipe is included by the `sql_server::server` recipe, but can be included 
 
 ### server
 
-Installs SQL Server 2012 Express, SQL Server 2014 Express, or SQL Server 2016 Express.
+Installs SQL Server 2012 Express, or SQL Server 2016 Express.
 
 By default, the cookbook installs SQL Server 2012 Express. There are two options to install a different version.
 
@@ -305,7 +298,7 @@ NOTE: For this recipe to run you must set the following attributes in an environ
 
 NOTE: This recipe will request a reboot at the end of the Chef Client run if SQL Server was installed.. If you do not want to reboot after the installation, use the `reboot` resource to cancel the pending reboot.
 
-**Option 1:** From a role, environment, or wrapper cookbook, set `node['sql_server']['version']` to '2012' to install SQL Server 2012 Express, '2014' to install SQL Server 2014 Express, or '2016' to install SQL Server 2016 Express.
+**Option 1:** From a role, environment, or wrapper cookbook, set `node['sql_server']['version']` to '2012' to install SQL Server 2012 Express, or '2016' to install SQL Server 2016 Express.
 
 **Option 2:** From a role, environment, or wrapper cookbook, set these node attributes to specify the URL, checksum, and name of the package (as it appears in the Windows Registry).
 
