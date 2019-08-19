@@ -8,14 +8,10 @@ Provides resources for the installation and configuration of Microsoft SQL Serve
 
 ### Platforms
 
-- Windows Server 2008 R2 (SP2)
 - Windows Server 2012 (R1, R2)
-
-NOTE: Install of SQL Server 2016 and SQL Server 2017 is not supported on Server 2008 R2
 
 ### Supported Server Verions
 
-- Microsoft SQL Server 2008 R2
 - Microsoft SQL Server 2012
 - Microsoft SQL Server 2014
 - Microsoft SQL Server 2016
@@ -23,12 +19,11 @@ NOTE: Install of SQL Server 2016 and SQL Server 2017 is not supported on Server 
 
 ### Supported Client Versions
 
-- Microsoft SQL Server 2008 R2
 - Microsoft SQL Server 2012
 
 ### Chef
 
-- Chef 12.15+
+- Chef 13+
 
 ### Cookbooks
 
@@ -99,7 +94,7 @@ NOTE: Install of SQL Server 2016 and SQL Server 2017 is not supported on Server 
              - `IS_WORKER` - Scale Out Worker
 
 
-- `version` - Version of SQL to be installed. Valid otpions are `2008`, `2008R2`, `2012`, `2014`, `2016`, or `2017`. Default is `2012`
+- `version` - Version of SQL to be installed. Valid otpions are `2012`, `2014`, `2016`, or `2017`. Default is `2012`
 - `source_url` - Source of the SQL setup.exe install file. Default is built from the helper libraries.
 - `package_name` - Package name for the SQL install. If you specify a version this property is not necessary. Default is built from the helper libraries.
 - `package_checksum` - Package checksum in SHA256 format for the setup.exe file. Default is built from the helper libraries.
@@ -194,7 +189,7 @@ end
 
 #### Properties
 
-- `version` - SQL Version of the instance to be configured. Valid otpions are `2008`, `2008R2`, `2012`, `2014`, `2016`, or `2017`. Default is `2012`
+- `version` - SQL Version of the instance to be configured. Valid otpions are `2012`, `2014`, `2016`, or `2017`. Default is `2012`
 - `tcp_enabled` - If TCP is enabled for the instance. Default is true
 - `sql_port` - Port SQL will listen on. Default is 1433
 - `tcp_dynamic_ports` - Sets the Dynamic port SQL will listen on. Default is an empty string
@@ -281,15 +276,7 @@ Includes the `sql_server::client` recipe.
 
 ### client
 
-Installs required the SQL Server Native Client and all required dependencies. These include:
-
-- [Microsoft SQL Server 2008 R2 Native Client](http://www.microsoft.com/download/en/details.aspx?id=16978#SNAC)
-- [Microsoft SQL Server 2008 R2 Command Line Utilities (ie `sqlcmd`)](http://www.microsoft.com/download/en/details.aspx?id=16978#SQLCMD)
-- [Microsoft SQL Server System CLR Types](http://www.microsoft.com/download/en/details.aspx?id=16978#SQLSYSCLR)
-- [Microsoft SQL Server 2008 R2 Management Objects](http://www.microsoft.com/download/en/details.aspx?id=16978#SMO)
-- [Windows PowerShell Extensions for SQL Server 2008 R2](http://www.microsoft.com/download/en/details.aspx?id=16978#PowerShell)
-
-The SQL Server Native Client contains the SQL Server ODBC driver and the SQL Server OLE DB provider in one native dynamic link library (DLL) supporting applications using native-code APIs (ODBC, OLE DB and ADO) to Microsoft SQL Server. In simple terms these packages should allow any other node to act as a client of a SQL Server instance.
+Installs required the SQL Server Native Client and all required dependencies. The SQL Server Native Client contains the SQL Server ODBC driver and the SQL Server OLE DB provider in one native dynamic link library (DLL) supporting applications using native-code APIs (ODBC, OLE DB and ADO) to Microsoft SQL Server. In simple terms these packages should allow any other node to act as a client of a SQL Server instance.
 
 ### configure
 
@@ -306,7 +293,7 @@ This recipe is included by the `sql_server::server` recipe, but can be included 
 
 ### server
 
-Installs SQL Server 2008 R2 Express, SQL Server 2012 Express, SQL Server 2014 Express, or SQL Server 2016 Express.
+Installs SQL Server 2012 Express, SQL Server 2014 Express, or SQL Server 2016 Express.
 
 By default, the cookbook installs SQL Server 2012 Express. There are two options to install a different version.
 
@@ -318,7 +305,7 @@ NOTE: For this recipe to run you must set the following attributes in an environ
 
 NOTE: This recipe will request a reboot at the end of the Chef Client run if SQL Server was installed.. If you do not want to reboot after the installation, use the `reboot` resource to cancel the pending reboot.
 
-**Option 1:** From a role, environment, or wrapper cookbook, set `node['sql_server']['version']` to '2008R2' to install SQL Server 2008 R2 Express, '2012' to install SQL Server 2012 Express, '2014' to install SQL Server 2014 Express, or '2016' to install SQL Server 2016 Express.
+**Option 1:** From a role, environment, or wrapper cookbook, set `node['sql_server']['version']` to '2012' to install SQL Server 2012 Express, '2014' to install SQL Server 2014 Express, or '2016' to install SQL Server 2016 Express.
 
 **Option 2:** From a role, environment, or wrapper cookbook, set these node attributes to specify the URL, checksum, and name of the package (as it appears in the Windows Registry).
 
@@ -394,7 +381,7 @@ SQL Server does not support remote installation over WinRM. For example, the ins
 
 **Author:** Cookbook Engineering Team ([cookbooks@chef.io](mailto:cookbooks@chef.io))
 
-**Copyright:** 2011-2018, Chef Software, Inc.
+**Copyright:** 2011-2019, Chef Software, Inc.
 
 ```text
 Licensed under the Apache License, Version 2.0 (the "License");
