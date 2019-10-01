@@ -90,7 +90,7 @@ module SqlServer
     def self.sql_server_checksum(version, x86_64)
       if x86_64
         case version.to_s # to_s to make sure someone didn't pass us an int
-        when '2008R2' then '8ebf6bdd805f3326d5b9a35a129af276c7fe99bfca64ac0cfe0ffc66311dfe09'
+        when '2008R2' then '493C8CB5D905D2438022F85EF1A7076813CA317973C4745B9A42D2E910022950'
         when '2012' then '7f5e3d40b85fba2da5093e3621435c209c4ac90d34219bab8878e93a787cf29f'
         when '2014' then '8f712faefee9cef1d15494c9d6cf5ad3b45ec06d0b2c247f8384a221baaadda7'
         when '2016' then '2A5B64AE64A8285C024870EC4643617AC5146894DD59DD560E75CEA787BF9333'
