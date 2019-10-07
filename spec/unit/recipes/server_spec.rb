@@ -2,7 +2,7 @@
 # Cookbook:: sql_server
 # Spec:: server
 #
-# Copyright:: 2015-2017, Irving Popovetsky, All Rights Reserved.
+# Copyright:: 2015-2019, Irving Popovetsky, All Rights Reserved.
 
 require 'spec_helper'
 

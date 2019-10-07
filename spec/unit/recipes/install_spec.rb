@@ -2,7 +2,7 @@
 # Cookbook:: test
 # Spec:: install
 #
-# Copyright:: 2015-2017, John Snow, All Rights Reserved.
+# Copyright:: 2015-2019, John Snow, All Rights Reserved.
 
 require 'spec_helper'
 
