@@ -164,7 +164,7 @@ action :install do
     "/#{option}=\"#{safe_password}#{enclosing_escape}\""
   end.compact.join ' '
 
-  package install_name do # ~FC009
+  package install_name do
     source package_url
     checksum install_checksum
     timeout new_resource.installer_timeout
