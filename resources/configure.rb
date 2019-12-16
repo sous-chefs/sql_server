@@ -18,13 +18,13 @@
 
 property :reg_version, String
 property :version, [Integer, String], default: '2012'
-property :tcp_enabled, [true, false], default: true
+property :tcp_enabled, [TrueClass, FalseClass], default: true
 property :sql_port, Integer, default: 1433
 property :tcp_dynamic_ports, String, default: ''
-property :np_enabled, [true, false], default: false
-property :sm_enabled, [true, false], default: true
+property :np_enabled, [TrueClass, FalseClass], default: false
+property :sm_enabled, [TrueClass, FalseClass], default: true
 property :via_default_port, String, default: '0:1433'
-property :via_enabled, [true, false], default: false
+property :via_enabled, [TrueClass, FalseClass], default: false
 property :via_listen_info, String, default: '0:1433'
 property :agent_startup, String, equal_to: ['Automatic', 'Manual', 'Disabled', 'Automatic (Delayed Start)'], default: 'Disabled'
 

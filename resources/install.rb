@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-property :sql_reboot, [true, false], default: true
+property :sql_reboot, [TrueClass, FalseClass], default: true
 property :security_mode, String, equal_to: ['Windows Authentication', 'Mixed Mode Authentication'], default: 'Windows Authentication'
 property :sa_password, String
 property :sysadmins, [Array, String], default: ['Administrator']
@@ -36,9 +36,9 @@ property :source_url, String
 property :package_name, String
 property :package_checksum, String
 property :installer_timeout, Integer, default: 1500
-property :accept_eula, [true, false], default: false
+property :accept_eula, [TrueClass, FalseClass], default: false
 property :product_key, String
-property :update_enabled, [true, false], default: true
+property :update_enabled, [TrueClass, FalseClass], default: true
 property :update_source, String, default: 'MU'
 property :instance_name, String, default: 'SQLEXPRESS'
 property :feature, [Array, String], default: %w(SQLENGINE REPLICATION SNAC_SDK)
@@ -55,7 +55,7 @@ property :filestream_share_name, String, default: 'MSSQLSERVER'
 property :sql_collation, String
 property :dreplay_ctlr_admins, [Array, String], default: ['Administrator']
 property :dreplay_client_name, String
-property :netfx35_install, [true, false], default: true
+property :netfx35_install, [TrueClass, FalseClass], default: true
 property :netfx35_source, String
 property :polybase_port_range, String, default: '16450-16460'
 property :is_master_port, String, default: '8391'
