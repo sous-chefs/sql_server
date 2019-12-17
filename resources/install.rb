@@ -44,6 +44,7 @@ property :instance_name, String, default: 'SQLEXPRESS'
 property :feature, [Array, String], default: %w(SQLENGINE REPLICATION SNAC_SDK)
 property :install_dir, String, default: 'C:\Program Files\Microsoft SQL Server'
 property :instance_dir, String, default: 'C:\Program Files\Microsoft SQL Server'
+property :shared_wow_dir, String, default: 'C:\Program Files (x86)\Microsoft SQL Server'
 property :sql_data_dir, String
 property :sql_backup_dir, String
 property :sql_user_db_dir, String
@@ -89,7 +90,7 @@ action :install do
   as_sys_admin_list = build_admin_list(new_resource.as_sysadmins)
   dreplay_ctlr_admin_list = build_admin_list(new_resource.dreplay_ctlr_admins)
 
-  shared_wow_dir = new_resource.install_dir.gsub(/Program Files/, 'Program Files (x86)')
+#  shared_wow_dir = new_resource.install_dir.gsub(/Program Files/, 'Program Files (x86)')
 
   template config_file_path do
     source '_ConfigurationFile.ini.erb'
@@ -107,7 +108,7 @@ action :install do
       instance_name: new_resource.instance_name,
       feature_list: new_resource.feature,
       install_dir: new_resource.install_dir,
-      shared_wow_dir: shared_wow_dir,
+      shared_wow_dir: new_resource.shared_wow_dir,
       instance_dir: new_resource.instance_dir,
       sql_data_dir: new_resource.sql_data_dir,
       sql_backup_dir: new_resource.sql_backup_dir,
