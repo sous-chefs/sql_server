@@ -90,7 +90,7 @@ action :install do
   as_sys_admin_list = build_admin_list(new_resource.as_sysadmins)
   dreplay_ctlr_admin_list = build_admin_list(new_resource.dreplay_ctlr_admins)
 
-#  shared_wow_dir = new_resource.install_dir.gsub(/Program Files/, 'Program Files (x86)')
+  # shared_wow_dir = new_resource.install_dir.gsub(/Program Files/, 'Program Files (x86)')
 
   template config_file_path do
     source '_ConfigurationFile.ini.erb'
