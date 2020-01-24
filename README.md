@@ -28,7 +28,7 @@ NOTE: Install of SQL Server 2016 and SQL Server 2017 is not supported on Server 
 
 ### Chef
 
-- Chef 12.7+
+- Chef 12.15+
 
 ### Cookbooks
 
@@ -40,7 +40,7 @@ NOTE: Install of SQL Server 2016 and SQL Server 2017 is not supported on Server 
 
 #### Actions
 
-- `:install` - Installs the version of Microsoft SQL server specified. Default install is SQL 2012 Express. 
+- `:install` - Installs the version of Microsoft SQL server specified. Default install is SQL 2012 Express.
 
 #### Properties
 
@@ -48,7 +48,7 @@ NOTE: Install of SQL Server 2016 and SQL Server 2017 is not supported on Server 
    - [SQL 2012 Available Features list](https://technet.microsoft.com/library/cc645993(SQL.110).aspx)
       - Instance Features
          - `SQLENGINE` = Database Engine
-         - `REPLICATION` = Replication 
+         - `REPLICATION` = Replication
          - `FULLTEXT` = Full-Text and Semantic Extractions for search
          - `DQ` = Data Quality Services
          - `AS` = Analysis Services
@@ -58,15 +58,15 @@ NOTE: Install of SQL Server 2016 and SQL Server 2017 is not supported on Server 
          - `RS_SHPWFE` = Reporting Services Add-in for SharePoint Products
          - `DQC` = Data Quality Client
          - `BIDS` = SQL Server data tools
-         - `CONN` = Client tools connectivity 
+         - `CONN` = Client tools connectivity
          - `IS` = Integration Services
          - `BC` = Client tools backwards compatibility
          - `SDK` = Client tools SDK
          - `BOL` = Documentation components
          - `SSMS` = Management tools
          - `SSMS_ADV` = Management tools - Advanced
-         - `DREPLAY_CTLR` = Distributed replay controller 
-         - `DREPLAY_CLT` = Distributed replay client 
+         - `DREPLAY_CTLR` = Distributed replay controller
+         - `DREPLAY_CLT` = Distributed replay client
          - `SNAC_SDK` = SQL client connectivity SDK
     - [SQL 2014 Available Features list](https://technet.microsoft.com/library/cc645993(SQL.120).aspx)
        - Instance Features
@@ -203,7 +203,7 @@ end
 - `via_default_port` - Configures the Virtual Interface Adapter default port. Default is `0:1433`
 - `via_enabled` - Whether Virtual Interface Adapter is enabled. Default is false
 - `via_listen_info` - Configures the Virtual interface listening information. Default is `0:1433`
-- `agent_startup` - Configures the SQL Agent Service startup type. Valid options are `Automatic`, `Manual`, `Disabled`, or `Automatic (Delayed Start)`. Default is `Disabled` 
+- `agent_startup` - Configures the SQL Agent Service startup type. Valid options are `Automatic`, `Manual`, `Disabled`, or `Automatic (Delayed Start)`. Default is `Disabled`
 
 #### Examples
 
