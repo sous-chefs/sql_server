@@ -44,7 +44,7 @@ property :instance_name, String, default: 'SQLEXPRESS'
 property :feature, [Array, String], default: %w(SQLENGINE REPLICATION SNAC_SDK)
 property :install_dir, String, default: 'C:\Program Files\Microsoft SQL Server'
 property :instance_dir, String, default: 'C:\Program Files\Microsoft SQL Server'
-property :shared_wow_dir, String, default: 'C:\Program Files (x86)\Microsoft SQL Server'
+property :shared_wow_dir, String, default: lazy { install_dir.gsub(/Program Files/, 'Program Files (x86)') }
 property :sql_data_dir, String
 property :sql_backup_dir, String
 property :sql_user_db_dir, String
