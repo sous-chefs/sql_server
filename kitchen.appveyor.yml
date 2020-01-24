@@ -7,6 +7,10 @@ driver:
   username: <%= ENV["machine_user"] %>
   password: <%= ENV["machine_pass"] %>
 
+transport:
+  name: winrm
+  elevated: true
+
 provisioner:
   name: chef_zero
   retry_on_exit_code:
