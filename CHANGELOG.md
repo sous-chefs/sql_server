@@ -2,6 +2,16 @@
 
 This file is used to list changes made in each version of the sql_server cookbook.
 
+## 5.6.0 (2020-02-18)
+
+- Resolve multiple Cookstyle warnings - [@tas50](https://github.com/tas50)
+- Remove unused long_description metadata - [@tas50](https://github.com/tas50)
+- Remove unnecessary foodcritic comments - [@tas50](https://github.com/tas50)
+- Remove windows 2008 r2 specs - [@tas50](https://github.com/tas50)
+- Fix to install SQL on any custom directory - [@bhavya5491](https://github.com/bhavya5491)
+- Require Chef 12.15+ - [@tas50](https://github.com/tas50)
+- Updated checksum for 2008R2 - [@kenlangdon](https://github.com/kenlangdon)
+
 ## 5.5.1 (2019-06-05)
 
 - Example resources should not have backticks but single quotes - [@gsreynolds](https://github.com/gsreynolds)
@@ -19,7 +29,7 @@ This file is used to list changes made in each version of the sql_server cookboo
 
 ## 5.4.0 (2018-01-03)
 
-- Add `install` custom resource that installs specified version of SQL Server
+- Add `install` custom resource that installs the specified version of SQL Server
 - Add `configure` custom resource that configures SQL ports and services
 - Bump minimum chef version to 12.7
 - Update readme to support new resources (#92)
