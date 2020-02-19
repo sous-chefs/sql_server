@@ -22,7 +22,7 @@ describe 'sql_server::server' do
 
   context 'When specifying an Array of admin users for "sysadmins"' do
     let(:chef_run) do
-      runner = ChefSpec::SoloRunner.new(platform: 'windows', version: '2012', file_cache_path: 'C:\chef\cache') do |node|
+      runner = ChefSpec::SoloRunner.new(platform: 'windows', version: '2012', file_cache_path: 'C:/chef/cache') do |node|
         node.normal['sql_server']['sysadmins'] = %w(Administrator Fred Barney)
         node.normal['sql_server']['server_sa_password'] = 'supersecure'
       end
@@ -41,7 +41,7 @@ describe 'sql_server::server' do
 
   context 'When specifying a String for "sysadmins"' do
     let(:chef_run) do
-      runner = ChefSpec::SoloRunner.new(platform: 'windows', version: '2012', file_cache_path: 'C:\chef\cache') do |node|
+      runner = ChefSpec::SoloRunner.new(platform: 'windows', version: '2012', file_cache_path: 'C:/chef/cache') do |node|
         node.normal['sql_server']['sysadmins'] = 'Administrator'
         node.normal['sql_server']['server_sa_password'] = 'supersecure'
       end
