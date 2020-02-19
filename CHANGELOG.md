@@ -2,6 +2,14 @@
 
 This file is used to list changes made in each version of the sql_server cookbook.
 
+## 6.0.0 (2020-02-19)
+
+This release removes support for deprecated SQL Server, Chef Infra Client, and Windows OS releases:
+
+  - Require Chef Infra Client 13+
+  - Remove support for Windows 2008 R2
+  - Remove support for SQL Server 2008 and 2014
+
 ## 5.6.0 (2020-02-18)
 
 - Resolve multiple Cookstyle warnings - [@tas50](https://github.com/tas50)
