@@ -22,7 +22,7 @@ describe 'test::install' do
 
   context 'When specifying an Array for admin users for "sysadmins"' do
     let(:chef_run) do
-      runner = ChefSpec::SoloRunner.new(platform: 'windows', version: '2012R2', step_into: ['sql_server_install'], file_cache_path: 'C:\chef\cache') do |node|
+      runner = ChefSpec::SoloRunner.new(platform: 'windows', version: '2012R2', step_into: ['sql_server_install'], file_cache_path: 'C:/chef/cache') do |node|
         node.normal['sql_server']['sysadmins'] = %w(Administrator Fred Barney)
         node.normal['sql_server']['server_sa_password'] = 'supersecret'
       end
@@ -30,8 +30,8 @@ describe 'test::install' do
     end
 
     it 'creates the correct ConfigurationFile.ini template' do
-      expect(chef_run).to create_template('C:\chef\cache/ConfigurationFile.ini')
-      expect(chef_run).to render_file('C:\chef\cache/ConfigurationFile.ini').with_content(/^SQLSYSADMINACCOUNTS="Administrator" "Fred" "Barney"/)
+      expect(chef_run).to create_template('C:/chef/cache/ConfigurationFile.ini')
+      expect(chef_run).to render_file('C:/chef/cache/ConfigurationFile.ini').with_content(/^SQLSYSADMINACCOUNTS="Administrator" "Fred" "Barney"/)
     end
 
     it 'converges successfully' do
@@ -41,7 +41,7 @@ describe 'test::install' do
 
   context 'When specifying a String for "sysadmins"' do
     let(:chef_run) do
-      runner = ChefSpec::SoloRunner.new(platform: 'windows', version: '2012', step_into: ['sql_server_install'], file_cache_path: 'C:\chef\cache') do |node|
+      runner = ChefSpec::SoloRunner.new(platform: 'windows', version: '2012', step_into: ['sql_server_install'], file_cache_path: 'C:/chef/cache') do |node|
         node.normal['sql_server']['sysadmins'] = 'Administrator'
         node.normal['sql_server']['server_sa_password'] = 'supersecure'
       end
@@ -49,8 +49,8 @@ describe 'test::install' do
     end
 
     it 'creates the correct ConfigurationFile.ini template' do
-      expect(chef_run).to create_template('C:\chef\cache/ConfigurationFile.ini')
-      expect(chef_run).to render_file('C:\chef\cache/ConfigurationFile.ini').with_content(/^SQLSYSADMINACCOUNTS="Administrator"/)
+      expect(chef_run).to create_template('C:/chef/cache/ConfigurationFile.ini')
+      expect(chef_run).to render_file('C:/chef/cache/ConfigurationFile.ini').with_content(/^SQLSYSADMINACCOUNTS="Administrator"/)
     end
 
     it 'converges successfully' do

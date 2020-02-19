@@ -22,16 +22,19 @@ verifier:
 
 platforms:
   - name: windows-2012r2
-    driver_config:
+    driver:
       box: tas50/windows_2012r2
   - name: windows-2016
-    driver_config:
+    driver:
       box: tas50/windows_2016
-  - name: windows-2012r2-chef-12.15
+  - name: windows-2019
+    driver:
+      box: tas50/windows_2019
+  - name: windows-2012r2-chef-13.0
     driver_config:
       box: tas50/windows_2012r2
     provisioner:
-      require_chef_omnibus: 12.15
+      require_chef_omnibus: 13.0
 
 suites:
   - name: client
@@ -42,10 +45,6 @@ suites:
     run_list:
       - recipe[sql_server::server]
     attributes: { sql_server: { accept_eula: true, version: 2012, server_sa_password: Supersecurepassword123 } }
-  - name: server2014
-    run_list:
-      - recipe[sql_server::server]
-    attributes: { sql_server: { accept_eula: true, version: 2014, server_sa_password: Supersecurepassword123 } }
   - name: server2016
     run_list:
       - recipe[sql_server::server]
