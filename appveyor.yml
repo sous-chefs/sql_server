@@ -27,10 +27,10 @@ install:
   - ps: net localgroup administrators $env:machine_user /add
 
 build_script:
-  - ps: c:\opscode\chef-workstation\bin\chef.bat shell-init powershell | iex; cmd /c c:\opscode\chef-workstation\bin\chef.bat --version
+  - ps: c:\opscode\chef-workstation\bin\chef-cli.bat shell-init powershell | iex; cmd /c c:\opscode\chef-workstation\bin\chef-cli.bat --version
 
 test_script:
-  - chef.bat exec delivery local all
-  - chef.bat exec kitchen verify
+  - chef-cli.bat exec delivery local all
+  - chef-cli.bat exec kitchen verify
 
 deploy: off
