@@ -2,6 +2,13 @@
 
 This file is used to list changes made in each version of the sql_server cookbook.
 
+## Unreleased
+
+- resolved cookstyle error: recipes/server.rb:21:1 refactor: `ChefCorrectness/ChefApplicationFatal`
+- resolved cookstyle error: recipes/server.rb:43:15 refactor: `ChefCorrectness/ChefApplicationFatal`
+- resolved cookstyle error: recipes/server.rb:47:16 refactor: `ChefCorrectness/ChefApplicationFatal`
+- resolved cookstyle error: recipes/server.rb:51:20 refactor: `ChefCorrectness/ChefApplicationFatal`
+
 ## 6.0.0 (2020-02-19)
 
 This release removes support for deprecated SQL Server, Chef Infra Client, and Windows OS releases:
