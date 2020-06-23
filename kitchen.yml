@@ -53,6 +53,13 @@ suites:
     run_list:
       - recipe[sql_server::server]
     attributes: { sql_server: { accept_eula: true, version: 2017, server_sa_password: Supersecurepassword123 } }
+  - name: server2019
+    run_list:
+      - recipe[sql_server::server]
+    attributes: { sql_server: { accept_eula: true, version: 2019, server_sa_password: Supersecurepassword123 } }
+    includes:
+      - windows-2016
+      - windows-2019
   - name: install
     run_list:
       - recipe[test::install]
