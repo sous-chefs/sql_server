@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the sql_server cookbook.
 
+## 6.1.0 (2020-06-24)
+
+- Cookstyle 6.2.9 Fixes - [@xorimabot](https://github.com/xorimabot)
+- Standardise files with files in chef-cookbooks/repo-management - [@xorimabot](https://github.com/xorimabot)
+- [GH-146] SQL 2019 Support
+
 ## Unreleased
 
 - resolved cookstyle error: recipes/server.rb:21:1 refactor: `ChefCorrectness/ChefApplicationFatal`
