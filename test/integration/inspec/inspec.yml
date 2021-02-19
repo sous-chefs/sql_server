@@ -1,0 +1,6 @@
+---
+name: sql_server
+inputs:
+  - name: version
+    type: Numeric
+    required: true

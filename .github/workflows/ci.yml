@@ -1,0 +1,81 @@
+---
+name: ci
+
+"on":
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  delivery:
+    # This needs to run on a Windows host due to expecting windows paths in tests
+    runs-on: windows-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@master
+      - name: Install Chef
+        uses: actionshub/chef-install@master
+      - name: Run Chef Delivery
+        run: |
+          chef exec delivery local all
+        env:
+          CHEF_LICENSE: accept-no-persist
+
+  yamllint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@master
+      - name: Run yaml Lint
+        uses: actionshub/yamllint@master
+
+  mdl:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@master
+      - name: Run Markdown Lint
+        uses: actionshub/markdownlint@master
+
+  # This needs to run on vagrant due to the fact these nodes reboot during their
+  # runs
+  vagrant:
+    needs: [mdl, yamllint, delivery]
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        os:
+          - 'windows-2012r2'
+          - 'windows-2016'
+          - 'windows-2019'
+        suite:
+          - 'client'
+          - 'server2012'
+          - 'server2016'
+          - 'server2017'
+          - 'server2019'
+        exclude:
+          - os: windows-2012r2
+            suite: server2019
+      fail-fast: false
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@master
+      - name: Install Chef
+        uses: actionshub/chef-install@master
+      - name: test-kitchen
+        uses: actionshub/test-kitchen@master
+        env:
+          CHEF_LICENSE: accept-no-persist
+        with:
+          suite: ${{ matrix.suite }}
+          os: ${{ matrix.os }}
+
+  final:
+    needs: [delivery, yamllint, mdl, vagrant]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@master

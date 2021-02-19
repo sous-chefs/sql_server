@@ -1,8 +1,20 @@
 # sql_server Cookbook
 
-[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/ww3v5xdery9ha972/branch/master?svg=true)](https://ci.appveyor.com/project/ChefWindowsCookbooks/sql-server/branch/master) [![Cookbook Version](https://img.shields.io/cookbook/v/sql_server.svg)](https://supermarket.chef.io/cookbooks/sql_server)
+[![Cookbook Version](https://img.shields.io/cookbook/v/sql_server.svg)](https://supermarket.chef.io/cookbooks/sql_server)
+[![CI
+State](https://github.com/sous-chefs/sql_server/workflows/ci/badge.svg)](https://github.com/sous-chefs/sql_server/actions?query=workflow%3Aci)
+[![OpenCollective](https://opencollective.com/sous-chefs/backers/badge.svg)](#backers)
+[![OpenCollective](https://opencollective.com/sous-chefs/sponsors/badge.svg)](#sponsors)
+[![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
 
 Provides resources for the installation and configuration of Microsoft SQL Server server and client. Includes several basic recipes that utilize install and configure resources. See the usage section below for more information.
+
+## Maintainers
+
+This cookbook is maintained by the Sous Chefs. The Sous Chefs are a community of Chef cookbook maintainers working
+together to maintain important cookbooks. If you’d like to know more please visit
+[sous-chefs.org](https://sous-chefs.org/) or come chat with us on the Chef Community Slack in
+[#sous-chefs](https://chefcommunity.slack.com/messages/C2V7B88SF).
 
 ## Requirements
 
@@ -42,53 +54,52 @@ Provides resources for the installation and configuration of Microsoft SQL Serve
 #### Properties
 
 - `feature` - An Array of the SQL Instance or Server features that are going to be enabled / installed.
-   - [SQL 2012 Available Features list](https://technet.microsoft.com/library/cc645993(SQL.110).aspx)
-      - Instance Features
-         - `SQLENGINE` = Database Engine
-         - `REPLICATION` = Replication
-         - `FULLTEXT` = Full-Text and Semantic Extractions for search
-         - `DQ` = Data Quality Services
-         - `AS` = Analysis Services
-         - `RS` = Reporting Services - Native
-      - Shared Features
-         - `RS_SHP` = Reporting Services - SharePoint
-         - `RS_SHPWFE` = Reporting Services Add-in for SharePoint Products
-         - `DQC` = Data Quality Client
-         - `BIDS` = SQL Server data tools
-         - `CONN` = Client tools connectivity
-         - `IS` = Integration Services
-         - `BC` = Client tools backwards compatibility
-         - `SDK` = Client tools SDK
-         - `BOL` = Documentation components
-         - `SSMS` = Management tools
-         - `SSMS_ADV` = Management tools - Advanced
-         - `DREPLAY_CTLR` = Distributed replay controller
-         - `DREPLAY_CLT` = Distributed replay client
-         - `SNAC_SDK` = SQL client connectivity SDK
-    - [SQL 2016 Available Features list](https://technet.microsoft.com/library/cc645993(SQL.130).aspx)
-       - Instance Features
-          - `ADVANCEDANALYTICS` = R Services (In-Database)
-          - `POLYBASE` = PolyBase Query Service for External Data
-             Note: This Feature Requires Java Runtime Environment greater than 7 update 51. Only the standalone Polybase-enabled Instance is currently support by this cookbook.
-       - Shared Features
-          - `SQL_SHARED_MR` = R Server (Standalone)
-          - `MDS` = Master Data Services
-          - REMOVED for standalone install
-             - `SSMS` = Management tools
-             - `SSMS_ADV` = Management tools - Advanced
-    - [SQL 2017 Available Features list](https://docs.microsoft.com/en-us/sql/sql-server/editions-and-components-of-sql-server-2017)
-       - Instance Features
-          - `ADVANCEDANALYTICS` = Machine Learning services (In-Database)
-             - `SQL_INST_MPY` = Machine Learning services (In-Database) with Python
-             - `SQL_INST_MR` = Machine Learning services (In-Database) with R
-       - Shared Features
-          - `SQL_SHARED_AA` = Machine Learning Services (Standalone)
-             - `SQL_SHARED_MR` = Machine Learning services (In-Database) with R
-             - `SQL_SHARED_MPY` = Machine Learning services (In-Database) with Python
-          - `IS` = Integrated Services
-             - `IS_MASTER` - Scale Out Master
-             - `IS_WORKER` - Scale Out Worker
-
+  - [SQL 2012 Available Features list](https://technet.microsoft.com/library/cc645993(SQL.110).aspx)
+    - Instance Features
+      - `SQLENGINE` = Database Engine
+      - `REPLICATION` = Replication
+      - `FULLTEXT` = Full-Text and Semantic Extractions for search
+      - `DQ` = Data Quality Services
+      - `AS` = Analysis Services
+      - `RS` = Reporting Services - Native
+    - Shared Features
+      - `RS_SHP` = Reporting Services - SharePoint
+      - `RS_SHPWFE` = Reporting Services Add-in for SharePoint Products
+      - `DQC` = Data Quality Client
+      - `BIDS` = SQL Server data tools
+      - `CONN` = Client tools connectivity
+      - `IS` = Integration Services
+      - `BC` = Client tools backwards compatibility
+      - `SDK` = Client tools SDK
+      - `BOL` = Documentation components
+      - `SSMS` = Management tools
+      - `SSMS_ADV` = Management tools - Advanced
+      - `DREPLAY_CTLR` = Distributed replay controller
+      - `DREPLAY_CLT` = Distributed replay client
+      - `SNAC_SDK` = SQL client connectivity SDK
+  - [SQL 2016 Available Features list](https://technet.microsoft.com/library/cc645993(SQL.130).aspx)
+    - Instance Features
+      - `ADVANCEDANALYTICS` = R Services (In-Database)
+      - `POLYBASE` = PolyBase Query Service for External Data
+           Note: This Feature Requires Java Runtime Environment greater than 7 update 51. Only the standalone Polybase-enabled Instance is currently support by this cookbook.
+    - Shared Features
+      - `SQL_SHARED_MR` = R Server (Standalone)
+      - `MDS` = Master Data Services
+      - REMOVED for standalone install
+        - `SSMS` = Management tools
+        - `SSMS_ADV` = Management tools - Advanced
+  - [SQL 2017 Available Features list](https://docs.microsoft.com/en-us/sql/sql-server/editions-and-components-of-sql-server-2017)
+    - Instance Features
+      - `ADVANCEDANALYTICS` = Machine Learning services (In-Database)
+        - `SQL_INST_MPY` = Machine Learning services (In-Database) with Python
+        - `SQL_INST_MR` = Machine Learning services (In-Database) with R
+    - Shared Features
+      - `SQL_SHARED_AA` = Machine Learning Services (Standalone)
+        - `SQL_SHARED_MR` = Machine Learning services (In-Database) with R
+        - `SQL_SHARED_MPY` = Machine Learning services (In-Database) with Python
+      - `IS` = Integrated Services
+        - `IS_MASTER` - Scale Out Master
+        - `IS_WORKER` - Scale Out Worker
 
 - `version` - Version of SQL to be installed. Valid otpions are `2012`, `2016`, or `2017`. Default is `2012`
 - `source_url` - Source of the SQL setup.exe install file. Default is built from the helper libraries.
@@ -126,23 +137,28 @@ Provides resources for the installation and configuration of Microsoft SQL Serve
 - `netfx35_source` - Source location for the .Net 3.5 Windows Features install. Only required for offline installs
 
 Distributed Replay
+
 - `dreplay_ctlr_admins` - List of admins for the Distributed Replay Controller. Default is `Administrator`. The `DREPLAY_CTLR` feature needs to be included in the feature Array for this property to work.
 - `dreplay_client_name` - Host name of the Distributed Replay Controller that the Client will point to. If the `DREPLAY_CLT` is in the feature list this property needs to be set.
 
 Reporting Services
+
 - `rs_account` - Service Account name used to run SQL Reporting Services. To have reporting services it needs to be listed in the `feature` property array.
 - `rs_account_pwd` - Service Account password for the Reporting Services Service
 - `rs_startup` - Reporting Services service startup type. Valid options are `Automatic`, `Manual`, `Disabled`, or `Automatic (Delayed Start)`. Default is `Automatic`.
 - `rs_mode` - Mode the Reporting Services is installed in. Default is `FilesOnlyMode`
 
 Analysis Services
+
 - `as_sysadmins` - Analysis Services Systems Administrator list. Default is `Administrator`
 - `as_svc_account` - Service Account used by Analysis Services. Default is `NT Service\MSSQLServerOLAPService`
 
 PolyBase Query Services
+
 - `polybase_port_range` - Port Range for the PolyBase Query Service. Default is `16450-16460`.
 
 Integrated Services
+
 - `is_master_port` - Port for the Integrated Services Scale out Master. Default is 8391.
 - `is_master_ssl_cert` - The CNs in the certificate used to protect communications between the integration services scale out worker and scale out master.
 - `is_master_cert_thumbprint` - The certificate thumbprint for the scale out master ssl certificate.
@@ -303,9 +319,11 @@ By default, the cookbook installs SQL Server 2012 Express. There are two options
 
 NOTE: For this recipe to run you must set the following attributes in an environment, role, or wrapper cookbook.
 
-`node['sql_server']['agent_account_pwd']`<br>
-`node['sql_server']['rs_account_pwd']`<br>
-`node['sql_server']['sql_account_pwd']`
+```ruby
+node['sql_server']['agent_account_pwd']
+node['sql_server']['rs_account_pwd']
+node['sql_server']['sql_account_pwd']
+```
 
 NOTE: This recipe will request a reboot at the end of the Chef Client run if SQL Server was installed.. If you do not want to reboot after the installation, use the `reboot` resource to cancel the pending reboot.
 
@@ -381,22 +399,28 @@ SQL Server does not support remote installation over WinRM. For example, the ins
 
 [Learn more](https://learn.chef.io/modules/create-a-web-app-cookbook/windows/virtualbox) in this Learn Chef tutorial.
 
-## License & Authors
+## Contributors
 
-**Author:** Cookbook Engineering Team ([cookbooks@chef.io](mailto:cookbooks@chef.io))
+This project exists thanks to all the people who
+[contribute.](https://opencollective.com/sous-chefs/contributors.svg?width=890&button=false)
 
-**Copyright:** 2011-2019, Chef Software, Inc.
+### Backers
 
-```text
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+Thank you to all our backers!
 
-    http://www.apache.org/licenses/LICENSE-2.0
+![https://opencollective.com/sous-chefs#backers](https://opencollective.com/sous-chefs/backers.svg?width=600&avatarHeight=40)
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-```
+### Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website.
+
+![https://opencollective.com/sous-chefs/sponsor/0/website](https://opencollective.com/sous-chefs/sponsor/0/avatar.svg?avatarHeight=100)
+![https://opencollective.com/sous-chefs/sponsor/1/website](https://opencollective.com/sous-chefs/sponsor/1/avatar.svg?avatarHeight=100)
+![https://opencollective.com/sous-chefs/sponsor/2/website](https://opencollective.com/sous-chefs/sponsor/2/avatar.svg?avatarHeight=100)
+![https://opencollective.com/sous-chefs/sponsor/3/website](https://opencollective.com/sous-chefs/sponsor/3/avatar.svg?avatarHeight=100)
+![https://opencollective.com/sous-chefs/sponsor/4/website](https://opencollective.com/sous-chefs/sponsor/4/avatar.svg?avatarHeight=100)
+![https://opencollective.com/sous-chefs/sponsor/5/website](https://opencollective.com/sous-chefs/sponsor/5/avatar.svg?avatarHeight=100)
+![https://opencollective.com/sous-chefs/sponsor/6/website](https://opencollective.com/sous-chefs/sponsor/6/avatar.svg?avatarHeight=100)
+![https://opencollective.com/sous-chefs/sponsor/7/website](https://opencollective.com/sous-chefs/sponsor/7/avatar.svg?avatarHeight=100)
+![https://opencollective.com/sous-chefs/sponsor/8/website](https://opencollective.com/sous-chefs/sponsor/8/avatar.svg?avatarHeight=100)
+![https://opencollective.com/sous-chefs/sponsor/9/website](https://opencollective.com/sous-chefs/sponsor/9/avatar.svg?avatarHeight=100)
