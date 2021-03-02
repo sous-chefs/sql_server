@@ -2,6 +2,8 @@
 
 This file is used to list changes made in each version of the sql_server cookbook.
 
+## Unreleased
+
 ## 6.2.0 - *2021-03-02*
 
 - Sous Chefs Adoption
