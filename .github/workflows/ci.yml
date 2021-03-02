@@ -51,6 +51,7 @@ jobs:
           - 'windows-2019'
         suite:
           - 'client'
+          - 'install'
           - 'server2012'
           - 'server2016'
           - 'server2017'
