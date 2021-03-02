@@ -7,6 +7,7 @@ This file is used to list changes made in each version of the sql_server cookboo
 - Sous Chefs Adoption
 - Add proper InSpec tests
 - Remove `windows_path` resource in client recipe as it's not needed anymore
+- Set `netfx35_install` to false by default as it fails currently otherwise
 
 ## 6.1.0 (2020-06-24)
 
