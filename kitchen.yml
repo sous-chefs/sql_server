@@ -1,5 +1,6 @@
 driver:
   name: vagrant
+  gui: false
   customize:
     cpus: 2
     memory: 4096
@@ -10,15 +11,18 @@ transport:
 
 provisioner:
   name: chef_zero
+  product_name: <%= ENV['CHEF_PRODUCT_NAME'] || 'chef' %>
   deprecations_as_errors: true
   chef_license: accept-no-persist
   retry_on_exit_code:
-    - 35 # 35 is the exit code signaling that the node is rebooting
-  max_retries: 2
+    - 35  # 35 is the exit code signaling that the node is rebooting
+  max_retries: 3
   wait_for_retry: 90
 
 verifier:
   name: inspec
+  inspec_tests:
+    - path: test/integration/inspec
 
 platforms:
   - name: windows-2012r2
@@ -34,29 +38,52 @@ platforms:
     driver_config:
       box: tas50/windows_2012r2
     provisioner:
-      require_chef_omnibus: 13.0
+      product_version: 13.0
 
 suites:
   - name: client
     run_list:
       - recipe[sql_server::default]
-    attributes: { sql_server: { accept_eula: true } }
+    attributes: {sql_server: {accept_eula: true}}
+    verifier:
+      controls:
+        - client
   - name: server2012
     run_list:
       - recipe[sql_server::server]
-    attributes: { sql_server: { accept_eula: true, version: 2012, server_sa_password: Supersecurepassword123 } }
+    attributes: {sql_server: {accept_eula: true, version: 2012, server_sa_password: Supersecurepassword123}}
+    verifier:
+      controls:
+        - server
+      inputs:
+        version: 2012
   - name: server2016
     run_list:
       - recipe[sql_server::server]
-    attributes: { sql_server: { accept_eula: true, version: 2016, server_sa_password: Supersecurepassword123 } }
+    attributes: {sql_server: {accept_eula: true, version: 2016, server_sa_password: Supersecurepassword123}}
+    verifier:
+      controls:
+        - server
+      inputs:
+        version: 2016
   - name: server2017
     run_list:
       - recipe[sql_server::server]
-    attributes: { sql_server: { accept_eula: true, version: 2017, server_sa_password: Supersecurepassword123 } }
+    attributes: {sql_server: {accept_eula: true, version: 2017, server_sa_password: Supersecurepassword123}}
+    verifier:
+      controls:
+        - server
+      inputs:
+        version: 2017
   - name: server2019
     run_list:
       - recipe[sql_server::server]
-    attributes: { sql_server: { accept_eula: true, version: 2019, server_sa_password: Supersecurepassword123 } }
+    attributes: {sql_server: {accept_eula: true, version: 2019, server_sa_password: Supersecurepassword123}}
+    verifier:
+      controls:
+        - server
+      inputs:
+        version: 2019
     includes:
       - windows-2016
       - windows-2019
@@ -64,6 +91,8 @@ suites:
     run_list:
       - recipe[test::install]
     verifier:
-      inspec_tests:
-        - test/integration/install
-    attributes: { sql_server: { accept_eula: true, version: 2012, server_sa_password: Supersecurepassword123 } }
+      controls:
+        - server
+      inputs:
+        version: 2012
+    attributes: {sql_server: {accept_eula: true, version: 2012, server_sa_password: Supersecurepassword123}}

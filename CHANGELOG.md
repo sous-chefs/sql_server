@@ -2,26 +2,26 @@
 
 This file is used to list changes made in each version of the sql_server cookbook.
 
+## Unreleased
+
+- Sous Chefs Adoption
+- Add proper InSpec tests
+- Remove `windows_path` resource in client recipe as it's not needed anymore
+- Set `netfx35_install` to false by default as it fails currently otherwise
+
 ## 6.1.0 (2020-06-24)
 
 - Cookstyle 6.2.9 Fixes - [@xorimabot](https://github.com/xorimabot)
 - Standardise files with files in chef-cookbooks/repo-management - [@xorimabot](https://github.com/xorimabot)
 - [GH-146] SQL 2019 Support
 
-## Unreleased
-
-- resolved cookstyle error: recipes/server.rb:21:1 refactor: `ChefCorrectness/ChefApplicationFatal`
-- resolved cookstyle error: recipes/server.rb:43:15 refactor: `ChefCorrectness/ChefApplicationFatal`
-- resolved cookstyle error: recipes/server.rb:47:16 refactor: `ChefCorrectness/ChefApplicationFatal`
-- resolved cookstyle error: recipes/server.rb:51:20 refactor: `ChefCorrectness/ChefApplicationFatal`
-
 ## 6.0.0 (2020-02-19)
 
 This release removes support for deprecated SQL Server, Chef Infra Client, and Windows OS releases:
 
-  - Require Chef Infra Client 13+
-  - Remove support for Windows 2008 R2
-  - Remove support for SQL Server 2008 and 2014
+- Require Chef Infra Client 13+
+- Remove support for Windows 2008 R2
+- Remove support for SQL Server 2008 and 2014
 
 ## 5.6.0 (2020-02-18)
 
@@ -98,7 +98,8 @@ This release removes support for deprecated SQL Server, Chef Infra Client, and W
 - Add attributes to control network listeners via registry keys.
 
 ## 5.0.0 (2016-11-22)
-- Avoid deprecation warnings with windows_package by using package instead. This requires Chef 12.6+ and Windows cookbook 2.0+
+
+- Avoid deprecation warnings with `windows_package` by using package instead. This requires Chef 12.6+ and Windows cookbook 2.0+
 - Adding support for SQL Server Version 2014
 - Default to SQL Server 2012
 - Move a good chunk of the version logic to helpers instead of doing it in the recipes

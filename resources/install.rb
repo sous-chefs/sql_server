@@ -56,7 +56,7 @@ property :filestream_share_name, String, default: 'MSSQLSERVER'
 property :sql_collation, String
 property :dreplay_ctlr_admins, [Array, String], default: ['Administrator']
 property :dreplay_client_name, String
-property :netfx35_install, [true, false], default: true
+property :netfx35_install, [true, false], default: false
 property :netfx35_source, String
 property :polybase_port_range, String, default: '16450-16460'
 property :is_master_port, String, default: '8391'

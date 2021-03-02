@@ -27,8 +27,3 @@
     action :install
   end
 end
-
-# update path
-windows_path "#{node['sql_server']['install_dir']}\\#{SqlServer::Helper.install_dir_version(node['sql_server']['version'])}\\Tools\\Binn" do
-  action :add
-end
