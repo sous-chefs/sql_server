@@ -130,6 +130,11 @@ together to maintain important cookbooks. If you’d like to know more please vi
 - `sql_user_db_log_dir`  - Directory for the user database logs
 - `sql_temp_db_dir` - Directory for the temporary database
 - `sql_temp_db_log_dir` - Directory for the temporary database logs
+- `sql_temp_db_file_count` - Number of TempDB data files. Default is 8 or number of cores, whichever is lower.
+- `sql_temp_db_file_size` - Initial size of each TempDB data file in MB. Default is 8.
+- `sql_temp_db_file_growth` - Automatic growth increment for each TempDB data file in MB. Default is 64.
+- `sql_temp_db_log_file_size` - Initial size of the TempDB log file in MB. Default is 8.
+- `sql_temp_db_log_file_growth` - Automatic growth increment for the TempDB log file in MB. Default is 64.
 - `filestream_level` - Level to enable the filestream feature, Valid values are 0, 1, 2 or 3. Default is 0
 - `filestream_share_name` - Share name for the filestream feature. Default is `MSSQLSERVER`
 - `sql_collation` - SQL Collation type for the instance
