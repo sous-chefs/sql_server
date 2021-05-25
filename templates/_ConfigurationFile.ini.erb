@@ -237,7 +237,7 @@ RSSHPINSTALLMODE="SharePointFilesOnlyMode"
 <% if @feature_list.include?('AS')%>
 ; The name of the account that the Analysis Services service runs under.
 
-ASSVCACCOUNT=<%= @as_svc_account %>
+ASSVCACCOUNT="<%= @as_svc_account %>"
 
 ; Controls the service startup type setting after the service has been created.
 
