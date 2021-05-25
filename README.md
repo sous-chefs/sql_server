@@ -126,7 +126,7 @@ together to maintain important cookbooks. If you’d like to know more please vi
 - `instance_dir` - Directory the Instance will be stored. Default is `C:\Program Files\Microsoft SQL Server`
 - `sql_data_dir` - Directory for SQL data
 - `sql_backup_dir` - Directory for backups
-- `sql_intstant_file_init` - Enable instant file initialization for SQL Server service account. Default is `false`
+- `sql_instant_file_init` - Enable instant file initialization for SQL Server service account. Default is `false`
 - `sql_user_db_dir` - Directory for the user database
 - `sql_user_db_log_dir`  - Directory for the user database logs
 - `sql_temp_db_dir` - Directory for the temporary database
