@@ -114,7 +114,7 @@ action :install do
       install_dir: new_resource.install_dir,
       shared_wow_dir: new_resource.shared_wow_dir,
       instance_dir: new_resource.instance_dir,
-      sql_instant_file_init: new_resourse.sql_instant_file_init,
+      sql_instant_file_init: new_resource.sql_instant_file_init,
       sql_data_dir: new_resource.sql_data_dir,
       sql_backup_dir: new_resource.sql_backup_dir,
       sql_user_db_dir: new_resource.sql_user_db_dir,
