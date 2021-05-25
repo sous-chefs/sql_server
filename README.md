@@ -152,6 +152,7 @@ Analysis Services
 
 - `as_sysadmins` - Analysis Services Systems Administrator list. Default is `Administrator`
 - `as_svc_account` - Service Account used by Analysis Services. Default is `NT Service\MSSQLServerOLAPService`
+- `as_account_pwd` - Service Account password for the Analysis Services Service
 
 PolyBase Query Services
 

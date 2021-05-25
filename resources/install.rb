@@ -64,6 +64,7 @@ property :is_master_ssl_cert, String
 property :is_master_cert_thumbprint, String
 property :is_worker_master_url, String
 property :as_svc_account, String, default: 'NT Service\MSSQLServerOLAPService'
+property :as_account_pwd, String
 
 action :install do
   if new_resource.feature.include?('DREPLAY_CLT') && new_resource.dreplay_client_name.nil?
@@ -154,6 +155,7 @@ action :install do
     AGTSVCPASSWORD: new_resource.agent_account_pwd,
     RSSVCPASSWORD: new_resource.rs_account_pwd,
     SQLSVCPASSWORD: new_resource.sql_account_pwd,
+    ASSVCPASSWORD: new_resource.as_account_pwd,
   }.map do |option, attribute|
     next unless attribute
     # Escape password double quotes and backslashes
