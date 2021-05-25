@@ -47,6 +47,7 @@ property :instance_dir, String, default: 'C:\Program Files\Microsoft SQL Server'
 property :shared_wow_dir, String, default: lazy { install_dir.gsub(/Program Files/, 'Program Files (x86)') }
 property :sql_data_dir, String
 property :sql_backup_dir, String
+property :sql_intstant_file_init, [true, false], default: false
 property :sql_user_db_dir, String
 property :sql_user_db_log_dir, String
 property :sql_temp_db_dir, String
@@ -113,6 +114,7 @@ action :install do
       install_dir: new_resource.install_dir,
       shared_wow_dir: new_resource.shared_wow_dir,
       instance_dir: new_resource.instance_dir,
+      sql_intstant_file_init: new_resourse.sql_intstant_file_init,
       sql_data_dir: new_resource.sql_data_dir,
       sql_backup_dir: new_resource.sql_backup_dir,
       sql_user_db_dir: new_resource.sql_user_db_dir,

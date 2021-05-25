@@ -128,6 +128,9 @@ SQLTEMPDBDIR="<%= @sql_temp_db_dir %>"
 SQLTEMPDBLOGDIR="<%= @sql_temp_db_log_dir %>"
 <% end -%>
 
+; Enables instant file initialization for SQL Server service account.
+SQLSVCINSTANTFILEINIT=<%= @sql_intstant_file_init ? 'True' : 'False' %>
+
 ; Specify that SQL Server feature usage data can be collected and sent to Microsoft. Specify 1 or True to enable and 0 or False to disable this feature.
 
 SQMREPORTING="False"
