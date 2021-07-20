@@ -8,6 +8,4 @@ source_url        'https://github.com/sous-chefs/sql_server'
 issues_url        'https://github.com/sous-chefs/sql_server/issues'
 chef_version      '>= 13.0'
 
-supports         'windows'
-
-depends          'windows', '>= 3.0'
+supports          'windows'
