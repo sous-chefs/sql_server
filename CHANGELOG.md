@@ -4,9 +4,15 @@ This file is used to list changes made in each version of the sql_server cookboo
 
 ## Unreleased
 
+- Standardise files with files in sous-chefs/repo-management
+
 ## 6.2.2 - *2021-06-01*
 
+- Standardise files with files in sous-chefs/repo-management
+
 ## 6.2.1 - *2021-05-06*
+
+- Adding new checksums for Windows 20212 SQL component .msi packages
 
 ## 6.2.0 - *2021-03-02*
 
