@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-unified_mode true if respond_to?(:unified_mode)
+unified_mode true
 
 property :sql_reboot, [true, false], default: true
 property :security_mode, String, equal_to: ['Windows Authentication', 'Mixed Mode Authentication'], default: 'Windows Authentication'
