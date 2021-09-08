@@ -16,11 +16,14 @@ jobs:
         uses: actions/checkout@v2
       - name: Install Chef
         uses: actionshub/chef-install@main
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
       - name: Run Chef Delivery
         run: |
           chef exec delivery local all
         env:
           CHEF_LICENSE: accept-no-persist
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
   yamllint:
     runs-on: ubuntu-latest
@@ -66,10 +69,13 @@ jobs:
         uses: actions/checkout@v2
       - name: Install Chef
         uses: actionshub/chef-install@main
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
       - name: test-kitchen
         uses: actionshub/test-kitchen@main
         env:
           CHEF_LICENSE: accept-no-persist
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
         with:
           suite: ${{ matrix.suite }}
           os: ${{ matrix.os }}

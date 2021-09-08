@@ -18,6 +18,7 @@
 # limitations under the License.
 
 require 'chef/mixin/shell_out'
+require 'chef/util/path_helper'
 
 module SqlServer
   module Helper

@@ -6,8 +6,6 @@ description       'Installs/Configures Microsoft SQL Server'
 version           '6.2.3'
 source_url        'https://github.com/sous-chefs/sql_server'
 issues_url        'https://github.com/sous-chefs/sql_server/issues'
-chef_version      '>= 13.0'
+chef_version      '>= 15.3'
 
-supports         'windows'
-
-depends          'windows', '>= 3.0'
+supports          'windows'

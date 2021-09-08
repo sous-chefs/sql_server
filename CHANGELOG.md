@@ -4,6 +4,10 @@ This file is used to list changes made in each version of the sql_server cookboo
 
 ## Unreleased
 
+- Set environment flag to accept chef licence for CI jobs
+- Allow unsecure commands in windows CI jobs, needed for chef to install.
+- Remove windows cookbook dependency as it is no longer maintained.
+
 ## 6.2.3 - *2021-08-30*
 
 - Standardise files with files in sous-chefs/repo-management
