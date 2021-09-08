@@ -4,9 +4,23 @@ This file is used to list changes made in each version of the sql_server cookboo
 
 ## Unreleased
 
+## 7.0.0 - *2021-09-08*
+
+- Set environment flag to accept chef licence for CI jobs
+- Allow unsecure commands in windows CI jobs, needed for chef to install.
+- Remove windows cookbook dependency as it is no longer maintained.
+
+## 6.2.3 - *2021-08-30*
+
+- Standardise files with files in sous-chefs/repo-management
+
 ## 6.2.2 - *2021-06-01*
 
+- Standardise files with files in sous-chefs/repo-management
+
 ## 6.2.1 - *2021-05-06*
+
+- Adding new checksums for Windows 20212 SQL component .msi packages
 
 ## 6.2.0 - *2021-03-02*
 
