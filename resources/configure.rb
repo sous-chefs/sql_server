@@ -16,6 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+unified_mode true
+
 property :reg_version, String
 property :version, [Integer, String], default: '2012'
 property :tcp_enabled, [true, false], default: true
