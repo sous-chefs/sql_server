@@ -4,7 +4,7 @@ This file is used to list changes made in each version of the sql_server cookboo
 
 ## Unreleased
 
-- limit ci integration parallel jobs to 4 - [@jhboricua](https://github.com/jhboricua)
+- limit ci integration parallel jobs to avoid Vagrant image download rate-limiting errors - [@jhboricua](https://github.com/jhboricua)
 
 ## 7.0.0 - *2021-09-08*
 
