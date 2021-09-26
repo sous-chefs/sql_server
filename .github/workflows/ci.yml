@@ -63,7 +63,7 @@ jobs:
           - os: windows-2012r2
             suite: server2019
       fail-fast: false
-      max-parallel: 5
+      max-parallel: 4
 
     steps:
       - name: Check out code
