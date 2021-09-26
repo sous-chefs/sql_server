@@ -4,6 +4,8 @@ This file is used to list changes made in each version of the sql_server cookboo
 
 ## Unreleased
 
+- limit ci integration parallel jobs to 4 - [@jhboricua](https://github.com/jhboricua)
+
 ## 7.0.0 - *2021-09-08*
 
 - Set environment flag to accept chef licence for CI jobs
