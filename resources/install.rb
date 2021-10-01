@@ -49,10 +49,16 @@ property :instance_dir, String, default: 'C:\Program Files\Microsoft SQL Server'
 property :shared_wow_dir, String, default: lazy { install_dir.gsub(/Program Files/, 'Program Files (x86)') }
 property :sql_data_dir, String
 property :sql_backup_dir, String
+property :sql_instant_file_init, [true, false], default: false
 property :sql_user_db_dir, String
 property :sql_user_db_log_dir, String
 property :sql_temp_db_dir, String
 property :sql_temp_db_log_dir, String
+property :sql_temp_db_file_count, Integer
+property :sql_temp_db_file_size, Integer
+property :sql_temp_db_file_growth, Integer
+property :sql_temp_db_log_file_size, Integer
+property :sql_temp_db_log_file_growth, Integer
 property :filestream_level, Integer, equal_to: [0, 1, 2, 3], default: 0
 property :filestream_share_name, String, default: 'MSSQLSERVER'
 property :sql_collation, String
@@ -110,12 +116,18 @@ action :install do
       install_dir: new_resource.install_dir,
       shared_wow_dir: new_resource.shared_wow_dir,
       instance_dir: new_resource.instance_dir,
+      sql_instant_file_init: new_resource.sql_instant_file_init,
       sql_data_dir: new_resource.sql_data_dir,
       sql_backup_dir: new_resource.sql_backup_dir,
       sql_user_db_dir: new_resource.sql_user_db_dir,
       sql_user_db_log_dir: new_resource.sql_user_db_log_dir,
       sql_temp_db_dir: new_resource.sql_temp_db_dir,
       sql_temp_db_log_dir: new_resource.sql_temp_db_log_dir,
+      sql_temp_db_file_count: new_resource.sql_temp_db_file_count,
+      sql_temp_db_file_size: new_resource.sql_temp_db_file_size,
+      sql_temp_db_file_growth: new_resource.sql_temp_db_file_growth,
+      sql_temp_db_log_file_size: new_resource.sql_temp_db_log_file_size,
+      sql_temp_db_log_file_growth: new_resource.sql_temp_db_log_file_growth,
       filestream_level: new_resource.filestream_level,
       filestream_share_name: new_resource.filestream_share_name,
       sql_collation: new_resource.sql_collation,
