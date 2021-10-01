@@ -2,6 +2,8 @@
 
 This file is used to list changes made in each version of the sql_server cookbook.
 
+## Unreleased
+
 ## 7.1.0 - *2021-10-01*
 
 - Adds parameter for tempdb data and log file initial size
