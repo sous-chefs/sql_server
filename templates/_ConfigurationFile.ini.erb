@@ -329,6 +329,39 @@ EXTSVCACCOUNT="NT Service\MSSQLLaunchpad"
 <% end %>
 
 <% if (@version == '2016')  || (@version == '2017') || (@version == '2019') %>
+; Enables instant file initialization for SQL Server service account.
+SQLSVCINSTANTFILEINIT="<%= @sql_instant_file_init ? "True" : "False" %>"
+
+<% unless @sql_temp_db_file_count.nil? -%>
+; The number of Database Engine TempDB files
+
+SQLTEMPDBFILECOUNT="<%= @sql_temp_db_file_count %>"
+<% end %>
+
+<% unless @sql_temp_db_file_size.nil? -%>
+; Specifies the initial size of a Database Engine TempDB data file in MB.
+
+SQLTEMPDBFILESIZE="<%= @sql_temp_db_file_size %>"
+<% end %>
+
+<% unless @sql_temp_db_file_growth.nil? -%>
+; Specifies the automatic growth increment of each Database Engine TempDB data file in MB.
+
+SQLTEMPDBFILEGROWTH="<%= @sql_temp_db_file_growth %>"
+<% end %>
+
+<% unless @sql_temp_db_log_file_size.nil? -%>
+; Specifies the initial size of the Database Engine TempDB log file in MB.
+
+SQLTEMPDBLOGFILESIZE="<%= @sql_temp_db_log_file_size %>"
+<% end %>
+
+<% unless @sql_temp_db_log_file_growth.nil? -%>
+; Specifies the automatic growth increment of the Database Engine TempDB log file in MB.
+
+SQLTEMPDBLOGFILEGROWTH="<%= @sql_temp_db_log_file_growth %>"
+<% end %>
+
 <% if @feature_list.include?('POLYBASE') %>
 ; PolybasePdwUserNameConfigDescription
 
