@@ -4,6 +4,8 @@ This file is used to list changes made in each version of the sql_server cookboo
 
 ## Unreleased
 
+- Pull vagrant images from OSUOSL to workaround rate limiting problems
+
 ## 7.1.0 - *2021-10-01*
 
 - Adds parameter for tempdb data and log file initial size
