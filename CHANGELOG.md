@@ -4,6 +4,7 @@ This file is used to list changes made in each version of the sql_server cookboo
 
 ## Unreleased
 
+- Push change to see if we've fixed it
 - Pull vagrant images from OSUOSL to workaround rate limiting problems
 
 ## 7.1.0 - *2021-10-01*
