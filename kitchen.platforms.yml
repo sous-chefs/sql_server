@@ -1,11 +1,11 @@
 # Use boxes mirrored by OSUOSL to by-pass Hashicorp rate limiting on GitHub Actions
 platforms:
   - name: windows-2012r2
-    driver:
-      box_url: https://ftp.osuosl.org/pub/sous-chefs/bento/windows_2012r2.box
+    # driver:
+      # box_url: https://ftp.osuosl.org/pub/sous-chefs/bento/windows_2012r2.box
   - name: windows-2016
-    driver:
-      box_url: https://ftp.osuosl.org/pub/sous-chefs/bento/windows_2016.box
+    # driver:
+      # box_url: https://ftp.osuosl.org/pub/sous-chefs/bento/windows_2016.box
   - name: windows-2019
-    driver:
-      box_url: https://ftp.osuosl.org/pub/sous-chefs/bento/windows_2019.box
+    # driver:
+      # box_url: https://ftp.osuosl.org/pub/sous-chefs/bento/windows_2019.box
