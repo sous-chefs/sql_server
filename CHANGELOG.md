@@ -2,7 +2,7 @@
 
 This file is used to list changes made in each version of the sql_server cookbook.
 
-## Unreleased
+## 7.1.2 - *2022-02-08*
 
 - Remove delivery folder
 
