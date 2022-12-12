@@ -6,6 +6,8 @@ This file is used to list changes made in each version of the sql_server cookboo
 
 Standardise files with files in sous-chefs/repo-management
 
+Standardise files with files in sous-chefs/repo-management
+
 ## 7.1.2 - *2022-02-08*
 
 - Remove delivery folder
