@@ -18,6 +18,7 @@
 # limitations under the License.
 #
 
+raise("node['sql_server']['accept_eula'] must be set to true for this cookbook to run") unless node['sql_server']['accept_eula']
 raise("node['sql_server']['server_sa_password'] must be set for this cookbook to run") if node['sql_server']['server_sa_password'].nil?
 
 config_file_path = Chef::Util::PathHelper.cleanpath(File.join(Chef::Config[:file_cache_path], 'ConfigurationFile.ini'))
