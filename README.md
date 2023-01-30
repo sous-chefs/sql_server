@@ -23,6 +23,7 @@ together to maintain important cookbooks. If you’d like to know more please vi
 - Windows Server 2012 (R1, R2)
 - Windows Server 2016
 - Windows Server 2019
+- Windows Server 2022
 
 ### Supported Server Verions
 
@@ -30,6 +31,7 @@ together to maintain important cookbooks. If you’d like to know more please vi
 - Microsoft SQL Server 2016
 - Microsoft SQL Server 2017
 - Microsoft SQL Server 2019
+- Microsoft SQL Server 2022
 
 ### Supported Client Versions
 
@@ -207,7 +209,7 @@ end
 
 #### Properties
 
-- `version` - SQL Version of the instance to be configured. Valid otpions are `2012`, `2016`, `2017` or `2019`. Default is `2012`
+- `version` - SQL Version of the instance to be configured. Valid otpions are `2012`, `2016`, `2017`, `2019` or `2022`. Default is `2012`
 - `tcp_enabled` - If TCP is enabled for the instance. Default is true
 - `sql_port` - Port SQL will listen on. Default is 1433
 - `tcp_dynamic_ports` - Sets the Dynamic port SQL will listen on. Default is an empty string
@@ -239,6 +241,14 @@ Configure a SQL 2019 Express install
 ```ruby
 sql_server_configure 'SQLEXPRESS' do
   version '2019'
+end
+```
+
+Configure a SQL 2022 Express install
+
+```ruby
+sql_server_configure 'SQLEXPRESS' do
+  version '2022'
 end
 ```
 
@@ -319,7 +329,7 @@ This recipe is included by the `sql_server::server` recipe, but can be included 
 
 ### server
 
-Installs SQL Server 2012 Express, SQL Server 2016 Express, or SQL Server 2019 Express.
+Installs SQL Server 2012 Express, SQL Server 2016 Express, SQL Server 2019 Express, or SQL Server 2022 Express.
 
 By default, the cookbook installs SQL Server 2012 Express. There are two options to install a different version.
 

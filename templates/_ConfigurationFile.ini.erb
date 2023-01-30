@@ -328,7 +328,7 @@ EXTSVCACCOUNT="NT Service\MSSQLLaunchpad"
 <% end %>
 <% end %>
 
-<% if (@version == '2016')  || (@version == '2017') || (@version == '2019') %>
+<% if (@version == '2016')  || (@version == '2017') || (@version == '2019') || (@version == '2022') %>
 ; Enables instant file initialization for SQL Server service account.
 SQLSVCINSTANTFILEINIT="<%= @sql_instant_file_init ? "True" : "False" %>"
 
