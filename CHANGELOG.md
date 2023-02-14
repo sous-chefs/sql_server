@@ -2,7 +2,7 @@
 
 This file is used to list changes made in each version of the sql_server cookbook.
 
-## Unreleased
+## 7.1.5 - *2023-02-14*
 
 Standardise files with files in sous-chefs/repo-management
 
