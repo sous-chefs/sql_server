@@ -15,7 +15,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
       - name: Install Chef
-        uses: actionshub/chef-install@main
+        uses: actionshub/chef-install@2.0.4
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
       - name: Run Chef Delivery
@@ -49,16 +49,16 @@ jobs:
     strategy:
       matrix:
         os:
-          - 'windows-2012r2'
-          - 'windows-2016'
-          - 'windows-2019'
+          - "windows-2012r2"
+          - "windows-2016"
+          - "windows-2019"
         suite:
-          - 'client'
-          - 'install'
-          - 'server2012'
-          - 'server2016'
-          - 'server2017'
-          - 'server2019'
+          - "client"
+          - "install"
+          - "server2012"
+          - "server2016"
+          - "server2017"
+          - "server2019"
         exclude:
           - os: windows-2012r2
             suite: server2019
@@ -68,11 +68,11 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
       - name: Install Chef
-        uses: actionshub/chef-install@main
+        uses: actionshub/chef-install@2.0.4
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
       - name: test-kitchen
-        uses: actionshub/test-kitchen@main
+        uses: actionshub/test-kitchen@2.1.0
         env:
           CHEF_LICENSE: accept-no-persist
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
