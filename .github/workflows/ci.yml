@@ -8,28 +8,42 @@ name: ci
       - main
 
 jobs:
-  delivery:
+  rspec:
     # This needs to run on a Windows host due to expecting windows paths in tests
     runs-on: windows-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Install Chef
-        uses: actionshub/chef-install@main
-        env:
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-      - name: Run Chef Delivery
-        run: |
-          chef exec delivery local all
+        uses: actionshub/chef-install@2.0.4
+      - name: Run RSpec
+        run: chef exec rspec -f j -o tmp/rspec_results.json -f p
         env:
           CHEF_LICENSE: accept-no-persist
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+      - name: RSpec Report
+        uses: SonicGarden/rspec-report-action@v2.1.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          json-path: tmp/rspec_results.json
+        if: always()
+
+  cookstyle:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+      - name: Install Chef
+        uses: actionshub/chef-install@2.0.4
+      - name: Run Cookstyle
+        run: chef exec cookstyle --display-cop-names --extra-details
+        env:
+          CHEF_LICENSE: accept-no-persist
 
   yamllint:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Run yaml Lint
         uses: actionshub/yamllint@main
 
@@ -37,28 +51,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Run Markdown Lint
-        uses: actionshub/markdownlint@main
+        uses: actionshub/markdownlint@v2.1.4
 
   # This needs to run on vagrant due to the fact these nodes reboot during their
   # runs
   integration:
-    needs: [mdl, yamllint, delivery]
+    needs: [mdl, yamllint, cookstyle, rspec]
     runs-on: macos-latest
     strategy:
       matrix:
         os:
-          - 'windows-2012r2'
-          - 'windows-2016'
-          - 'windows-2019'
+          - "windows-2012r2"
+          - "windows-2016"
+          - "windows-2019"
         suite:
-          - 'client'
-          - 'install'
-          - 'server2012'
-          - 'server2016'
-          - 'server2017'
-          - 'server2019'
+          - "client"
+          - "install"
+          - "server2012"
+          - "server2016"
+          - "server2017"
+          - "server2019"
         exclude:
           - os: windows-2012r2
             suite: server2019
@@ -68,14 +82,11 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
       - name: Install Chef
-        uses: actionshub/chef-install@main
-        env:
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+        uses: actionshub/chef-install@2.0.4
       - name: test-kitchen
-        uses: actionshub/test-kitchen@main
+        uses: actionshub/test-kitchen@2.1.0
         env:
           CHEF_LICENSE: accept-no-persist
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
         with:
           suite: ${{ matrix.suite }}
           os: ${{ matrix.os }}
