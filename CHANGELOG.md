@@ -4,7 +4,11 @@ This file is used to list changes made in each version of the sql_server cookboo
 
 ## Unreleased
 
+Remove recipes and attributes
+
 ## 7.1.7 - *2023-02-20*
+
+Standardise files with files in sous-chefs/repo-management
 
 ## 7.1.6 - *2023-02-16*
 
@@ -16,9 +20,9 @@ Standardise files with files in sous-chefs/repo-management
 
 ## 7.1.4 - *2023-02-14*
 
-## 7.1.3 - *2022-12-13*
-
 Standardise files with files in sous-chefs/repo-management
+
+## 7.1.3 - *2022-12-13*
 
 Standardise files with files in sous-chefs/repo-management
 

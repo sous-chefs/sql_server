@@ -1,0 +1,6 @@
+---
+name: client_install
+# inputs:
+#   - name: version
+#     type: Numeric
+#     required: true
