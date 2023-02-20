@@ -1,10 +1,10 @@
-### sql_server_configure
+# sql_server_configure
 
-#### Actions
+## Actions
 
 - `:service` - Configures the ports that SQL be listening on and starts and enables the SQL Service.
 
-#### Properties
+## Properties
 
 - `version` - SQL Version of the instance to be configured. Valid otpions are `2012`, `2016`, `2017` or `2019`. Default is `2012`
 - `tcp_enabled` - If TCP is enabled for the instance. Default is true
@@ -17,7 +17,7 @@
 - `via_listen_info` - Configures the Virtual interface listening information. Default is `0:1433`
 - `agent_startup` - Configures the SQL Agent Service startup type. Valid options are `Automatic`, `Manual`, `Disabled`, or `Automatic (Delayed Start)`. Default is `Disabled`
 
-#### Examples
+## Examples
 
 Configure a SQL 2012 Express install with all the defaults
 

@@ -1,59 +1,67 @@
+# sql_server_install
 
-### sql_server_install
-
-#### Actions
+## Actions
 
 - `:install` - Installs the version of Microsoft SQL server specified. Default install is SQL 2012 Express.
 
-#### Properties
+## Properties
 
 - `feature` - An Array of the SQL Instance or Server features that are going to be enabled / installed.
-  - [SQL 2012 Available Features list](https://technet.microsoft.com/library/cc645993(SQL.110).aspx)
-    - Instance Features
-      - `SQLENGINE` = Database Engine
-      - `REPLICATION` = Replication
-      - `FULLTEXT` = Full-Text and Semantic Extractions for search
-      - `DQ` = Data Quality Services
-      - `AS` = Analysis Services
-      - `RS` = Reporting Services - Native
-    - Shared Features
-      - `RS_SHP` = Reporting Services - SharePoint
-      - `RS_SHPWFE` = Reporting Services Add-in for SharePoint Products
-      - `DQC` = Data Quality Client
-      - `BIDS` = SQL Server data tools
-      - `CONN` = Client tools connectivity
-      - `IS` = Integration Services
-      - `BC` = Client tools backwards compatibility
-      - `SDK` = Client tools SDK
-      - `BOL` = Documentation components
+
+### [SQL 2012 Available Features list](https://technet.microsoft.com/library/cc645993(SQL.110).aspx)
+
+### Instance Features
+
+- `SQLENGINE` = Database Engine
+- `REPLICATION` = Replication
+- `FULLTEXT` = Full-Text and Semantic Extractions for search
+- `DQ` = Data Quality Services
+- `AS` = Analysis Services
+- `RS` = Reporting Services - Native
+
+### Shared Features
+
+- `RS_SHP` = Reporting Services - SharePoint
+- `RS_SHPWFE` = Reporting Services Add-in for SharePoint Products
+- `DQC` = Data Quality Client
+- `BIDS` = SQL Server data tools
+- `CONN` = Client tools connectivity
+- `IS` = Integration Services
+- `BC` = Client tools backwards compatibility
+- `SDK` = Client tools SDK
+- `BOL` = Documentation components
+- `SSMS` = Management tools
+- `SSMS_ADV` = Management tools - Advanced
+- `DREPLAY_CTLR` = Distributed replay controller
+- `DREPLAY_CLT` = Distributed replay client
+- `SNAC_SDK` = SQL client connectivity SDK
+
+### [SQL 2016 Available Features list](https://technet.microsoft.com/library/cc645993(SQL.130).aspx)
+
+- Instance Features
+   - `ADVANCEDANALYTICS` = R Services (In-Database)
+   - `POLYBASE` = PolyBase Query Service for External Data
+       Note: This Feature Requires Java Runtime Environment greater than 7 update 51. Only the standalone Polybase-enabled Instance is currently support by this cookbook.
+- Shared Features
+   - `SQL_SHARED_MR` = R Server (Standalone)
+   - `MDS` = Master Data Services
+   - REMOVED for standalone install
       - `SSMS` = Management tools
       - `SSMS_ADV` = Management tools - Advanced
-      - `DREPLAY_CTLR` = Distributed replay controller
-      - `DREPLAY_CLT` = Distributed replay client
-      - `SNAC_SDK` = SQL client connectivity SDK
-  - [SQL 2016 Available Features list](https://technet.microsoft.com/library/cc645993(SQL.130).aspx)
-    - Instance Features
-      - `ADVANCEDANALYTICS` = R Services (In-Database)
-      - `POLYBASE` = PolyBase Query Service for External Data
-           Note: This Feature Requires Java Runtime Environment greater than 7 update 51. Only the standalone Polybase-enabled Instance is currently support by this cookbook.
-    - Shared Features
-      - `SQL_SHARED_MR` = R Server (Standalone)
-      - `MDS` = Master Data Services
-      - REMOVED for standalone install
-        - `SSMS` = Management tools
-        - `SSMS_ADV` = Management tools - Advanced
-  - [SQL 2017 Available Features list](https://docs.microsoft.com/en-us/sql/sql-server/editions-and-components-of-sql-server-2017)
-    - Instance Features
-      - `ADVANCEDANALYTICS` = Machine Learning services (In-Database)
-        - `SQL_INST_MPY` = Machine Learning services (In-Database) with Python
-        - `SQL_INST_MR` = Machine Learning services (In-Database) with R
-    - Shared Features
-      - `SQL_SHARED_AA` = Machine Learning Services (Standalone)
-        - `SQL_SHARED_MR` = Machine Learning services (In-Database) with R
-        - `SQL_SHARED_MPY` = Machine Learning services (In-Database) with Python
-      - `IS` = Integrated Services
-        - `IS_MASTER` - Scale Out Master
-        - `IS_WORKER` - Scale Out Worker
+
+### [SQL 2017 Available Features list](https://docs.microsoft.com/en-us/sql/sql-server/editions-and-components-of-sql-server-2017)
+
+- Instance Features
+   - `ADVANCEDANALYTICS` = Machine Learning services (In-Database)
+      - `SQL_INST_MPY` = Machine Learning services (In-Database) with Python
+      - `SQL_INST_MR` = Machine Learning services (In-Database) with R
+- Shared Features
+   - `SQL_SHARED_AA` = Machine Learning Services (Standalone)
+      - `SQL_SHARED_MR` = Machine Learning services (In-Database) with R
+      - `SQL_SHARED_MPY` = Machine Learning services (In-Database) with Python
+   - `IS` = Integrated Services
+      - `IS_MASTER` - Scale Out Master
+      - `IS_WORKER` - Scale Out Worker
 
 - `version` - Version of SQL to be installed. Valid otpions are `2012`, `2016`, or `2017`. Default is `2012`
 - `source_url` - Source of the SQL setup.exe install file. Default is built from the helper libraries.
@@ -96,35 +104,35 @@
 - `netfx35_install` - If the .Net 3.5 Windows Feature is installed. This is required to successfully install SQL 2012. Default is true.
 - `netfx35_source` - Source location for the .Net 3.5 Windows Features install. Only required for offline installs
 
-Distributed Replay
+### Distributed Replay
 
 - `dreplay_ctlr_admins` - List of admins for the Distributed Replay Controller. Default is `Administrator`. The `DREPLAY_CTLR` feature needs to be included in the feature Array for this property to work.
 - `dreplay_client_name` - Host name of the Distributed Replay Controller that the Client will point to. If the `DREPLAY_CLT` is in the feature list this property needs to be set.
 
-Reporting Services
+### Reporting Services
 
 - `rs_account` - Service Account name used to run SQL Reporting Services. To have reporting services it needs to be listed in the `feature` property array.
 - `rs_account_pwd` - Service Account password for the Reporting Services Service
 - `rs_startup` - Reporting Services service startup type. Valid options are `Automatic`, `Manual`, `Disabled`, or `Automatic (Delayed Start)`. Default is `Automatic`.
 - `rs_mode` - Mode the Reporting Services is installed in. Default is `FilesOnlyMode`
 
-Analysis Services
+### Analysis Services
 
 - `as_sysadmins` - Analysis Services Systems Administrator list. Default is `Administrator`
 - `as_svc_account` - Service Account used by Analysis Services. Default is `NT Service\MSSQLServerOLAPService`
 
-PolyBase Query Services
+### PolyBase Query Services
 
 - `polybase_port_range` - Port Range for the PolyBase Query Service. Default is `16450-16460`.
 
-Integrated Services
+### Integrated Services
 
 - `is_master_port` - Port for the Integrated Services Scale out Master. Default is 8391.
 - `is_master_ssl_cert` - The CNs in the certificate used to protect communications between the integration services scale out worker and scale out master.
 - `is_master_cert_thumbprint` - The certificate thumbprint for the scale out master ssl certificate.
 - `is_worker_master_url` - The url of the scale out master when installing a scale out worker.
 
-#### Examples
+## Examples
 
 Install SQL 2012 Express with all the defaults
 
