@@ -66,7 +66,7 @@ jobs:
           - "windows-2016"
           - "windows-2019"
         suite:
-          - "server_install"
+          - "server-install"
       fail-fast: false
 
     steps:
