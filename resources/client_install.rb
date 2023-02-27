@@ -42,7 +42,7 @@ property :ps_extensions,
 
 property :accept_eula, [true, false], default: false
 
-action install do
+action :install do
   %w( native_client command_line_utils clr_types smo ps_extensions ).each do |_pkg|
     package new_resource.pkg do
       source new_resource.pkg[:source]
