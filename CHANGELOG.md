@@ -4,6 +4,8 @@ This file is used to list changes made in each version of the sql_server cookboo
 
 ## Unreleased
 
+Standardise files with files in sous-chefs/repo-management
+
 ## 7.1.8 - *2023-02-27*
 
 Standardise files with files in sous-chefs/repo-management
