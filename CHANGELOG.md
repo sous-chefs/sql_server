@@ -4,6 +4,8 @@ This file is used to list changes made in each version of the sql_server cookboo
 
 ## Unreleased
 
+- Added support for SQL 2022 via resource installation method
+
 ## 7.1.13 - *2023-04-01*
 
 ## 7.1.12 - *2023-04-01*
