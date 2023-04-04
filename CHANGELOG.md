@@ -2,7 +2,7 @@
 
 This file is used to list changes made in each version of the sql_server cookbook.
 
-## Unreleased
+## 7.2.0 - *2023-04-04*
 
 - Added support for SQL 2022 via resource installation method
 
