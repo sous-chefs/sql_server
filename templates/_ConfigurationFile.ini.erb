@@ -58,9 +58,11 @@ QUIET="False"
 
 QUIETSIMPLE="False"
 
+<% if @version != '2022' %>
 ; Specifies that Setup should install into WOW64. This command line argument is not supported on an IA64 or a 32-bit system.
 
 X86="False"
+<% end%>
 
 ; Detailed help for command line argument ROLE has not been defined yet.
 
@@ -328,7 +330,7 @@ EXTSVCACCOUNT="NT Service\MSSQLLaunchpad"
 <% end %>
 <% end %>
 
-<% if (@version == '2016')  || (@version == '2017') || (@version == '2019') %>
+<% if (@version == '2016')  || (@version == '2017') || (@version == '2019') || (@version == '2022') %>
 ; Enables instant file initialization for SQL Server service account.
 SQLSVCINSTANTFILEINIT="<%= @sql_instant_file_init ? "True" : "False" %>"
 
