@@ -30,6 +30,7 @@ together to maintain important cookbooks. If you’d like to know more please vi
 - Microsoft SQL Server 2016
 - Microsoft SQL Server 2017
 - Microsoft SQL Server 2019
+- Microsoft SQL Server 2022
 
 ### Supported Client Versions
 
@@ -101,7 +102,7 @@ together to maintain important cookbooks. If you’d like to know more please vi
         - `IS_MASTER` - Scale Out Master
         - `IS_WORKER` - Scale Out Worker
 
-- `version` - Version of SQL to be installed. Valid otpions are `2012`, `2016`, or `2017`. Default is `2012`
+- `version` - Version of SQL to be installed. Valid otpions are `2012`, `2016`, `2017`, `2019` or `2022`. Default is `2012`
 - `source_url` - Source of the SQL setup.exe install file. Default is built from the helper libraries.
 - `package_name` - Package name for the SQL install. If you specify a version this property is not necessary. Default is built from the helper libraries.
 - `package_checksum` - Package checksum in SHA256 format for the setup.exe file. Default is built from the helper libraries.
