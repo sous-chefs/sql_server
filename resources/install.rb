@@ -99,7 +99,7 @@ action :install do
   dreplay_ctlr_admin_list = build_admin_list(new_resource.dreplay_ctlr_admins)
 
   template config_file_path do
-    source '_ConfigurationFile.ini.erb'
+    source 'ConfigurationFile.ini.erb'
     cookbook 'sql_server'
     variables(
       sqlSysAdminList: sql_sys_admin_list,
