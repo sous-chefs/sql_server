@@ -4,7 +4,7 @@ This file is used to list changes made in each version of the sql_server cookboo
 
 ## Unreleased
 
-Remove recipes and attributes
+- Remove recipes and attributes
 
 ## 7.2.0 - *2023-04-04*
 
@@ -12,7 +12,11 @@ Remove recipes and attributes
 
 ## 7.1.13 - *2023-04-01*
 
+Standardise files with files in sous-chefs/repo-management
+
 ## 7.1.12 - *2023-04-01*
+
+Standardise files with files in sous-chefs/repo-management
 
 ## 7.1.11 - *2023-04-01*
 
@@ -266,28 +270,28 @@ This release removes support for deprecated SQL Server, Chef Infra Client, and W
 
 ### Improvement
 
-- **[COOK-4268](https://tickets.chef.io/browse/COOK-4268)** - sql_server does not support installing SQL 2012
+- [COOK-4268] - sql_server does not support installing SQL 2012
 
 ## v1.4.1 (2014-02-21)
 
 ### Improvement
 
-- **[COOK-3892](https://tickets.chef.io/browse/COOK-3892)** - sql_server cookbook uses deprecated windows_registry LWRP
+- [COOK-3892] - sql_server cookbook uses deprecated windows_registry LWRP
 
 ### Bug
 
-- **[COOK-3725](https://tickets.chef.io/browse/COOK-3725)** - sql_server randomly-generated SA password sometimes not strong enough
+- [COOK-3725] - sql_server randomly-generated SA password sometimes not strong enough
 
 ## v1.3.0
 
 ### Improvement
 
-- **[COOK-3507](https://tickets.chef.io/browse/COOK-3507)** - Broken SQLExpress download links...
+- [COOK-3507] - Broken SQLExpress download links...
 
 ### Bug
 
-- **[COOK-3506](https://tickets.chef.io/browse/COOK-3506)** - SQLEXPRESS on 32 bits systems does not support INSTALLSHAREDWOWDIR
-- **[COOK-3388](https://tickets.chef.io/browse/COOK-3388)** - Mixlib::ShellOut::CommandTimeout: command timed out error
+- [COOK-3506] - SQLEXPRESS on 32 bits systems does not support INSTALLSHAREDWOWDIR
+- [COOK-3388] - Mixlib::ShellOut::CommandTimeout: command timed out error
 
 ## v1.2.2
 
@@ -297,7 +301,7 @@ This release removes support for deprecated SQL Server, Chef Infra Client, and W
 
 ### Improvement
 
-- **[COOK-3088](https://tickets.chef.io/browse/COOK-3088)** - Allow setting feature_list
+- [COOK-3088] - Allow setting feature_list
 
 ## v1.2.0
 

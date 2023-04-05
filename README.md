@@ -53,8 +53,6 @@ together to maintain important cookbooks. If you’d like to know more please vi
 
 SQL Server does not support remote installation over WinRM. For example, the installation fails when you run `knife bootstrap windows winrm` or `knife winrm 'chef-client'` with a run-list that includes `server.rb`. However, you can use a scheduled task or run `chef-client` as a service.
 
-[Learn more](https://learn.chef.io/modules/create-a-web-app-cookbook/windows/virtualbox) in this Learn Chef tutorial.
-
 ## Contributors
 
 This project exists thanks to all the people who
