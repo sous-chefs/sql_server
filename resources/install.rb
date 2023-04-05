@@ -33,7 +33,7 @@ property :as_sysadmins, [Array, String], default: ['Administrator']
 property :sql_account, String, default: 'NT AUTHORITY\NETWORK SERVICE'
 property :sql_account_pwd, String
 property :browser_startup, String, equal_to: ['Automatic', 'Manual', 'Disabled', 'Automatic (Delayed Start)'], default: 'Disabled'
-property :version, [Integer, String], default: '2012'
+property :version, [Integer, String], default: '2022'
 property :source_url, String
 property :package_name, String
 property :package_checksum, String

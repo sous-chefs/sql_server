@@ -28,10 +28,9 @@ platforms:
       box: tas50/windows_2019
 
 suites:
-  - name: server_install
+  - name: default
     run_list:
-      - recipe[test::install]
+      - recipe[test::default]
     verifier:
       inputs:
-        version: 2019
-    attributes: { sql_server: { accept_eula: true, version: 2019 } }
+        version: 2022
