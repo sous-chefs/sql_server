@@ -4,6 +4,8 @@ This file is used to list changes made in each version of the sql_server cookboo
 
 ## Unreleased
 
+Standardise files with files in sous-chefs/repo-management
+
 ## 7.2.0 - *2023-04-04*
 
 - Added support for SQL 2022 via resource installation method
