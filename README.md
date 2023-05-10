@@ -338,7 +338,7 @@ NOTE: This recipe will request a reboot at the end of the Chef Client run if SQL
 
 **Option 2:** From a role, environment, or wrapper cookbook, set these node attributes to specify the URL, checksum, and name of the package (as it appears in the Windows Registry).
 
-```
+```ruby
 node['sql_server']['server']['url']
 node['sql_server']['server']['checksum']
 node['sql_server']['server']['package_name']
