@@ -1,5 +1,5 @@
 ---
-name: sql_server
+name: server_install
 inputs:
   - name: version
     type: Numeric

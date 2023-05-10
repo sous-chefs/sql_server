@@ -4,6 +4,11 @@ This file is used to list changes made in each version of the sql_server cookboo
 
 ## Unreleased
 
+- Remove recipes and attributes
+- Remove duplicate _ConfigurationFile.ini.erb
+- Remove specs for recipes
+- Move the InSpec test to the correct directory
+
 ## 7.2.2 - *2023-05-10*
 
 - Use reusable lint-unit workflow
