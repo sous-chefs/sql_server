@@ -2,6 +2,8 @@
 
 This file is used to list changes made in each version of the sql_server cookbook.
 
+## Unreleased
+
 ## 7.2.3 - *2023-05-17*
 
 ## 7.2.2 - *2023-05-10*
