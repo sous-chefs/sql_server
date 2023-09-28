@@ -30,7 +30,7 @@ module SqlServer
       when '2016' then 'MSSQL13.'
       when '2017' then 'MSSQL14.'
       when '2019' then 'MSSQL15.'
-      when '2022' then 'MSSQL1^.'
+      when '2022' then 'MSSQL16.'
       else raise "Unsupported sql_server version '#{version}'. Please open a PR to add support for this version."
       end
     end
