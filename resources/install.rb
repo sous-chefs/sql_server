@@ -33,7 +33,7 @@ property :as_sysadmins, [Array, String], default: ['Administrator']
 property :sql_account, String, default: 'NT AUTHORITY\NETWORK SERVICE'
 property :sql_account_pwd, String
 property :browser_startup, String, equal_to: ['Automatic', 'Manual', 'Disabled', 'Automatic (Delayed Start)'], default: 'Disabled'
-property :version, [Integer, String], default: '2012'
+property :version, [Integer, String], default: '2022'
 property :source_url, String
 property :package_name, String
 property :package_checksum, String
@@ -43,7 +43,7 @@ property :product_key, String
 property :update_enabled, [true, false], default: true
 property :update_source, String, default: 'MU'
 property :instance_name, String, default: 'SQLEXPRESS'
-property :feature, [Array, String], default: %w(SQLENGINE REPLICATION SNAC_SDK)
+property :feature, [Array, String], default: %w(SQLENGINE REPLICATION)
 property :install_dir, String, default: 'C:\Program Files\Microsoft SQL Server'
 property :instance_dir, String, default: 'C:\Program Files\Microsoft SQL Server'
 property :shared_wow_dir, String, default: lazy { install_dir.gsub(/Program Files/, 'Program Files (x86)') }
@@ -99,7 +99,7 @@ action :install do
   dreplay_ctlr_admin_list = build_admin_list(new_resource.dreplay_ctlr_admins)
 
   template config_file_path do
-    source '_ConfigurationFile.ini.erb'
+    source 'ConfigurationFile.ini.erb'
     cookbook 'sql_server'
     variables(
       sqlSysAdminList: sql_sys_admin_list,
