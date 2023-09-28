@@ -9,6 +9,14 @@ This file is used to list changes made in each version of the sql_server cookboo
 - Remove specs for recipes
 - Move the InSpec test to the correct directory
 
+## 7.2.6 - *2023-09-28*
+
+## 7.2.5 - *2023-09-04*
+
+## 7.2.4 - *2023-07-10*
+
+## 7.2.3 - *2023-05-17*
+
 ## 7.2.2 - *2023-05-10*
 
 - Use reusable lint-unit workflow
