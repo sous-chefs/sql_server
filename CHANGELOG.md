@@ -2,7 +2,7 @@
 
 This file is used to list changes made in each version of the sql_server cookbook.
 
-## Unreleased
+## 8.0.0 - *2023-09-28*
 
 - Remove recipes and attributes
 - Remove duplicate _ConfigurationFile.ini.erb
