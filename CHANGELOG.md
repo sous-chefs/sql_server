@@ -4,6 +4,8 @@ This file is used to list changes made in each version of the sql_server cookboo
 
 ## Unreleased
 
+## 8.0.2 - *2024-05-01*
+
 ## 8.0.1 - *2023-10-31*
 
 ## 8.0.0 - *2023-09-28*
