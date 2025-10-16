@@ -5,6 +5,13 @@ This file is used to list changes made in each version of the sql_server cookboo
 Standardise files with files in sous-chefs/repo-management
 Standardise files with files in sous-chefs/repo-management
 
+## [8.0.6](https://github.com/sous-chefs/sql_server/compare/8.0.5...v8.0.6) (2025-10-16)
+
+
+### Bug Fixes
+
+* **ci:** Update workflows to use release pipeline ([#222](https://github.com/sous-chefs/sql_server/issues/222)) ([a02c712](https://github.com/sous-chefs/sql_server/commit/a02c71263114a6f36dc34f32ef8a0dcd083e0033))
+
 ## 8.0.4 - *2024-11-18*
 
 Standardise files with files in sous-chefs/repo-management
