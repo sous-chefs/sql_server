@@ -177,12 +177,19 @@ action :install do
     "/#{option}=\"#{safe_password}#{enclosing_escape}\""
   end.compact.join ' '
 
+  # The SQL Server 2025 setup requires /IAcceptSQLServerLicenseTerms to be passed as a parameter not as a ini entry
+  accept_license_option = if new_resource.accept_eula && new_resource.version.to_s() == '2025'
+                             '/IAcceptSQLServerLicenseTerms'
+                           else
+                             ''
+                           end
+
   package install_name do
     source package_url
     checksum install_checksum
     timeout new_resource.installer_timeout
     installer_type :custom
-    options "/q /ConfigurationFile=#{config_file_path} #{passwords_options}"
+    options "/q #{accept_license_option} /ConfigurationFile=#{config_file_path} #{passwords_options}"
     action :install
     notifies :reboot_now, 'reboot[sql server install]' if new_resource.sql_reboot
     returns [0, 42, 127, 3010]
