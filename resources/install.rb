@@ -178,7 +178,7 @@ action :install do
   end.compact.join ' '
 
   # The SQL Server 2025 setup requires /IAcceptSQLServerLicenseTerms to be passed as a parameter not as a ini entry
-  accept_license_option = if new_resource.accept_eula && new_resource.version.to_s() == '2025'
+  accept_license_option = if new_resource.accept_eula && new_resource.version.to_s == '2025'
                              '/IAcceptSQLServerLicenseTerms'
                            else
                              ''
