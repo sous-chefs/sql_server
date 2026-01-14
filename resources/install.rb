@@ -162,6 +162,8 @@ action :install do
                      ::SqlServer::Helper.sql_server_checksum(new_resource.version, x86_64) ||
                      ::Chef::Application.fatal!("No package checksum matches '#{new_resource.version}'. package_checksum property must be set or version property must match a supported version.")
 
+  install_options = ['/q', "/ConfigurationFile=#{config_file_path}"]
+
   # Build safe password command line options for the installer
   # see http://technet.microsoft.com/library/ms144259
   passwords_options = {
@@ -175,14 +177,21 @@ action :install do
     # When the number of double quotes is odd, we need to escape the enclosing quotes
     enclosing_escape = safe_password.count('"').odd? ? '^' : ''
     "/#{option}=\"#{safe_password}#{enclosing_escape}\""
-  end.compact.join ' '
+  end.compact
+
+  install_options.push(passwords_options)
+
+  # The SQL Server 2025 setup requires /IAcceptSQLServerLicenseTerms to be passed as a parameter not as a ini entry
+  if new_resource.accept_eula && new_resource.version.to_s == '2025'
+    install_options.push('/IAcceptSQLServerLicenseTerms')
+  end
 
   package install_name do
     source package_url
     checksum install_checksum
     timeout new_resource.installer_timeout
     installer_type :custom
-    options "/q /ConfigurationFile=#{config_file_path} #{passwords_options}"
+    options install_options.join(' ')
     action :install
     notifies :reboot_now, 'reboot[sql server install]' if new_resource.sql_reboot
     returns [0, 42, 127, 3010]
