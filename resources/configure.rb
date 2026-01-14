@@ -19,7 +19,7 @@
 unified_mode true
 
 property :reg_version, String
-property :version, [Integer, String], default: '2012'
+property :version, [Integer, String], default: '2022'
 property :tcp_enabled, [true, false], default: true
 property :sql_port, Integer, default: 1433
 property :tcp_dynamic_ports, String, default: ''
