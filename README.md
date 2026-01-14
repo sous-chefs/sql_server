@@ -31,6 +31,7 @@ together to maintain important cookbooks. If you’d like to know more please vi
 - Microsoft SQL Server 2017
 - Microsoft SQL Server 2019
 - Microsoft SQL Server 2022
+- Microsoft SQL Server 2025
 
 ### Supported Client Versions
 
