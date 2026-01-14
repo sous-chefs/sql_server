@@ -87,14 +87,15 @@ Address failures by category:
 After applying fixes:
 
 // turbo
+
 1. Re-run the failing tests:
 
 ```bash
 chef exec kitchen test <suite-platform> --destroy=always
 ```
 
-2. If new failures appear, return to step 3
-3. Continue until all tests pass
+1. If new failures appear, return to step 3
+2. Continue until all tests pass
 
 ### 6. Verify All Suites Pass
 
@@ -109,6 +110,7 @@ chef exec kitchen test --concurrency=4 --destroy=always
 Destroy any remaining kitchen instances:
 
 // turbo
+
 ```bash
 chef exec kitchen destroy
 ```

@@ -52,7 +52,7 @@ module SqlServer
     end
 
     def self.sql_server_url(version, x86_64)
-      return nil unless x86_64 # Only x86_64 is supported for modern SQL Server versions
+      return unless x86_64 # Only x86_64 is supported for modern SQL Server versions
 
       case version.to_s # to_s to make sure someone didn't pass us an int
       when '2016' then 'https://download.microsoft.com/download/9/0/7/907AD35F-9F9C-43A5-9789-52470555DB90/ENU/SQLEXPR_x64_ENU.exe'
@@ -64,7 +64,7 @@ module SqlServer
     end
 
     def self.sql_server_package_name(version, x86_64)
-      return nil unless x86_64 # Only x86_64 is supported for modern SQL Server versions
+      return unless x86_64 # Only x86_64 is supported for modern SQL Server versions
 
       case version.to_s # to_s to make sure someone didn't pass us an int
       when '2016' then 'Microsoft SQL Server 2016 (64-bit)'
@@ -76,7 +76,7 @@ module SqlServer
     end
 
     def self.sql_server_checksum(version, x86_64)
-      return nil unless x86_64 # Only x86_64 is supported for modern SQL Server versions
+      return unless x86_64 # Only x86_64 is supported for modern SQL Server versions
 
       case version.to_s # to_s to make sure someone didn't pass us an int
       when '2016' then '2A5B64AE64A8285C024870EC4643617AC5146894DD59DD560E75CEA787BF9333'
